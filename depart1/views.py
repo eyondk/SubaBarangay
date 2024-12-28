@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def index(request):
     return render(request,"secretary/secretary.html")
+
+def treasurer_view(request):
+    return render(request, "treasurer/treasurer.html")

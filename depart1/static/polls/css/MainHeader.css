@@ -1,0 +1,72 @@
+body{
+    background-color:whitesmoke;
+    font-family: 'Poppins', sans-serif; 
+    color: rgba(2, 2, 87, 0.922);
+    margin: 0;
+    padding: 0px 30px;
+}
+
+
+.Main_header {
+    padding: 1px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -1%;
+}
+
+.userdetails{
+    
+}
+
+.username{
+    margin-bottom: -25%;
+    font-weight: 500;
+}
+
+.role{
+    margin-top: 20%;
+    padding: 0;
+}
+
+.tittle{
+    text-align: center;
+    text-transform:uppercase;
+    color: rgba(2, 2, 87, 0.922);
+    font-size: medium;
+    font-weight: 600;
+}
+
+.Body{
+    background-color:#6a6790d0;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 1px auto;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    color: rgba(2, 2, 87, 0.922);
+
+
+}
+
+.nav-menu a {
+    text-transform:uppercase;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    color: rgb(2, 2, 87);
+    font-weight: 600;
+    font-size: small;
+}
+
+
+    /* color: rgba(2, 2, 87, 0.45); */
+    /* color: rgb(27, 27, 220); */
+.nav-menu a:hover,
+.nav-menu a.active {
+    border-bottom: 3px solid  rgba(1, 1, 70, 0.922);
+}
