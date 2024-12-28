@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Treasurer</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
+                <a href="#">Payment</a>
+                <a href="#">Organization</a>
+                <a href="#">Users</a>
+                <a href="#">Logs</a>    
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        
+
+        <div class="cards">
+            <div class="card">
+                <div class="text">
+                    <h2>750</h2>
+                    <p>Women's</p>
+                </div>
+                <i class="fas fa-female"></i>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h2>350</h2>
+                    <p>Erpat</p>
+                </div>
+                <i class="fas fa-male"></i>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h2>450</h2>
+                    <p>Senior Citizen</p>
+                </div>
+                <i class="fas fa-blind"></i>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h2>650</h2>
+                    <p>PWD</p>
+                </div>
+                <i class="fas fa-wheelchair	"></i>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h2>750</h2>
+                    <p>LGBTQ</p>
+                </div>
+                <i class="fas fa-transgender-alt"></i>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h2>850</h2>
+                    <p>Children</p>
+                </div>
+                <i class="fas fa-child"></i>
+            </div>
+        </div>
+
+        <div class="children-category">
+            <h3>Categorized <br>Children By Age:</h3>
+            <p>0-28 days: 9086 | 29 days - 11 months: 9086 | 1-4 y/o: 9086 | 5-9 y/o: 9086</p>
+        </div>
+    </div>
+</body>
+</html>

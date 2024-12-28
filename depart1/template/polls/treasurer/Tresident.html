@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Tresident.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Treasurer</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
+                <a href="#">Payment</a>
+                <a href="#">Organization</a>
+                <a href="#">Users</a>
+                <a href="#">Logs</a>    
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-left">
+
+                <button type="submit" class="BTN_Search"> Search </button>
+                <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
+                <select id="" class="org-filter" name="org">
+                    <option value="" disabled selected>Filter by Organization</option>
+                    <option value="women">Women</option>
+                    <option value="erpat">Erpat</option>
+                    <option value="senior-citizen">Senior Citizen</option>
+                    <option value="pwd">PWD</option>
+                    <option value="lgbtq">LGBTQ</option>
+                    <option value="children">Children</option>
+                </select>
+                
+            </div>
+            
+            <div class="add_resident">
+                <button class="BTN_AddResident">
+                        <i class="fa-solid fa-circle-plus"></i> Add Residents
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
