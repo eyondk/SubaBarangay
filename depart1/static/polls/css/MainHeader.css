@@ -100,11 +100,12 @@ body{
 }
 
 .logout-btn:hover {
-    color: rgb(44, 38, 206);
+    color:gainsboro;
 }
 
 .logout-btn i {
     margin-right: 10px; 
+    font-size: medium;
 }
 
 
