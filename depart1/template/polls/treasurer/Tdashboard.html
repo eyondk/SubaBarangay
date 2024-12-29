@@ -33,7 +33,7 @@
                 <a href="#">Payment</a>
                 <a href="#">Organization</a>
                 <a href="#">Users</a>
-                <a href="#">Logs</a>    
+                <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
                 <a href="" class="logout-btn">

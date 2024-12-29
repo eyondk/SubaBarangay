@@ -6,5 +6,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("treasurer/dashboard/", views.treasurer_dashboard_view, name="Tdashboard"),
     path("treasurer/residents/", views.treasurer_resident_view, name="Tresidents"),
-
+    path("treasurer/logs/", views.treasurer_logs_view, name="Tlogs"),
 ]

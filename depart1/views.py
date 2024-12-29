@@ -10,3 +10,6 @@ def treasurer_dashboard_view(request):
 
 def treasurer_resident_view(request):
     return render(request, "treasurer/Tresident.html")
+
+def treasurer_logs_view(request):
+    return render(request, "treasurer/Tlogs.html")
