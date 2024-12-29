@@ -7,4 +7,6 @@ urlpatterns = [
     path("treasurer/dashboard/", views.treasurer_dashboard_view, name="Tdashboard"),
     path("treasurer/residents/", views.treasurer_resident_view, name="Tresidents"),
     path("treasurer/logs/", views.treasurer_logs_view, name="Tlogs"),
+    path("treasurer/users/", views.treasurer_users_view, name="Tusers")
+
 ]

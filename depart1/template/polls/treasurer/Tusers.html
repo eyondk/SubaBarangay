@@ -48,108 +48,114 @@
 
                     <button type="submit" class="BTN_Search"> Search </button>
                     <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
-                    <input type="date" id="date-filter" name="date" class="date-filter" />
+                    <select id="" class="filter" name="role">
+                        <option value="" disabled selected style="color: gainsboro;">Filter by Roles</option>
+                        <option value="brgy-captain">Barangay Captain</option>
+                        <option value="brgy-treasurer">Barangay Treasurer</option>
+                        <option value="brgy-secretary">Barangay Secretary</option>
+                        <option value="brgy-staff">Barangay Staff</option>
+                        <option value="BHW">Barangay Health Worker</option>
+                        <option value="brgy-doctor">Barangay Doctor</option>
+                    </select>
                     
                 </div>
             </form>
-        </div>
-        <div class="tabs-container">
-            <ul class="tabs">
-                <li class="tab" data-type="resident">Residents</li>
-                <li class="tab" data-type="user">Users</li>
-                <li class="tab" data-type="payment">Payments</li>
-            </ul>
+
+            <div class="add_users">
+                <button class="BTN_AddUsers">
+                        <i class="fa-solid fa-circle-plus"></i> Add User
+                </button>
+            </div>
         </div>
 
         <div class="tre_table-container">
             <table class="tre_resident-table">
                 <thead>
                     <tr>
-                        <th>USER LOG ID</th>
-                        <th>LOG DETAILS</th>
-                        <th>TIMESTAMP</th>
-                        <th>ACTION</th>
-                        <th>USER ID</th>
+                        <th>USER NO.</th>
+                        <th>LAST NAME</th>
+                        <th>FIRST NAME</th>
+                        <th>MIDDLE NAME</th>
+                        <th>USERNAME</th>
+                        <th>ROLE</th>
+                        <th>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example to display data dynamically in table -->
-                    {% if logs %}
-                        {% for log in logs %}
+                    <!-- to display data dynamically in table -->
+                    {% if users %}
+                        {% for user in users %}
                         <tr>
-                            <td>{{ log.id }}</td>
-                            <td>{{ log.details }}</td>
-                            <td>{{ log.timestamp}}</td>
-                            <td>{{ log.action}}</td>
-                            <td>{{ log.userid}}</td>
-                            
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.middle_name }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.role }}</td>
+                            <td class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            </td>
                         </tr>
                         {% endfor %}
 
                     {% else %}
                         <tr>
-                            <td colspan="5">No Logs found.</td>
+                            <td colspan="7">No residents found.</td>
                         </tr>
                     {% endif %}
                     <!-- to display data dynamically in table -->
                     <!-- for visual purpose only -->
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="">YRONIE</td>
+                        <td>BOSS P</td>
+                        <td class="actions">
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="">YRONIE</td>
+                        <td>BOSS P</td>
+                        <td class="actions">
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="">YRONIE</td>
+                        <td>BOSS P</td>
+                        <td class="actions">
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
-                    </tr>
-                    <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
-                    </tr>
-                    <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
-                    </tr>
-                    <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="">YRONIE</td>
+                        <td>BOSS P</td>
+                        <td class="actions">
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
                     </tr>
                     <!-- for visual purpose only -->
                 </tbody>
             </table>
-            <div class="footer">
-                <button class="generate-logs">Generate List of Logs</button>
+            <div class="footer-user">
+                <p>Total Users: 82697</p>
             </div>
         </div>
-       
         
     </div>
 </body>

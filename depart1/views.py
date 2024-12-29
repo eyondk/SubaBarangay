@@ -13,3 +13,6 @@ def treasurer_resident_view(request):
 
 def treasurer_logs_view(request):
     return render(request, "treasurer/Tlogs.html")
+
+def treasurer_users_view(request):
+    return render(request, "treasurer/Tusers.html")

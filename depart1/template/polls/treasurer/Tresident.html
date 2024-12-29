@@ -33,7 +33,7 @@
                 <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
                 <a href="#">Payment</a>
                 <a href="#">Organization</a>
-                <a href="#">Users</a>
+                <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
                 <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
@@ -48,7 +48,7 @@
 
                     <button type="submit" class="BTN_Search"> Search </button>
                     <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
-                    <select id="" class="org-filter" name="org">
+                    <select id="" class="filter" name="org">
                         <option value="" disabled selected>Filter by Organization</option>
                         <option value="women">Women</option>
                         <option value="erpat">Erpat</option>

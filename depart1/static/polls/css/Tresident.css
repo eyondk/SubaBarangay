@@ -27,17 +27,17 @@
     color: rgba(2, 2, 87, 0.922);
 }
 .Txt_Search::placeholder{
-    color:darkgray;
+    color: rgba(2, 2, 87, 0.922);
 }
 
-/* resident filter */
-.org-filter {
+.filter {
     padding: 8px;
     font-size: 14px;
     border-radius: 5px;
-    color: darkgray;
+    color: rgba(2, 2, 87, 0.922);
     width: 200px;
     font-weight: 500;
+
 }
 
 .BTN_Search {
@@ -60,12 +60,12 @@
     margin-right: 5px;  
 }
 
-.add_resident {
+.add_resident, .add_users {
     display: flex;
     justify-content: flex-end;
 }
 
-.BTN_AddResident {
+.BTN_AddResident, .BTN_AddUsers {
     padding: 5px 15px;
     background-color: transparent;
     color: rgba(2, 2, 87, 0.922);
@@ -79,11 +79,11 @@
     font-size: small;
 }
 
-.BTN_AddResident:hover {
+.BTN_AddResident:hover, .BTN_AddUsers:hover {
     color:gainsboro;
 }
 
-.BTN_AddResident i {
+.BTN_AddResident i, .BTN_AddUsers i {
     margin-right: 5px;
     font-size: 30px;
 }
@@ -175,10 +175,17 @@
     color: rgba(2, 2, 87, 0.922);
 }
 
-.footer p {
+.footer p, .footer-user p {
     font-size: 13px;
     font-weight: 600;
     margin-top: -3px;
+}
+
+.footer-user{
+    display:flex;
+    justify-content: flex-end;
+    margin-top: 0;
+    color: rgba(2, 2, 87, 0.922);
 }
 
 /* TREASURER LOGS PART */
