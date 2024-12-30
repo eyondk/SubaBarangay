@@ -40,6 +40,58 @@
 
 }
 
+.age-filter-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 15px;
+    margin-top: -20px;
+    background-color: transparent;
+    color: rgba(2, 2, 87, 0.922);
+    gap: 8px;
+}
+
+.age-filter-container h4 {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 450;
+}
+
+.filter-age {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid rgba(2, 2, 87, 0.922);
+    border-radius: 8px;
+    color: rgba(2, 2, 87, 0.922);
+    background-color: transparent;
+    font-weight: 600;
+    width: 150px; 
+}
+
+.filter-btn, .reset-btn{
+    padding: 8px 10px;
+    color: whitesmoke;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: xx-small;
+}
+
+.filter-btn{
+    background-color: rgba(32, 32, 100, 0.874);
+}
+
+.reset-btn{
+    background-color: rgb(92, 92, 146);
+}
+
+.filter-btn:hover, .reset-btn:hover{
+    background-color: rgba(220, 220, 220, 0.505);
+    color: rgba(2, 2, 87, 0.922);
+
+}
+
 .BTN_Search {
     padding: 10px 25px;
     background-color: rgba(2, 2, 87, 0.922);
@@ -53,7 +105,7 @@
 }
 
 .BTN_Search:hover {
-    background-color: rgba(175, 175, 245, 0.922);
+    background-color: rgb(56, 56, 139);
 }
 
 .BTN_Search i {
@@ -90,7 +142,7 @@
 
 
 .Body .tre_table-container{
-    margin: 8px 0;
+    margin-bottom: 10px;
     padding: 10px;
 }
 
@@ -100,6 +152,7 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
+    margin-top: -15px;
     
 }
 
@@ -189,8 +242,6 @@
 }
 
 /* TREASURER LOGS PART */
-
-/* logs date filter */
 .date-filter {
     padding: 8px;
     font-size: 14px;
@@ -204,6 +255,7 @@
 .tabs-container {
     width: 100%;
     margin-top: -5px;
+    margin-bottom: 15px;
     padding: 1px 2px 3px 10px;
 }
 

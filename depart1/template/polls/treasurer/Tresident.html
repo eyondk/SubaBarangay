@@ -37,13 +37,13 @@
                 <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
-                <a href="" class="logout-btn">
+                <a href="#" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
         </div>
         <div class="search-container">
-            <form method="GET" action="{% url 'Tresidents' %}">
+            <form method="GET" action="">
                 <div class="search-left">
 
                     <button type="submit" class="BTN_Search"> Search </button>
@@ -57,7 +57,6 @@
                         <option value="lgbtq">LGBTQ</option>
                         <option value="children">Children</option>
                     </select>
-                    
                 </div>
             </form>
             
@@ -66,6 +65,22 @@
                         <i class="fa-solid fa-circle-plus"></i> Add Residents
                 </button>
             </div>
+        </div>
+
+        <div class="age-filter-container" style="display:none;">
+            <h4>Age:</h4>
+            <form action="" method="GET">
+                <select id="" class="filter-age" name="age">
+                    <option value="" disabled selected></option>
+                    <option value="">0-28 dys</option>
+                    <option value="">29 dys-11 mo.</option>
+                    <option value="">1 - 4 y/o</option>
+                    <option value="">5 - 9 y/o</option>
+                </select>
+
+                <button type="submit" id="" class="filter-btn">Filter</button>
+                <button type="submit" id="" class="reset-btn">Delete</button>
+            </form>
         </div>
         
         <div class="tre_table-container">
@@ -160,5 +175,19 @@
         </div>
         
     </div>
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
 </body>
 </html>
