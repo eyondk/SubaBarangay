@@ -1,155 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barangay Suba Mangement System</title>
-    {% load static %}
-    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
-    <link rel="stylesheet" href="{%static 'polls/css/Tresident_details.css'%}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+{% extends "shared/resident_details.html" %}
 
-</head>
-<body>
-    <div class="Main_header">
-        <div class="userdetails">
-            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
-            <div class="user-info">
-                <h6 class="username">Username</h6>
-                <h6 class="role">Barangay Treasurer</h6>
-            </div>
-        </div>
-        <h1 class="tittle">Barangay Suba Management System</h1>
-        <p>Wed, 10/10/10 12:00 PM</p>
-    </div>
+<p>This is the child template's nav menu.</p>
 
-    <div class="Body">
-        <div class="menu">
-            <div class="nav-menu">
-                <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
-                <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
-                <a href="#">Payment</a>
-                <a href="#">Organization</a>
-                <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
-                <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
-            </div>
-            <div class="logout">
-                <a href="" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </div>
-        </div>
+{% block nav_menu %}
+<div class="nav-menu">
+    <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
+    <a href="#">Payment</a>
+    <a href="#">Organization</a>
+    <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
+    <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
 
-        <h1 class="section-title">Resident Details</h1>
-        <form class="resident-form">
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" readonly>
-            </div>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" readonly>
-            </div>
-            <div class="form-group">
-                <label for="middleName">Middle Name</label>
-                <input type="text" id="middleName" readonly>
-            </div>
-            <div class="form-group">
-                <label for="nickname">Nickname</label>
-                <input type="text" id="nickname" readonly>
-            </div>
-            <div class="form-group">
-                <label for="birthdate">Birthdate</label>
-                <input type="text" id="birthdate" readonly>
-            </div>
-            <div class="form-group">
-                <label for="age">age</label>
-                <input type="text" id="age" readonly>
-            </div><div class="form-group">
-                <label for="gender">Gender</label>
-                <input type="text" id="gender" readonly>
-            </div>
-            <div class="form-group">
-                <label for="sex">Sex</label>
-                <input type="text" id="sex" readonly>
-            </div>
-            <div class="form-group">
-                <label for="weight">weight</label>
-                <input type="text" id="weight" readonly>
-            </div>
-            <div class="form-group">
-                <label for="bloodtype">blood type</label>
-                <input type="text" id="bloodtype" readonly>
-            </div>
-            <div class="form-group">
-                <label for="eyecolor">Eye color</label>
-                <input type="text" id="eyecolor" readonly>
-            </div>
-            <div class="form-group">
-                <label for="houseowner">House Owner</label>
-                <input type="text" id="houseowner" readonly>
-            </div>
-            <div class="form-group">
-                <label for="block">Block</label>
-                <input type="text" id="block" readonly>
-            </div>
-            <div class="form-group">
-                <label for="strt">Street</label>
-                <input type="text" id="strt" readonly>
-            </div>
-            <div class="form-group">
-                <label for="houseno">House No.</label>
-                <input type="text" id="houseno" readonly>
-            </div>
-            <div class="form-group">
-                <label for="religion">Religion</label>
-                <input type="text" id="religion" readonly>
-            </div>
-            <div class="form-group">
-                <label for="civilstat">Civil Status</label>
-                <input type="text" id="civilstat" value="Single" readonly>
-            </div>
-            <div class="form-group">
-                <label for="orgname">Organization</label>
-                <input type="text" id="orgname" readonly>
-            </div>
-            <div class="form-group">
-                <label for="precinctno">Precinct No.</label>
-                <input type="text" id="precinctno" readonly>
-            </div>
-            <div class="form-group">
-                <label for="voterdateadded">Voter Registration Date</label>
-                <input type="text" id="voterdateadded" readonly>
-            </div>  
-            <div class="form-actions">
-                 <a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
+</div>
+{% endblock %}
 
-                 <!-- change Single to Married to display husband's and children's details -->
-                 {% if 'Single' == 'Married' or 'Single' == 'Divorced' or 'Single' == 'Widowed' %}
-                   <a href="{% url 'Tresident_husband' %}" class="next-btn">View Husband's</a>
-                 {% else %}
-                   <a href="{% url 'Tresident_parents' %}" class="next-btn">View Parents'</a>
-                 {% endif %}                 
-            </div>
-        </form>
-    </div>
 
-    
-    <div id="logout-modal" class="logout-modal">
-        <div class="logout-modal-content">
-            <span class="close-logout-btn">&times;</span>
-            <h2>Logout Confirmation</h2>
-            <p>Are you sure you want to log out?</p>
-            <div class="logout-modal-actions">
-                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
-                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
-</body>
-</html>
+{% block back-btns %}
+<a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
+{% if 'Single' == 'Married' or 'Single' == 'Divorced' or 'Single' == 'Widowed' %}
+<a href="{% url 'Tresident_husband' %}" class="next-btn">View Husband's</a>
+{% else %}
+<a href="{% url 'Tresident_parents' %}" class="next-btn">View Parents'</a>
+{% endif %}   
+{% endblock %}

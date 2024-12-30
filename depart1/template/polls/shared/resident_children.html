@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Tresident.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Tresident_details.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Treasurer</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            {% block nav_menu %}{% endblock %}
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <h1 class="section-title">Resident's Child/Children Details</h1>
+        <div class="tre_table-container">
+            <table class="tre_resident-table">
+                <thead>
+                    <tr>
+                        <th>LAST NAME</th>
+                        <th>FIRST NAME</th>
+                        <th>MIDDLE NAME</th>
+                        <th>BIRTHDATE</th>
+                        <th>EDUCATION ATTAINMENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- for visual purpose only -->
+                    <tr>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="dob">10/10/10</td>
+                        <td class="" id="educattainment">Master's Degree</td>
+                    </tr>
+                    <tr>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="dob">10/10/10</td>
+                        <td class="" id="educattainment">Master's Degree</td>
+                    </tr>
+                    <tr>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="dob">10/10/10</td>
+                        <td class="" id="educattainment">Master's Degree</td>
+                    </tr>
+                    <!-- for visual purpose only -->
+                </tbody>
+            </table>
+            <div class="form-actions">
+                <a  href="{% url 'resident_husband' %}" class="cancel-btn">Back</a>
+                {% block back-btns %}{% endblock %}
+            </div>
+    </div>
+
+    
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+</body>
+</html>
