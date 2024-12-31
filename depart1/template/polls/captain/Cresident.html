@@ -68,7 +68,6 @@
             </div>
         </div>
 
-        <!-- display:flex to see the filter age for children -->
         <div class="age-filter-container" style="display:none;">
             <h4>Age:</h4>
             <form action="" method="GET">
@@ -191,5 +190,18 @@
     </div>
 
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script>
+        // age filter visibility function
+        const organizationFilter = document.querySelector('select[name="org"]');
+        const ageFilterContainer = document.querySelector('.age-filter-container');
+    
+        organizationFilter.addEventListener('change', function () {
+            if (this.value === 'children') {
+                ageFilterContainer.style.display = 'flex'; 
+            } else {
+                ageFilterContainer.style.display = 'none'; 
+            }
+        });
+    </script>
 </body>
 </html>

@@ -60,16 +60,17 @@
                 <li class="tab" data-type="payment">Payments</li>
             </ul>
         </div>
-
+        
         <div class="tre_table-container">
             <table class="tre_resident-table">
                 <thead>
-                    <tr>
-                        <th>USER LOG ID</th>
-                        <th>LOG DETAILS</th>
+                    <tr id="table-header">
+                        <th>RESIDENT LOG ID</th>
+                        <th>USER</th>
+                        <th>ROLE</th>
+                        <th>RESIDENT</th>
+                        <th>ACTIVITY</th>
                         <th>TIMESTAMP</th>
-                        <th>ACTION</th>
-                        <th>USER ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,59 +89,68 @@
 
                     {% else %}
                         <tr>
-                            <td colspan="5">No Logs found.</td>
+                            <td colspan="6">No Logs found.</td>
                         </tr>
                     {% endif %}
                     <!-- to display data dynamically in table -->
                     <!-- for visual purpose only -->
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron Igot Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
+                        
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
+                        
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">Account created for user johndoe with role name Barangay Captain</td>
-                        <td class="" id="fname">2024/12/12</td>
-                        <td class="" id="mname">REGISTER_ACCOUNT</td>
-                        <td class="" id="userID">8</td>
+                        <td>John Lester Yemen Pogi</td>
+                        <td>Barangay Treasurer</td>
+                        <td>Yron I. Padilla</td>
+                        <td>Resident Added</td>
+                        <td>2020/12/12 10:10:10 AM</td>
                     </tr>
                     <!-- for visual purpose only -->
                 </tbody>
@@ -167,5 +177,6 @@
     </div>
 
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/tabs.js'%}"></script>
 </body>
 </html>
