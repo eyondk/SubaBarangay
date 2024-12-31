@@ -1,6 +1,12 @@
 {% extends "shared/resident_husband.html" %}
 
-<p>This is the child template's nav menu.</p>
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Treasurer</h6>
+</div>
+{% endblock %}
+
 
 {% block nav_menu %}
 <div class="nav-menu">

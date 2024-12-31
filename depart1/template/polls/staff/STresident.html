@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Tresident.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Staff</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'STdashboard' %}" class="{% if request.resolver_match.url_name == 'STdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'STresident' %}" class="{% if request.resolver_match.url_name == 'STresident' %}active{% endif %}">Residents</a>
+                <a href="#">Organization</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+            
+        <div class="search-container">
+            <form method="GET" action="">
+                <div class="search-left">
+
+                    <button type="submit" class="BTN_Search"> Search </button>
+                    <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
+                    <select id="" class="filter" name="org">
+                        <option value="" disabled selected>Filter by Organization</option>
+                        <option value="women">Women</option>
+                        <option value="erpat">Erpat</option>
+                        <option value="senior-citizen">Senior Citizen</option>
+                        <option value="pwd">PWD</option>
+                        <option value="lgbtq">LGBTQ</option>
+                        <option value="children">Children</option>
+                    </select>
+                </div>
+            </form>
+            
+            <div class="add_resident">
+                <button class="BTN_AddResident">
+                        <i class="fa-solid fa-circle-plus"></i> Add Residents
+                </button>
+            </div>
+        </div>
+
+        <div class="age-filter-container" style="display:none;">
+            <h4>Age:</h4>
+            <form action="" method="GET">
+                <select id="" class="filter-age" name="age">
+                    <option value="" disabled selected></option>
+                    <option value="">0-28 dys</option>
+                    <option value="">29 dys-11 mo.</option>
+                    <option value="">1 - 4 y/o</option>
+                    <option value="">5 - 9 y/o</option>
+                </select>
+
+                <button type="submit" id="" class="filter-btn">Filter</button>
+                <button type="submit" id="" class="reset-btn">Delete</button>
+            </form>
+        </div>
+        
+        <div class="tre_table-container">
+            <table class="tre_resident-table">
+                <thead>
+                    <tr>
+                        <th>ID MEM NO.</th>
+                        <th>LAST NAME</th>
+                        <th>FIRST NAME</th>
+                        <th>MIDDLE NAME</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- to display data dynamically in table -->
+                    {% if residents %}
+                        {% for resident in residents %}
+                        <tr>
+                            <td>{{ resident.id }}</td>
+                            <td>{{ resident.last_name }}</td>
+                            <td>{{ resident.first_name }}</td>
+                            <td>{{ resident.middle_name }}</td>
+                            <td class="actions">
+                                <a href="{% url 'STresident_details'%}" class="action-btn view">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No residents found.</td>
+                        </tr>
+                    {% endif %}
+                    <!-- to display data dynamically in table -->
+                    <!-- for visual purpose only -->
+                    <tr>
+                        <td class="" id="no">5</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="actions">
+                            <!-- use to fetch resident data using resident id 
+                            resident.id -->
+                            <a href="{% url 'STresident_details'%}" class="action-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="" id="no">5</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="actions">
+                            <a href="{% url 'STresident_details'%}" class="action-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="" id="no">5</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="" id="no">5</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class="actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                    <!-- for visual purpose only -->
+                </tbody>
+            </table>
+            <div class="footer">
+                <p>Total Residents: 826920897</p>
+            </div>
+        </div>
+        
+    </div>   
+
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script>
+        // age filter visibility function
+        const organizationFilter = document.querySelector('select[name="org"]');
+        const ageFilterContainer = document.querySelector('.age-filter-container');
+    
+        organizationFilter.addEventListener('change', function () {
+            if (this.value === 'children') {
+                ageFilterContainer.style.display = 'flex'; 
+            } else {
+                ageFilterContainer.style.display = 'none'; 
+            }
+        });
+    </script>
+</body>
+</html>

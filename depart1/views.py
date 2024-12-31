@@ -1,11 +1,10 @@
 from django.shortcuts import render
-
 from django.shortcuts import render
 
 
 
 def index(request):
-    return render(request,"secretary/secretary.html")
+    return render(request,"shared/login_page.html")
 
 #----------------RESIDENT----------------
 
@@ -26,6 +25,7 @@ def resident_children_view(request):
 
 def resident_parents_view(request):
     return render(request, "shared/resident_parents.html")
+
 
 #------------TREASURER--------
 def treasurer_dashboard_view(request):
@@ -52,7 +52,8 @@ def treasurer_resident_parents_view(request):
 def treasurer_resident_husband_view(request):
     return render(request, "treasurer/Tresident_husband.html")
 
-# ==========CAPTAIN==============
+
+#------------CAPTAIN--------
 def captain_dashboard_view(request):
     return render(request, "captain/Cdashboard.html")
 
@@ -73,6 +74,68 @@ def captain_resident_parents_view(request):
 
 def captain_resident_husband_view(request):
     return render(request, "captain/Cresident_husband.html")
+
+#----------------SECRETARY----------------
+def secretary_dashboard_view(request):
+    return render(request, "secretary/Sdashboard.html")
+
+def secretary_resident_view(request):
+    return render(request, "secretary/Sresident.html")
+
+def secretary_logs_view(request):
+    return render(request, "secretary/Slogs.html")
+
+def secretary_resident_details_view(request):
+    return render(request, "secretary/Sresident_details.html")
+
+def secretary_resident_husband_view(request):
+    return render(request, "secretary/Sresident_husband.html")
+
+def secretary_resident_children_view(request):
+    return render(request, "secretary/Sresident_children.html")
+
+def secretary_resident_parents_view(request):
+    return render(request, "secretary/Sresident_parents.html")
+
+
+#----------------BHW----------------
+def bhw_dashboard_view(request):
+    return render(request, "BHW/Bdashboard.html")
+
+def bhw_resident_view(request):
+    return render(request, "BHW/Bresident.html")
+
+def bhw_resident_details_view(request):
+    return render(request, "BHW/Bresident_details.html")
+
+def bhw_resident_husband_view(request):
+    return render(request, "BHW/Bresident_husband.html")
+
+def bhw_resident_children_view(request):
+    return render(request, "BHW/Bresident_children.html")
+
+def bhw_resident_parents_view(request):
+    return render(request, "BHW/Bresident_parents.html")
+
+
+#----------------STAFF----------------
+def staff_dashboard_view(request):
+    return render(request, "staff/STdashboard.html")
+
+def staff_resident_view(request):
+    return render(request, "staff/STresident.html")
+
+def staff_resident_details_view(request):
+    return render(request, "staff/STresident_details.html")
+
+def staff_resident_husband_view(request):
+    return render(request, "staff/STresident_husband.html")
+
+def staff_resident_children_view(request):
+    return render(request, "staff/STresident_children.html")
+
+def staff_resident_parents_view(request):
+    return render(request, "staff/STresident_parents.html")
 
 
 

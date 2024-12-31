@@ -1,5 +1,13 @@
 {% extends "shared/resident_parents.html" %}
 
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Treasurer</h6>
+</div>
+{% endblock %}
+
+
 {% block nav_menu %}
 <div class="nav-menu">
     <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>

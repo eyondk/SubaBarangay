@@ -7,7 +7,6 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
-    <link rel="stylesheet" href="{%static 'polls/css/Tresident_details.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -17,8 +16,10 @@
     <div class="Main_header">
         <div class="userdetails">
             <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
-            {% block userinfo %}
-            {% endblock %}
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Secretray</h6>
+            </div>
         </div>
         <h1 class="tittle">Barangay Suba Management System</h1>
         <p>Wed, 10/10/10 12:00 PM</p>
@@ -26,44 +27,35 @@
 
     <div class="Body">
         <div class="menu">
-            {% block nav_menu %}{% endblock %}
+            <div class="nav-menu">
+                <a href="{% url 'Sdashboard' %}" class="{% if request.resolver_match.url_name == 'Sdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Sresident' %}" class="{% if request.resolver_match.url_name == 'Sresident' %}active{% endif %}">Residents</a>
+                <a href="#">Organization</a>
+                <a href="#" class="">Certificates</a>
+                <a href="{% url 'Slogs' %}" class="{% if request.resolver_match.url_name == 'Slogs' %}active{% endif %}">Logs</a>    
+            </div>
             <div class="logout">
                 <a href="" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
         </div>
+        
 
-        <h1 class="section-title">Resident's Husband Details</h1>
-        <form class="resident-form">
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" readonly>
+        <div class="cards-above">
+            <div class="card-above-1">
+               
             </div>
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" readonly>
+            <div class="card-above-2">
+               
             </div>
-            <div class="form-group">
-                <label for="middleName">Middle Name</label>
-                <input type="text" id="middleName" readonly>
+        </div>
+
+        <div class="cards-below">        
+            <div class="card-below">
+                    
             </div>
-            <div class="form-group">
-                <label for="birthdate">Birthdate</label>
-                <input type="text" id="birthdate" readonly>
-            </div>
-            <div class="form-group">
-                <label for="occupation">occupation</label>
-                <input type="text" id="occupation" readonly>
-            </div><div class="form-group">
-                <label for="workAdd">Work address</label>
-                <input type="text" id="workAdd" readonly>
-            </div>  
-            <div class="form-actions">
-                {% block back-btns %}
-                {% endblock%}
-            </div>
-        </form>
+        </div>
     </div>
 
     

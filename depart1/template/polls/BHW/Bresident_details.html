@@ -1,0 +1,29 @@
+{% extends "shared/resident_details.html" %}
+
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Health Worker</h6>
+</div>
+{% endblock %}
+
+
+{% block nav_menu %}
+<div class="nav-menu">
+    <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+    <a href="#">Household Records</a>
+    <a href="#">Health Records</a>
+</div>
+{% endblock %}
+
+
+{% block back-btns %}
+    <a  href="{% url 'Bresident' %}" class="cancel-btn">Cancel</a>
+    <!-- change Single to Married to display husband's and children's details -->
+    {% if 'Single' == 'Married' or 'Single' == 'Divorced' or 'Single' == 'Widowed' %}
+    <a href="{% url 'Bresident_husband' %}" class="next-btn">View Husband's</a>
+    {% else %}
+    <a href="{% url 'Bresident_parents' %}" class="next-btn">View Parents'</a>
+    {% endif %}   
+{% endblock %}

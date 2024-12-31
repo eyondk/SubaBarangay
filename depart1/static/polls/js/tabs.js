@@ -3,7 +3,7 @@
     user: ['USER LOG ID', 'LOG DETAILS', 'TIMESTAMP', 'ACTION', 'USER', 'ROLE'],
     resident: ['RESIDENT LOG ID', 'USER','ROLE','RESIDENT', 'ACTIVITY','TIMESTAMP'], //not sure
     payment: ['PAYMENT ID', 'AMOUNT', 'DATE ISSUED', 'CERTIFICATE TYPE', 'REQUESTED', 'IS RESIDENT'], //not sure
-    certificateissued: ['CERTIFCATE ISSUED ID', 'RESIDENT REQUESTED', 'CERTIFICATE TYPE', 'DATE ISSUED', 'RESIDENT REQUESTED', 'IS RESIDENT'] //not sure
+    certificateissued: ['CERTIFCATE ISSUED LOG ID', 'RESIDENT REQUESTED', 'CERTIFICATE TYPE', 'DATE ISSUED', 'RESIDENT REQUESTED', 'IS RESIDENT'] //not sure
 };
 
 //change headers for different log type

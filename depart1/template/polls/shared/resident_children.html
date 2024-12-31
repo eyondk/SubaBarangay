@@ -18,10 +18,8 @@
     <div class="Main_header">
         <div class="userdetails">
             <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
-            <div class="user-info">
-                <h6 class="username">Username</h6>
-                <h6 class="role">Barangay Treasurer</h6>
-            </div>
+            {% block userinfo %}
+            {% endblock %}
         </div>
         <h1 class="tittle">Barangay Suba Management System</h1>
         <p>Wed, 10/10/10 12:00 PM</p>
@@ -78,6 +76,7 @@
             <div class="form-actions">
                 {% block back-btns %}{% endblock %}
             </div>
+        </div>    
     </div>
 
     
