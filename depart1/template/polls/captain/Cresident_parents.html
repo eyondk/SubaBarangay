@@ -1,0 +1,24 @@
+{% extends "shared/resident_parents.html" %}
+
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Captain</h6>
+</div>
+{% endblock %}
+
+{% block nav_menu %}
+<div class="nav-menu">
+    <a href="{% url 'Cdashboard' %}" class="{% if request.resolver_match.url_name == 'Cdashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'Cresidents' %}" class="{% if request.resolver_match.url_name == 'Cresidents' %}active{% endif %}">Residents</a>
+    <a href="#">Organization</a>
+    <a href="#" class="">Health Records</a>
+    <a href="{% url 'Clogs' %}" class="{% if request.resolver_match.url_name == 'Clogs' %}active{% endif %}">Logs</a>    
+</div>
+{% endblock %}
+
+{% block back-btns %}
+<a  href="{% url 'Cresident_details' %}" class="cancel-btn">Back</a>
+<a  href="{% url 'Cresidents' %}" class="next-btn">Back to Resident</a>
+{% endblock %}
+

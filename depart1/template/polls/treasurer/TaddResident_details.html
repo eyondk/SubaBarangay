@@ -1,0 +1,33 @@
+{% extends "shared/add_resident_details.html" %}
+
+
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Treasurer</h6>
+</div>
+{% endblock %}
+
+
+{% block nav_menu %}
+<div class="nav-menu">
+    <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
+    <a href="{% url 'Tpayments' %}" class="{% if request.resolver_match.url_name == 'Tpayments' %}active{% endif %}">Payment</a>
+    <a href="{% url 'Torganization'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Organization</a>
+    <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
+    <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
+
+</div>
+{% endblock %}
+
+
+
+{% block back-btns %}
+<a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
+{% if 'Married' == 'Married' or 'Married' == 'Divorced' or 'Married' == 'Widowed' %}
+<a href="{% url 'TaddEduc_details' %}" class="next-btn">Next</a>
+{% else %}
+<a href="{% url 'Tresident_parents' %}" class="next-btn">Next</a>
+{% endif %}   
+{% endblock %}
