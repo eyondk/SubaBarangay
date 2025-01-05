@@ -1,0 +1,170 @@
+/* View & Update User's Modal */
+.modal {
+    background-color: whitesmoke;
+    margin: 5% auto;
+    padding: 20px 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: rgba(2, 2, 87, 0.922);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-header {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.modal-footer {
+    margin-top: 5px;
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.overlay {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #e2e1f380;
+}
+
+.overlay.show {
+    display: block;
+}
+
+
+label {
+    margin-bottom: 1px;
+    text-align: left;
+    font-weight:500;
+}
+
+.modal form input, 
+.modal form select {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%; 
+    max-width: 100%;
+    box-sizing: border-box; 
+    border-radius: 8px;
+    border: 1.5px solid rgba(80, 80, 181, 0.922);
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.modal form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.cancel-btn,
+.save-btn {
+    width: 30%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: small;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cancel-btn {
+    background-color: #6a6790ef;
+    color: whitesmoke;
+}
+
+.save-btn {
+    background-color: rgba(2, 2, 87, 0.922);
+    color: whitesmoke;
+}
+
+.cancel-btn:hover,
+.save-btn:hover {
+    background-color: rgba(220, 220, 220, 0.806);
+    color: rgba(2, 2, 87, 0.922);
+}
+
+
+/* ADD USER MODAL */
+.modal-user-add {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-user-add-content {
+    text-align: center;
+    border:none;
+    max-width: 500px;
+    background-color: whitesmoke;
+    margin: 5% auto;
+    padding: 20px 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.modal-user-add-content input, 
+.modal-user-add-content select{
+    padding: 8px;
+    font-size: 14px;
+    width: 100%; 
+    max-width: 100%;
+    box-sizing: border-box; 
+    border-radius: 8px;
+    border: 1.5px solid rgba(80, 80, 181, 0.922);
+    color: rgba(2, 2, 87, 0.922);
+}
+.modal-user-add-content ::placeholder{
+    color: rgba(66, 66, 158, 0.922);
+}
+.modal-user-add-content form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.modal-user-add-content h2{
+    margin-top: -2px;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+}
+
+.modal-user-add-content form label{
+    color: rgba(2, 2, 87, 0.922);
+    text-align: left;
+    font-size: medium;
+}
+
+.modal-user-add-content form .data{
+    text-align: left;
+}

@@ -17,12 +17,12 @@ urlpatterns = [
     path("treasurer/resident/view/parents", views.treasurer_resident_parents_view, name= "Tresident_parents"),
     path("treasurer/resident/view/husband", views.treasurer_resident_husband_view, name="Tresident_husband"),
 
-    path("treasurer/resident/add/", views.treasurer_add_resident_view, name="TaddResident_details"),
+    path("treasurer/resident/add/details", views.treasurer_add_resident_view, name="TaddResident_details"),
     path("treasurer/resident/add/husband", views.treasurer_add_husband_details_view, name="TaddHusband_details"),
     path("treasurer/resident/add/parents", views.treasurer_add_parents_details_view, name="TaddParents_details"),
     path("treasurer/resident/add/educ", views.treasurer_add_educ_details_view, name="TaddEduc_details"),
 
-    path("treasurer/resident/update", views.treasurer_update_resident_details_view, name="Tresident_update"),
+    path("treasurer/resident/update/details", views.treasurer_update_resident_details_view, name="Tresident_update"),
     path("treasurer/resident/update/educ", views.treasurer_update_resident_educ_view, name="Tresident_update_educ"),
 
 
@@ -35,6 +35,11 @@ urlpatterns = [
     path("resident/view/husband", views.resident_husband_view, name="resident_husband"),    
     path("resident/view/children", views.resident_children_view, name= "resident_children"),
     path("resident/view/parents", views.resident_parents_view, name= "resident_parents"),
+
+    # user path
+    path("user/view/details", views.user_details_view, name="user_details"),
+    path("user/edit/<int:user_id>/", views.update_user, name="update_user"),
+
 
     path("captain/dashboard/", views.captain_dashboard_view, name="Cdashboard"),
     path("captain/resident/", views.captain_resident_view, name="Cresidents"),
@@ -52,6 +57,16 @@ urlpatterns = [
     path("secretary/resident/view/husband", views.secretary_resident_husband_view, name="Sresident_husband"),
     path("secretary/resident/view/children", views.secretary_resident_children_view, name="Sresident_children"),
     path("secretary/resident/view/parents", views.secretary_resident_parents_view, name="Sresident_parents"),
+
+    path("secretary/resident/add/details", views.secretary_resident_add_resident_view, name="SaddResident_details"),
+    path("secretary/resident/add/educ", views.secretary_resident_add_educ_view, name="SaddEduc_details"),
+    path("secretary/resident/update/details", views.secretary_update_resident_details_view, name="Sresident_update"),
+    path("secretary/resident/update/educ", views.secretary_update_resident_educ_view, name="Sresident_update_educ"),
+
+
+
+
+
    
 
     path("BHW/dashboard/", views.bhw_dashboard_view, name="Bdashboard"),
