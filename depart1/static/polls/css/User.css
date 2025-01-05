@@ -22,6 +22,7 @@
     font-weight: 600;
     margin-bottom: 15px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .modal-footer {
@@ -75,7 +76,7 @@ label {
 
 .cancel-btn,
 .save-btn {
-    width: 50%;
+    width: 30%;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -123,14 +124,11 @@ label {
     margin: 5% auto;
     padding: 20px 20px;
     border-radius: 8px;
-    width: 80%;
+    width: 90%;
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     color: rgba(2, 2, 87, 0.922);
-    text-transform: uppercase;
-    font-size: larger;
-    font-weight: 450;
 }
 
 .modal-user-add-content input, 
@@ -145,7 +143,7 @@ label {
     color: rgba(2, 2, 87, 0.922);
 }
 .modal-user-add-content ::placeholder{
-    color: rgba(2, 2, 87, 0.922);
+    color: rgba(66, 66, 158, 0.922);
 }
 .modal-user-add-content form{
     display: grid;
@@ -153,3 +151,20 @@ label {
     gap: 15px;
 }
 
+.modal-user-add-content h2{
+    margin-top: -2px;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+}
+
+.modal-user-add-content form label{
+    color: rgba(2, 2, 87, 0.922);
+    text-align: left;
+    font-size: medium;
+}
+
+.modal-user-add-content form .data{
+    text-align: left;
+}

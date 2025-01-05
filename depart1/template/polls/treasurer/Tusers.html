@@ -184,20 +184,45 @@
             <h2>Add User</h2>
             <form action="" method="POST">
                  {% csrf_token %}
+                 
+                <div class="data">
+                    <label for="role">User Role:</label>
+                    <select name="role" required>
+                        <option value="brgy-captain">Barangay Captain</option>
+                        <option value="brgy-treasurer">Barangay Treasurer</option>
+                        <option value="brgy-secretary">Barangay Secretary</option>
+                        <option value="brgy-staff">Barangay Staff</option>
+                        <option value="BHW">Barangay Health Worker</option>
+                        <option value="brgy-doctor">Barangay Doctor</option>
+                    </select>
 
-                 <select name="role" required>
-                    <option value="brgy-captain">Barangay Captain</option>
-                    <option value="brgy-treasurer">Barangay Treasurer</option>
-                    <option value="brgy-secretary">Barangay Secretary</option>
-                    <option value="brgy-staff">Barangay Staff</option>
-                    <option value="BHW">Barangay Health Worker</option>
-                    <option value="brgy-doctor">Barangay Doctor</option>
-                </select>
-                <input type="text" name="first_name" placeholder="First Name" required>
-                <input type="text" name="last_name" placeholder="Last Name" required>
-                <input type="text" name="middle_name" placeholder="Middle Name">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+                </div>
+
+
+                <div class="data">
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                </div>
+
+                <div class="data">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                </div>
+
+                <div class="data">                        
+                    <label for="mname">Middle Name:</label>
+                    <input type="text" name="middle_name" placeholder="Middle Name">
+                </div>
+
+                <div class="data">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+
+                <div class="data">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
                 <div class="modal-footer">
                         <button type="button" class="cancel-btn" id="cancel-add-user-btn">Cancel</button>
                         <button type="submit" class="save-btn">Save</button>
