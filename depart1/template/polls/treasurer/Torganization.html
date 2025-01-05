@@ -83,10 +83,10 @@
             <table class="tre_resident-table">
                 <thead>
                     <tr>
-                        <th>ID MEM NO.</th>
-                        <th>LAST NAME</th>
-                        <th>FIRST NAME</th>
-                        <th>MIDDLE NAME</th>
+                        <th>ORG NO.</th>
+                        <th>ORGANIZATION NAME</th>
+                        <th>DESCRIPTION</th>
+                        <th>TOTAL MEMBERS</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
@@ -95,14 +95,14 @@
                     {% if residents %}
                         {% for resident in residents %}
                         <tr>
-                            <td>{{ resident.id }}</td>
-                            <td>{{ resident.last_name }}</td>
-                            <td>{{ resident.first_name }}</td>
-                            <td>{{ resident.middle_name }}</td>
+                            <td>{{ org.id }}</td>
+                            <td>{{ org.name }}</td>
+                            <td>{{ prg.desctiption }}</td>
+                            <td>{{ org.members }}</td>
                             <td class="actions">
-                                <a href="{% url 'Tresident_details'%}" class="action-btn view">
+                                <!-- <a href="{% url 'Tresident_details'%}" class="action-btn view">
                                     <i class="fas fa-eye"></i>
-                                </a>
+                                </a> -->
 
                                 <a href="{% url 'Tresident_update' %}" class="action-btn view">
                                     <i class="fas fa-edit"></i>
@@ -117,22 +117,22 @@
 
                     {% else %}
                         <tr>
-                            <td colspan="5">No residents found.</td>
+                            <td colspan="5">No organization found.</td>
                         </tr>
                     {% endif %}
                     <!-- to display data dynamically in table -->
                     <!-- for visual purpose only -->
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="lname">ERPAT</td>
+                        <td class="" id="fname">Mga Pudrakels</td>
+                        <td class="" id="mname">150</td>
                         <td class="actions">
                             <!-- use to fetch resident data using resident id 
                             resident.id -->
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
+                            <!-- <a href="{% url 'Tresident_details'%}" class="action-btn view">
                                 <i class="fas fa-eye"></i>
-                            </a>
+                            </a> -->
                             <a href="{% url 'Tresident_update' %}" class="action-btn view">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -140,13 +140,13 @@
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="lname">ERPAT</td>
+                        <td class="" id="fname">Mga Pudrakels</td>
+                        <td class="" id="mname">150</td>
                         <td class="actions">
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
+                            <!-- <a href="{% url 'Tresident_details'%}" class="action-btn view">
                                 <i class="fas fa-eye"></i>
-                            </a>
+                            </a> -->
                             <a href="{% url 'Tresident_update' %}" class="action-btn view">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -154,21 +154,21 @@
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="lname">ERPAT</td>
+                        <td class="" id="fname">Mga Pudrakels</td>
+                        <td class="" id="mname">150</td>
                         <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <!-- <button class="action-btn view"><i class="fas fa-eye"></i></button> -->
                             <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                         </td>
                     </tr>
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
+                        <td class="" id="lname">ERPAT</td>
+                        <td class="" id="fname">Mga Pudrakels</td>
+                        <td class="" id="mname">150</td>
                         <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <!-- <button class="action-btn view"><i class="fas fa-eye"></i></button> -->
                             <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                         </td>
                     </tr>
