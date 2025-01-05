@@ -27,6 +27,29 @@ def resident_parents_view(request):
     return render(request, "shared/resident_parents.html")
 
 
+#-----------USER--------------
+def user_details_view(request):
+    return render(request, "shared/user_details.html")
+
+#not using
+def update_user(request, user_id):
+    # Simulate user data (normally fetched from a database)
+    user_data = {
+        "id": user_id,
+        "lname": "PADILLA",
+        "fname": "YRON",
+        "mname": "IGOT",
+        "username": "YRONIE",
+        "status": "active"
+    }
+
+    if request.method == 'POST':
+        print("Updated Data:", request.POST)
+        return render(request, 'treasurer/Tusers.html')  # Use a template to show success
+
+    return render(request, 'treasurer/Tusers.html', {"user": user_data})
+
+
 #------------TREASURER--------
 def treasurer_dashboard_view(request):
     return render(request, "treasurer/Tdashboard.html")

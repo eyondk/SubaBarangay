@@ -21,6 +21,11 @@ urlpatterns = [
     path("resident/view/children", views.resident_children_view, name= "resident_children"),
     path("resident/view/parents", views.resident_parents_view, name= "resident_parents"),
 
+    # user path
+    path("user/view/details", views.user_details_view, name="user_details"),
+    path("user/edit/<int:user_id>/", views.update_user, name="update_user"),
+
+
     path("captain/dashboard/", views.captain_dashboard_view, name="Cdashboard"),
     path("captain/resident/", views.captain_resident_view, name="Cresidents"),
     path("captain/logs/", views.captain_logs_view, name="Clogs"),
