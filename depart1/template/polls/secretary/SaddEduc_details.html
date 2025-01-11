@@ -1,0 +1,25 @@
+{% extends "shared/add_resident_educ.html" %}
+
+{% block userinfo %}
+<div class="user-info">
+    <h6 class="username">Username</h6>
+    <h6 class="role">Barangay Secretary</h6>
+</div>
+{% endblock %}
+
+
+{% block nav_menu %}
+<div class="nav-menu">
+    <a href="{% url 'Sdashboard' %}" class="{% if request.resolver_match.url_name == 'Sdashboard' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'Sresident' %}" class="{% if request.resolver_match.url_name == 'Sresident' %}active{% endif %}">Residents</a>
+    <a href="#">Organization</a>
+    <a href="#" class="">Certificates</a>
+    <a href="{% url 'Slogs' %}" class="{% if request.resolver_match.url_name == 'Slogs' %}active{% endif %}">Logs</a>    
+</div>
+{% endblock %}
+
+
+{% block back-btns %}
+        <a  href="{% url 'SaddResident_details' %}" class="cancel-btn">Back</a>
+        <a href="{% url 'Sresident'%}" class="next-btn">Done</a>
+{% endblock %}

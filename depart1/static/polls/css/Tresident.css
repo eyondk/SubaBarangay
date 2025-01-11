@@ -112,12 +112,12 @@
     margin-right: 5px;  
 }
 
-.add_resident, .add_users {
+.add_resident, .add_users, .record_payment, .register_org{
     display: flex;
     justify-content: flex-end;
 }
 
-.BTN_AddResident, .BTN_AddUsers {
+.BTN_AddResident, .BTN_AddUsers, .BTN_RecordPayment, .BTN_Org{
     padding: 5px 15px;
     background-color: transparent;
     color: rgba(2, 2, 87, 0.922);
@@ -129,13 +129,14 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: small;
+    
 }
 
-.BTN_AddResident:hover, .BTN_AddUsers:hover {
+.BTN_AddResident:hover, .BTN_AddUsers:hover , .BTN_RecordPayment:hover, .BTN_Org:hover{
     color:gainsboro;
 }
 
-.BTN_AddResident i, .BTN_AddUsers i {
+.BTN_AddResident i, .BTN_AddUsers i, .BTN_RecordPayment i, .BTN_Org i {
     margin-right: 5px;
     font-size: 30px;
 }
@@ -306,3 +307,8 @@
     background-color: rgba(2, 2, 87, 0.922);
     color: whitesmoke;
 }
+
+.BTN_AddResident {
+    text-decoration: none;
+  }
+

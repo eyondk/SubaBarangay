@@ -44,31 +44,20 @@
             </div>
         </div>
         <div class="search-container">
-            <form method="GET" action="">
+            <form method="GET" action="{% url 'Tresidents' %}">
                 <div class="search-left">
 
                     <button type="submit" class="BTN_Search"> Search </button>
-                    <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
-                    <select id="" class="filter" name="org">
-                        <option value="" disabled selected>Filter by Organization</option>
-                        <option value="women">Women</option>
-                        <option value="erpat">Erpat</option>
-                        <option value="senior-citizen">Senior Citizen</option>
-                        <option value="pwd">PWD</option>
-                        <option value="lgbtq">LGBTQ</option>
-                        <option value="children">Children</option>
-                    </select>
+                    <input name="search" id="" class="Txt_Search" placeholder="Search Payment" />
+                    <input type="date" id="date-filter" name="date" class="date-filter" />
+                    
                 </div>
             </form>
             
-            <div class="add_resident">
-                <a href="{% url 'TaddResident_details'%}" class="action-btn BTN_AddResident">
-                    <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </a>
-
-                <!-- <button class="BTN_AddResident">
-                        <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </button> -->
+            <div class="record_payment">
+               <button class="BTN_RecordPayment">
+                        <i class="fa-solid fa-circle-plus"></i> Record Payment
+                </button>
             </div>
         </div>
 
@@ -91,102 +80,75 @@
         <div class="tre_table-container">
             <table class="tre_resident-table">
                 <thead>
-                    <tr>
-                        <th>ID MEM NO.</th>
-                        <th>LAST NAME</th>
-                        <th>FIRST NAME</th>
-                        <th>MIDDLE NAME</th>
-                        <th>ACTIONS</th>
+                    <tr id="table-header">
+                        <th>PAYMENT ID</th>
+                        <th>DATE</th>
+                        <th>AMOUNT</th>
+                        <th>PAID</th>
+                        <th>CERTIFICATE ID</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- to display data dynamically in table -->
-                    {% if residents %}
-                        {% for resident in residents %}
+                    <!-- Example to display data dynamically in table -->
+                    {% if logs %}
+                        {% for log in logs %}
                         <tr>
-                            <td>{{ resident.id }}</td>
-                            <td>{{ resident.last_name }}</td>
-                            <td>{{ resident.first_name }}</td>
-                            <td>{{ resident.middle_name }}</td>
-                            <td class="actions">
-                                <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-
-                                <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                
-                                <!-- <button class="action-btn edit">
-                                    <i class="fas fa-edit"></i>
-                                </button> -->
-                            </td>
+                            <td>{{ log.id }}</td>
+                            <td>{{ log.details }}</td>
+                            <td>{{ log.amount }}</td>
+                            <td>{{ log.paid }}</td>
+                            <td>{{ log.certificate_id }}</td>
                         </tr>
                         {% endfor %}
-
                     {% else %}
                         <tr>
-                            <td colspan="5">No residents found.</td>
+                            <td colspan="5">No Record of Payments found.</td>
                         </tr>
                     {% endif %}
                     <!-- to display data dynamically in table -->
                     <!-- for visual purpose only -->
                     <tr>
                         <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <!-- use to fetch resident data using resident id 
-                            resident.id -->
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
+                        <td>2023/12/15</td>
+                        <td>500</td>
+                        <td>Yes</td>
+                        <td>12345</td>
                     </tr>
                     <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
+                        <td class="" id="no">6</td>
+                        <td>2023/12/16</td>
+                        <td>700</td>
+                        <td>No</td>
+                        <td>54321</td>
                     </tr>
                     <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                        </td>
+                        <td class="" id="no">6</td>
+                        <td>2023/12/16</td>
+                        <td>700</td>
+                        <td>No</td>
+                        <td>54321</td>
                     </tr>
                     <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                        </td>
+                        <td class="" id="no">6</td>
+                        <td>2023/12/16</td>
+                        <td>700</td>
+                        <td>No</td>
+                        <td>54321</td>
                     </tr>
-                    <!-- for visual purpose only -->
+                    <tr>
+                        <td class="" id="no">6</td>
+                        <td>2023/12/16</td>
+                        <td>700</td>
+                        <td>No</td>
+                        <td>54321</td>
+                    </tr>
+                    <!-- Add more rows as needed for visual purposes -->
                 </tbody>
             </table>
+        
             <div class="footer">
                 <button class="generate-reports">Generate Reports</button>
-                <p>Total Residents: 826920897</p>
+                <p>Total Record Payment: 826920897</p>
             </div>
         </div>
         

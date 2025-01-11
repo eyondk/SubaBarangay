@@ -60,7 +60,7 @@
 }
 
 .cancel-btn,
-.next-btn {
+.next-btn{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -85,3 +85,8 @@
     background-color: rgba(220, 220, 220, 0.806);
     color: rgba(2, 2, 87, 0.922);
 }
+
+
+
+
+
