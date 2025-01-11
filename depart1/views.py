@@ -1,10 +1,76 @@
 from django.shortcuts import render
 from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from urllib.parse import urlencode
+from django.db import connection
+import logging
+
+logger = logging.getLogger('depart1')
 
 
 
 def index(request):
     return render(request,"shared/login_page.html")
+
+
+from django.db import connection
+import logging
+
+logger = logging.getLogger(__name__)
+
+from django.db import connection
+import logging
+
+logger = logging.getLogger(__name__)
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            with connection.cursor() as cursor:
+                # Call the stored procedure
+                cursor.execute("CALL LOGIN_ACCOUNT(%s, %s, %s);", [username, password, 'role_name'])
+
+                # Fetch the result from the OUT parameter
+                role_name = cursor.fetchone()[0]  # Fetch the first result from the OUT parameter
+
+                if not role_name:
+                    return render(request, 'shared/login_page.html', {'error': 'Failed to retrieve role name.'})
+                
+                # Store role name in session
+                request.session['role_name'] = role_name
+                request.session['username'] = username 
+
+                # Redirect based on role
+                if role_name == 'Treasurer':
+                     query_params = urlencode({'username': username, 'role_name': role_name})
+                     return HttpResponseRedirect(f'{reverse("Tdashboard")}?{query_params}')
+                elif role_name == 'Barangay Captain':
+                    
+                    query_params = urlencode({'username': username, 'role_name': role_name})
+                    return HttpResponseRedirect(f'{reverse("Cdashboard")}?{query_params}')
+                
+                elif role_name == 'Secretary':
+                    query_params = urlencode({'username': username, 'role_name': role_name})
+                    return HttpResponseRedirect(f'{reverse("Sdashboard")}?{query_params}')
+                elif role_name == 'Barangay Health Worker':
+                     query_params = urlencode({'username': username, 'role_name': role_name})
+                     return HttpResponseRedirect(f'{reverse("Bdashboard")}?{query_params}')
+                elif role_name == 'Staff':
+                     query_params = urlencode({'username': username, 'role_name': role_name})
+                     return HttpResponseRedirect(f'{reverse("STdashboard")}?{query_params}')
+                else:
+                     return HttpResponseRedirect(f'{reverse("Cdashboard")}?{query_params}')
+
+        except Exception as e:
+            return render(request, 'shared/login_page.html', {'error': str(e)})
+
+    return render(request, "shared/login_page.html")
+
 
 #----------------RESIDENT----------------
 
@@ -55,7 +121,10 @@ def treasurer_resident_husband_view(request):
 
 #------------CAPTAIN--------
 def captain_dashboard_view(request):
-    return render(request, "captain/Cdashboard.html")
+    username = request.GET.get('username')
+    role_name = request.GET.get('role_name')
+    
+    return render(request, "captain/Cdashboard.html",{'username': username, 'role_name': role_name})
 
 def captain_resident_view(request):
     return render(request, "captain/Cresident.html")

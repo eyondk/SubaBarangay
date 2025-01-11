@@ -17,8 +17,12 @@
         <div class="userdetails">
             <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
             <div class="user-info">
-                <h6 class="username">Username</h6>
-                <h6 class="role">Barangay Captain</h6>
+                {% if username %}
+                <h6 class="username">{{ username }}</h6>
+                {% endif %}
+                {% if role_name %}
+                <h6 class="role">{{ role_name }}</h6>
+                {% endif %}
             </div>
         </div>
         <h1 class="tittle">Barangay Suba Management System</h1>
