@@ -49,6 +49,10 @@ def update_user(request, user_id):
 
     return render(request, 'treasurer/Tusers.html', {"user": user_data})
 
+def account_user_view(request):
+    return render(request, "shared/account_details.html") 
+
+
 
 #------------TREASURER--------
 def treasurer_dashboard_view(request):
