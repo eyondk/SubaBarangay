@@ -188,7 +188,42 @@ def treasurer_dashboard_view(request):
 
 
 def treasurer_resident_view(request):
-    return render(request, "treasurer/Tresident.html")
+    search_query = request.GET.get('search', None)
+    org_filter = request.GET.get('org', None)
+    
+    residents = []
+    total_residents = 0
+
+    try:
+        with connection.cursor() as cursor:
+            # Fetch filtered residents
+            cursor.execute(
+                "SELECT * FROM GetResidents(%s, %s)",
+                [search_query, org_filter]
+            )
+            rows = cursor.fetchall()
+            
+            for row in rows:
+                residents.append({
+                    'id': row[0],
+                    'last_name': row[1],
+                    'first_name': row[2],
+                    'middle_name': row[3],
+                    'organization': row[4],
+                })
+            
+            # Fetch total residents count
+            cursor.execute("SELECT COUNT(*) FROM RESIDENT")
+            total_residents = cursor.fetchone()[0]
+            
+            print(f"Total residents: {total_residents}")  # Debugging line
+    except Exception as e:
+        print(f"Error fetching data: {e}")  # Debugging line for exceptions
+
+    return render(request, "treasurer/Tresident.html", {
+        'residents': residents,
+        'total_residents': total_residents,
+    })
 
 def treasurer_logs_view(request):
     return render(request, "treasurer/Tlogs.html")
