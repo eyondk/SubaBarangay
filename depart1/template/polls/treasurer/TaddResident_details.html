@@ -22,12 +22,3 @@
 {% endblock %}
 
 
-
-{% block back-btns %}
-<a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
-{% if 'Married' == 'Married' or 'Married' == 'Divorced' or 'Married' == 'Widowed' %}
-<a href="{% url 'TaddEduc_details' %}" class="next-btn">Next</a>
-{% else %}
-<a href="{% url 'Tresident_parents' %}" class="next-btn">Next</a>
-{% endif %}   
-{% endblock %}

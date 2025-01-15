@@ -22,7 +22,7 @@
             {% endblock %}
         </div>
         <h1 class="tittle">Barangay Suba Management System</h1>
-        <p>Wed, 10/10/10 12:00 PM</p>
+        <p id="live-time"></p>
     </div>
 
     <div class="Body">
@@ -69,8 +69,8 @@
             </div>  
 
             <div class="form-actionss">
-                {% block back-btns %}
-                {% endblock%}
+                <a  href="{% url 'TaddResident_details' %}" class="cancel-btn">Back</a>
+                <button type="button" onclick="saveEducationData()" class="next-btn">Done</a>
             </div>
 
         </form>
@@ -92,3 +92,69 @@
 
 </body>
 </html>
+<script>
+    // Function to update the live time
+    function updateTime() {
+        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+        const now = new Date().toLocaleString('en-US', { ...options, timeZone: 'Asia/Manila' });
+        document.getElementById('live-time').innerText = now;
+    }
+
+    // Update the time every second
+    setInterval(updateTime, 1000);
+    updateTime(); // Call immediately to set the initial time
+    function loadResidentData() {
+        const residentData = JSON.parse(localStorage.getItem('residentData'));
+        if (!residentData) {
+            alert('No resident data found. Please fill out the previous form.');
+            window.location.href = "{% url 'TaddResident_details' %}"; // Redirect to the first page
+            return;
+        }
+
+        console.log('Loaded Resident Data:', residentData); // Use this for testing
+        // You can now use this data as needed.
+    }
+
+    function saveEducationData() {
+        const residentData = JSON.parse(localStorage.getItem('residentData'));
+    
+        const educationData = {
+            schoolLevel: document.querySelector('select[name="school_level"]').value,
+            schoolName: document.getElementById('schoolName').value,
+            schoolAddress: document.getElementById('schoolAddress').value,
+            course: document.getElementById('course').value,
+            schoolYear: document.getElementById('schoolYear').value
+        };
+    
+        // Merge resident and education data
+        const fullResidentData = { ...residentData, education: educationData };
+    
+        // Send the data to Django
+        fetch("{% url 'save_resident_data' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}' // Include CSRF token for security
+            },
+            body: JSON.stringify(fullResidentData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Data saved successfully:', data);
+                alert('Resident and education data saved successfully!');
+                localStorage.removeItem('residentData'); // Clear localStorage after saving
+            } else {
+                console.error('Error saving data:', data.error);
+                alert('An error occurred while saving data. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            alert('An error occurred while saving data. Please check the console for details.');
+        });
+    }
+
+    // Load data when the page loads
+    window.onload = loadResidentData;
+</script>

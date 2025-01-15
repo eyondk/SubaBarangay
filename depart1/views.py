@@ -1,13 +1,20 @@
 from pyexpat.errors import messages
-from django.shortcuts import render
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.db import connection
 from django.contrib import messages
+from django.db.models import Count, Case, When
+from .models import Resident
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from django.utils.timezone import now
 import logging
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 logger = logging.getLogger('depart1')
 
@@ -17,15 +24,11 @@ def index(request):
     return render(request,"shared/login_page.html")
 
 
-from django.db import connection
-import logging
 
-logger = logging.getLogger(__name__)
 
-from django.db import connection
-import logging
 
-logger = logging.getLogger(__name__)
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -120,7 +123,69 @@ def update_user(request, user_id):
 
 #------------TREASURER--------
 def treasurer_dashboard_view(request):
-    return render(request, "treasurer/Tdashboard.html")
+        username = request.GET.get('username')
+        role_name = request.GET.get('role_name')
+        with connection.cursor() as cursor:
+            # Execute the stored procedure and fetch results
+            cursor.execute("SELECT * FROM get_resident_analytics()")
+            result = cursor.fetchone()
+
+            # Map the result to context variables
+            resident_data = {
+                'women': result[0],
+                'erpat': result[1],
+                'senior_citizen': result[2],
+                'pwd': result[3],
+                'lgbtq': result[4],
+                'children': result[5],
+            }
+
+            # Historical data for predictive analysis (example data; replace with real historical data)
+            historical_data = {
+                'women': [200, 210, 220, 230, 240],
+                'erpat': [150, 155, 160, 165, 170],
+                'senior_citizen': [120, 125, 130, 135, 140],
+                'pwd': [50, 55, 60, 65, 70],
+                'lgbtq': [80, 85, 90, 95, 100],
+                'children': [300, 310, 320, 330, 340],
+            }
+
+            future_predictions = {}
+            current_time = now()
+
+            # Perform predictive analysis for each category
+            for category, data in historical_data.items():
+                # Create X (years) and y (counts)
+                years = np.array(range(1, len(data) + 1)).reshape(-1, 1)
+                counts = np.array(data)
+
+                # Train a linear regression model
+                model = LinearRegression()
+                model.fit(years, counts)
+
+                # Predict for the next year
+                next_year = np.array([[len(data) + 1]])
+                future_count = model.predict(next_year)
+
+                # Store the predicted value
+                future_predictions[category] = int(future_count[0])
+
+            # Add both resident data and predictions to the context
+            context = {
+                'resident_data': resident_data,
+                'predictions': future_predictions,
+                'current_time': current_time,
+                'username': username,
+                'role_name': role_name,
+            }
+
+        return render(request, "treasurer/Tdashboard.html", context)
+
+  
+
+
+    
+
 
 def treasurer_resident_view(request):
     return render(request, "treasurer/Tresident.html")
@@ -177,6 +242,147 @@ def treasurer_organization_view(request):
 
 def treasurer_resident_details_view(request):
     return render(request, "treasurer/Tresident_details.html")
+
+@csrf_exempt
+def save_resident_data(request):
+    if request.method == 'POST':
+        try:
+            # Parse incoming JSON data
+            data = json.loads(request.body)
+
+            # Transform flat address fields into a nested structure if needed
+            if 'address' not in data:
+                data['address'] = {
+                    'block': data.get('block'),
+                    'street': data.get('street'),
+                    'houseNumber': data.get('houseNumber')
+                }
+
+            address = data['address']
+
+            # Validate required address fields
+            if not address['block'] or not address['street'] or not address['houseNumber']:
+                return JsonResponse({'success': False, 'error': "Address fields ('block', 'street', 'houseNumber') are required."})
+
+            # Organization and religion mappings (with trapping)
+            organization_map = {
+                "Children": 1,
+                "Erpats (Father's Association)": 2,
+                "LGBTQ": 3,
+                "Person with Disabilities": 4,
+                "Senior Citizens": 5,
+                "Women's": 6,
+                "Erpat": 2  # Add shorthand mapping
+            }
+
+            # Map organization input to ID
+            data['organization'] = organization_map.get(data['organization'])
+            if data['organization'] is None:
+                return JsonResponse({
+                    'success': False,
+                    'error': f"Invalid organization: '{data['organization']}'. Valid options are: {list(organization_map.keys())}"
+                })
+
+            religion_map = {
+                "Roman Catholic": 1,
+                "Catholic": 1,  # Maps "Catholic" to "Roman Catholic"
+                "Iglesia ni Cristo": 2,
+                "Protestant": 3,
+                "Born Again Christian": 4,
+                "Evangelical Christian": 5,
+                "Seventh-day Adventist": 6,
+                "Jehovah's Witness": 7,
+                "Aglipayan": 8,
+                "Church of Jesus Christ of Latter-day Saints (Mormon)": 9,
+                "Islam": 10,
+                "Judaism": 11,
+                "Buddhism": 12,
+                "Other": 13
+            }
+
+            # Map religion input to ID (ensure case-insensitivity)
+            data['religion'] = religion_map.get(data['religion'].strip().title(), None)
+            if data['religion'] is None:
+                return JsonResponse({'success': False, 'error': f"Invalid religion: {data['religion']}. Please use one of {list(religion_map.keys())}"})
+
+            # Handle sex (gender-specific)
+            sex_map = {
+                'Male': 'Male',
+                'Female': 'Female',
+                'Lesbian': 'Female',  # Map 'Lesbian' to 'Female'
+                'Gay': 'Male',        # Map 'Gay' to 'Male'
+            }
+
+            data['sex'] = sex_map.get(data['sex'], None)
+
+            # Validate education fields and trap missing or invalid data
+            if 'education' not in data:
+                return JsonResponse({'success': False, 'error': "Education information is missing."})
+
+            # Check required education fields
+            education = data['education']
+
+            required_education_fields = ['schoolLevel', 'schoolName', 'schoolAddress', 'schoolYear']
+            for field in required_education_fields:
+                if field not in education or not education[field]:
+                    return JsonResponse({'success': False, 'error': f"Missing or invalid education field: {field}"})
+
+            # Check if school year is valid (4-digit year)
+            if len(education['schoolYear']) != 4 or not education['schoolYear'].isdigit():
+                return JsonResponse({'success': False, 'error': "Invalid school year. It must be a 4-digit year."})
+
+            # Map education level to valid options (with trapping)
+            valid_education_levels = [
+                'Nursery', 'Elementary', 'Junior High School', 'Senior High School', 
+                'Undergraduate (Bachelor’s Degree)', 'Postgraduate (Master’s Degree)', 
+                'Doctoral (PhD)', 'Alternative Learning System (ALS)'
+            ]
+            if education['schoolLevel'] not in valid_education_levels:
+                return JsonResponse({'success': False, 'error': f"Invalid school level: {education['schoolLevel']}. Valid options are: {valid_education_levels}"})
+
+            # Prepare parameters for the stored procedure
+            resident_params = (
+                data['lastName'],                   # p_res_lname
+                data['firstName'],                  # p_res_fname
+                data.get('middleName', None),       # p_res_mname
+                data.get('nickname', None),         # p_res_nickname
+                data['birthdate'],                  # p_res_dob
+                data['sex'],                        # p_res_sex
+                data['gender'],                     # p_res_gender
+                data['religion'],                   # p_relig_id
+                data['civilStatus'],                # p_res_civil_status
+                data['weight'],                     # p_res_weight
+                data['eyeColor'],                   # p_res_eye_color
+                data['bloodType'],                  # p_res_blood_type
+                data['organization'],               # p_org_id
+                address['block'],                   # p_add_block
+                address['street'],                  # p_add_street
+                address['houseNumber'],             # p_add_h_num
+                data.get('isOwner', 'Not Owner'),   # p_res_isowner
+                education['schoolLevel'],           # p_educ_sch_level
+                education['schoolName'],            # p_educ_sch_name
+                education['schoolAddress'],         # p_educ_sch_address
+                education.get('course', None),      # p_educ_course
+                education['schoolYear'],            # p_educ_sch_year
+                data.get('userId', None)            # p_user_id
+            )
+
+            # Call the stored procedure
+            with connection.cursor() as cursor:
+                cursor.callproc('insert_resident', resident_params)
+
+            return JsonResponse({'success': True, 'message': 'Resident data saved successfully.'})
+
+        except KeyError as e:
+            return JsonResponse({'success': False, 'error': f"Missing required field: {str(e)}"})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+    else:
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+
+
 
 def treasurer_resident_children_view(request):
     return render(request, "treasurer/Tresident_children.html")

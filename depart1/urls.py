@@ -7,6 +7,7 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
 
     path("treasurer/dashboard/", views.treasurer_dashboard_view, name="Tdashboard"),
+    
     path("treasurer/residents/", views.treasurer_resident_view, name="Tresidents"),
     path("treasurer/logs/", views.treasurer_logs_view, name="Tlogs"),
     path("treasurer/users/", views.treasurer_users_view, name="Tusers"),
@@ -19,6 +20,7 @@ urlpatterns = [
     path("treasurer/resident/view/husband", views.treasurer_resident_husband_view, name="Tresident_husband"),
 
     path("treasurer/resident/add/details", views.treasurer_add_resident_view, name="TaddResident_details"),
+    path("treasurer/resident/add/save_resident", views.save_resident_data, name="save_resident_data"),
     path("treasurer/resident/add/husband", views.treasurer_add_husband_details_view, name="TaddHusband_details"),
     path("treasurer/resident/add/parents", views.treasurer_add_parents_details_view, name="TaddParents_details"),
     path("treasurer/resident/add/educ", views.treasurer_add_educ_details_view, name="TaddEduc_details"),

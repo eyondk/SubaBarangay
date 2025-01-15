@@ -21,7 +21,7 @@
             {% endblock %}
         </div>
         <h1 class="tittle">Barangay Suba Management System</h1>
-        <p>Wed, 10/10/10 12:00 PM</p>
+        <p id="live-time"></p>
     </div>
 
     <div class="Body">
@@ -73,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label for="sex">Sex</label>
-                <select name="gender">
+                <select name="sex">
                     <option value=""></option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -153,9 +153,12 @@
                 <input type="text" id="voterdateadded" readonly>
             </div>   -->
             <div class="form-actions">
-                {% block back-btns %}
-                
-                {% endblock %}              
+                <a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
+                {% if 'Married' == 'Married' or 'Married' == 'Divorced' or 'Married' == 'Widowed' %}
+                <button type="button" onclick="saveResidentData()" class="next-btn">Next</a>
+                {% else %}
+                <a href="{% url 'Tresident_parents' %}" class="next-btn">Next</a>
+                {% endif %}             
             </div>
         </form>
     </div>
@@ -176,3 +179,44 @@
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
 </body>
 </html>
+<script>
+    // Function to update the live time
+    function updateTime() {
+        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+        const now = new Date().toLocaleString('en-US', { ...options, timeZone: 'Asia/Manila' });
+        document.getElementById('live-time').innerText = now;
+    }
+
+    // Update the time every second
+    setInterval(updateTime, 1000);
+    updateTime(); // Call immediately to set the initial time
+    function saveResidentData() {
+        const residentData = {
+            lastName: document.getElementById('lastName').value,
+            firstName: document.getElementById('firstName').value,
+            middleName: document.getElementById('middleName').value,
+            nickname: document.getElementById('nickname').value,
+            birthdate: document.getElementById('birthdate').value,
+            age: document.getElementById('age').value,
+            gender: document.querySelector('select[name="gender"]').value,
+            sex: document.querySelector('select[name="sex"]').value,
+            weight: document.getElementById('weight').value,
+            bloodType: document.querySelector('select[name="blood_type"]').value,
+            eyeColor: document.getElementById('eyecolor').value,
+            block: document.getElementById('block').value,
+            street: document.getElementById('strt').value,
+            houseNumber: document.getElementById('houseno').value,
+            religion: document.getElementById('religion').value,
+            civilStatus: document.querySelector('select[name="civil_status"]').value,
+            organization: document.querySelector('select[name="organization"]').value
+        };
+
+        // Store the data in localStorage
+        localStorage.setItem('residentData', JSON.stringify(residentData));
+        
+        console.log("Resident Data from localStorage:", residentData);
+
+        // Redirect to the next page
+        window.location.href = "{% url 'TaddEduc_details' %}"; // Replace with your actual page
+    }
+</script>
