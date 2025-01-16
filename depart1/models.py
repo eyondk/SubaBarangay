@@ -1,5 +1,33 @@
+from django.db import models
+
+from django import forms
 from django.contrib.auth.models import User
 from django.db import models
+class ResidentForm(forms.Form):
+    last_name = forms.CharField(max_length=50)
+    first_name = forms.CharField(max_length=50)
+    middle_name = forms.CharField(max_length=50, required=False)
+    nickname = forms.CharField(max_length=50, required=False)
+    dob = forms.DateField()
+    sex = forms.CharField(max_length=10)
+    gender = forms.CharField(max_length=10,  required=False)
+    religion_name = forms.CharField(max_length=50)
+    civil_status = forms.CharField(max_length=20)
+    weight = forms.CharField(max_length=20)
+    eye_color = forms.CharField(max_length=20)
+    blood_type = forms.CharField(max_length=3)
+    organization_name = forms.CharField(max_length=100)
+    block = forms.CharField(max_length=20)
+    street = forms.CharField(max_length=20)
+    house_number = forms.CharField(max_length=5)
+    school_level = forms.CharField(max_length=50)
+    school_name = forms.CharField(max_length=100)
+    school_address = forms.CharField(max_length=100)
+    course = forms.CharField(max_length=100,  required=False)
+    school_year = forms.CharField(max_length=4)
+    username = forms.CharField(max_length=50)
+    precinct_number = forms.CharField(max_length=50, required=False)
+
 
 class Resident(models.Model):
     RES_LNAME = models.CharField(max_length=50)
@@ -32,10 +60,3 @@ class Resident(models.Model):
 
     class Meta:
         unique_together = ('RES_LNAME', 'RES_FNAME', 'RES_MNAME')
-
-print(Resident.objects.all())
-
-# Test queries
-print(Resident.objects.filter(RES_SEX='Female').count())
-print(Resident.objects.filter(ORG_ID=2).count())
-print(Resident.objects.filter(RES_AGE__gte=60).count())

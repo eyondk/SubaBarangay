@@ -5,6 +5,8 @@ urlpatterns = [
     path("member/", views.index, name="index"),
     path("", views.index, name="index"),
     path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+
 
     path("treasurer/dashboard/", views.treasurer_dashboard_view, name="Tdashboard"),
     

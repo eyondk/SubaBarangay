@@ -18,8 +18,8 @@ cancelLogoutBtn.addEventListener("click", () => {
 });
 
 confirmLogoutBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    // Add any logout confirmation logic here
+    // e.preventDefault();
+    // // Add any logout confirmation logic here
     console.log("User logged out");
     modal.style.display = "none"; 
 });

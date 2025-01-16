@@ -42,7 +42,7 @@
                 <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
-                <a href="#" class="logout-btn">
+                <a href="{% url 'logout' %}" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
@@ -143,7 +143,7 @@
             <h2>Logout Confirmation</h2>
             <p>Are you sure you want to log out?</p>
             <div class="logout-modal-actions">
-                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <a href="{% url 'logout' %}" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
                 <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
             </div>
         </div>
