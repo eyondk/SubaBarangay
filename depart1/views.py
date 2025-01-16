@@ -130,7 +130,7 @@ def treasurer_dashboard_view(request):
             cursor.execute("SELECT * FROM get_resident_analytics()")
             result = cursor.fetchone()
 
-            # Map the result to context variables
+            
             resident_data = {
                 'women': result[0],
                 'erpat': result[1],
@@ -140,7 +140,7 @@ def treasurer_dashboard_view(request):
                 'children': result[5],
             }
 
-            # Historical data for predictive analysis (example data; replace with real historical data)
+            #historical data for predictive analysis (example data)
             historical_data = {
                 'women': [200, 210, 220, 230, 240],
                 'erpat': [150, 155, 160, 165, 170],
@@ -153,24 +153,24 @@ def treasurer_dashboard_view(request):
             future_predictions = {}
             current_time = now()
 
-            # Perform predictive analysis for each category
+            #predictive analysis for each category
             for category, data in historical_data.items():
-                # Create X (years) and y (counts)
+                #create X (years) and y (counts)
                 years = np.array(range(1, len(data) + 1)).reshape(-1, 1)
                 counts = np.array(data)
 
-                # Train a linear regression model
+                # Train a linear regression modelasdasdadajdksaj
                 model = LinearRegression()
                 model.fit(years, counts)
 
-                # Predict for the next year
+                # Predict for the next yearasdasdasd
                 next_year = np.array([[len(data) + 1]])
                 future_count = model.predict(next_year)
 
                 # Store the predicted value
                 future_predictions[category] = int(future_count[0])
 
-            # Add both resident data and predictions to the context
+            
             context = {
                 'resident_data': resident_data,
                 'predictions': future_predictions,
