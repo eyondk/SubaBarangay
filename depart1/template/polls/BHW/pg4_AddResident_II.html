@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Health Worker</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+                <a href="#">Household</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+                <h1 class="section-title">ADD HOUSEHOLD & RESIDENT</h1>
+                <h3 class="section-second-title">Household No. 1658 Family No. 7362</h3>
+
+                <!-- Environmental Health and Sanitation Section -->
+                <div class="form-section-env">
+                    <h2>II. Environmental Health and Sanitation</h2>
+                    <div class="form-group">
+                        <h3>A. Type of Water Supply:</h3>
+                        <div>
+                            <input type="radio" id="level1" name="water_supply" value="level1">
+                            <label for="level1"><b>Level I (Point Source):</b> Developed/protected/improved spring dug well
+                                without distribution/ pipping system, supplying within 250 meter radius
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level2" name="water_supply" value="level2">
+                            <label for="level2"><b> Level II (Communal Faucet or Stand Post):</b> HH using point source 
+                                with distribution system to a communal (common) faucet or standpost supplying within 25 meter radius
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" id="level3" name="water_supply" value="level3">
+                            <label for="level3"><b>Level III (Individual Connection):</b> HH with faucet/tap</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h3 class="sanitary">B. Type of Sanitary Facility:</h3>
+                        <div class="tre_table-container">
+                            <table class="tre_resident-table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all-sanitary">SANITARY</th>
+                                        <th><input type="checkbox" id="select-all-unsanitary">UNSANITARY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                       <td>
+                                        <input type="checkbox" id="select-row-sanitary">Pout/ Flush type with septic tank 
+                                       </td> 
+                                       <td>
+                                        <input type="checkbox" id="select-row-unsanitary">Water-scaled toilet without septic tank
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="select-row-sanitary">Pout/ Flush toilet connected to 
+                                            septic tank AND to sewerage system
+                                       </td> 
+                                       <td>
+                                            <input type="checkbox" id="select-row-unsanitary">Overhung latrine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                        <input type="checkbox" id="select-row-sanitary">Ventilated Pit (VIP) Latrine 
+                                       </td> 
+                                       <td>
+                                        <input type="checkbox" id="select-row-unsanitary">Open Pit latrine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>  
+                                        <td>
+                                            <input type="checkbox" id="select-row-unsanitary">Without Toilet
+                                        </td>
+                                        
+                                    </tr>
+                
+                                </tbody>  
+                            </table> 
+                            
+                            <h3 class="h3inside-form-group" for="istoiletshared">Is toilet shared with other hosehold:</h3>
+                            <div class="inside-form-group">
+                                <div>
+                                    <input type="radio" id="shared" name="istoiletshared" value="shared">
+                                    <label for="shared">Shared</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="notshared" name="istoiletshared" value="notshared">
+                                    <label for="notshared">Not Shared</label>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <h3>C. Solid Waste Management <i>(Check all that apply)</i>:</h3>
+                        <div class="checkbox-grid">
+                            <div>
+                                <input type="checkbox" id="waste-segregation">
+                                <label for="waste-segregation">Waste Segregation</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="composting">
+                                <label for="composting">Backyard Composting</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="recycling">
+                                <label for="recycling">Recycling/ Reuse</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="city-collection">
+                                <label for="city-collection">Collected by City Collection <br> and Disposal System</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="burning">
+                                <label for="burning">Burning/ Burying</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="others" onchange="toggleTextInput()">
+                                <label for="others">Others: <i>pls. specify:</i></label>
+                                <input type="text" name="other-specify" id="other-specify" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+        <!-- Buttons Section -->
+        <div class="form-buttons">
+            <a href="{% url 'bhw_add_resident3'%}">
+                <button type="button" class="cancel-btn">Back</button>
+            </a> 
+            <a href="{% url 'bhw_add_resident5'%}">
+                <button type="button" class="next-btn">Next</button>
+            </a>
+        </div>
+        
+    </div>   
+
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script>
+
+        // Check btn for sanitary
+        document.getElementById('select-all-sanitary').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('input[id^="select-row-sanitary"]');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
+
+        // Check btn for unsanitary
+        document.getElementById('select-all-unsanitary').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('input[id^="select-row-unsanitary"]');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
+
+        // If the checkbox is checked, enable the text input; otherwise, disable it
+        function toggleTextInput() {
+            const checkbox = document.getElementById('others');
+            const textInput = document.getElementById('other-specify');
+            
+            textInput.disabled = !checkbox.checked;
+        }
+
+
+    </script>
+</body>
+</html>
+            

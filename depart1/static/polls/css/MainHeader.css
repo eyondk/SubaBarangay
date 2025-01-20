@@ -1,3 +1,4 @@
+
 body{
     background-color:whitesmoke;
     font-family: 'Poppins', sans-serif; 
@@ -6,6 +7,9 @@ body{
     padding: 3px 30px;
 }
 
+::placeholder, select, input, a{
+    font-family: 'Poppins', sans-serif; 
+}
 
 .Main_header {
     padding: 0px 10px;
@@ -90,6 +94,11 @@ body{
 .nav-menu a.active {
     border-bottom: 3px solid rgba(1, 1, 70, 0.922);
 }
+
+
+
+
+
 
 .logout-btn {
     display: flex;

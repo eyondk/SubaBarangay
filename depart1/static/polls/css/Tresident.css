@@ -112,12 +112,12 @@
     margin-right: 5px;  
 }
 
-.add_resident, .add_users {
+.add_resident, .add_users, .record_payment, .register_org{
     display: flex;
     justify-content: flex-end;
 }
 
-.BTN_AddResident, .BTN_AddUsers {
+.BTN_AddResident, .BTN_AddUsers, .BTN_RecordPayment, .BTN_Org{
     padding: 5px 15px;
     background-color: transparent;
     color: rgba(2, 2, 87, 0.922);
@@ -129,13 +129,14 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: small;
+    
 }
 
-.BTN_AddResident:hover, .BTN_AddUsers:hover {
+.BTN_AddResident:hover, .BTN_AddUsers:hover , .BTN_RecordPayment:hover, .BTN_Org:hover{
     color:gainsboro;
 }
 
-.BTN_AddResident i, .BTN_AddUsers i {
+.BTN_AddResident i, .BTN_AddUsers i, .BTN_RecordPayment i, .BTN_Org i {
     margin-right: 5px;
     font-size: 30px;
 }
@@ -148,20 +149,21 @@
 
 .tre_resident-table{
     width: 100%;
+    background-color: whitesmoke;
     border-collapse: collapse;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
-    margin-top: -15px;
-    
+    margin-top: -15px;    
 }
 
 .tre_resident-table th, 
 .tre_resident-table td {
     padding: 10px 15px;
-    border: 1.5px solid rgb(84, 79, 142);
     font-size: 14px;
+    text-align: center;
 }
+
 
 .tre_resident-table th {
     background-color: rgba(2, 2, 87, 0.922);
@@ -171,11 +173,35 @@
     border:none;
 }
 
-.tre_resident-table tbody tr:hover {
-    background-color: rgba(200, 200, 250, 0.4);
+.tre_resident-table td{
+    background-color: transparent;
+    color: rgba(2, 2, 87, 0.922);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: medium;
+    border: 1.5px solid rgb(84, 79, 142);
 }
 
-.actions {
+.tre_resident-table th:first-child, 
+.tre_resident-table td:first-child {
+    width: 40px;
+}
+
+.tre_resident-table th input[type="checkbox"],
+.tre_resident-table td input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2);
+    border: none;
+}
+
+
+.tre_resident-table tbody tr:hover {
+    background-color: rgba(183, 183, 252, 0.516);
+    cursor: pointer;
+}
+
+
+.actions-btns {
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -187,20 +213,19 @@
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .action-btn.view,
-.action-btn.edit {
+.action-btn.edit,
+.action-btn.delete {
     color:rgba(2, 2, 87, 0.922);;
-    background-color: gainsboro;
+    text-decoration: none;
 }
 
 
-
-.action-btn.view:hover, .action-btn.edit:hover{
-    color:gainsboro;
-    background-color: rgba(52, 152, 219, 0.15);
+.action-btn.view:hover, .action-btn.edit:hover, .action-btn.delete:hover{
+    color: rgba(52, 152, 219, 0.831);
 }
 
 .generate-reports {
@@ -306,3 +331,8 @@
     background-color: rgba(2, 2, 87, 0.922);
     color: whitesmoke;
 }
+
+.BTN_AddResident {
+    text-decoration: none;
+  }
+

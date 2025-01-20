@@ -7,11 +7,12 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
 </head>
+
 <body>
     <div class="Main_header">
         <div class="userdetails">
@@ -38,25 +39,48 @@
                 </a>
             </div>
         </div>
+
+            <h1 class="section-title">ADD HOUSEHOLD & RESIDENT</h1>
+            <h3 class="section-second-title">Household No. 1658 Family No. 7362</h3>
+
+            <h2 class="demo">IV. Survey Identification </h2>
+            <div class="IV">
+                <div class="form-group survey">
+                    <label for="profiled-by">Profiled by <strong>(B/CHW)</strong>:</label>
+                    <input type="text" id="" name="profiled-by" readonly> 
+                </div>
+                <div class="form-group survey">
+                    <label for="Conforme">Conforme <strong>(Informant)</strong>:</label>
+                    <input type="text" id="" name="Conforme">
+                </div>
+                <div class="form-group survey">
+                    <label for="">Checked by <strong>(RN/RM)</strong>:</label><input type="text">
+                </div>
+                <div class="form-group survey">
+                    <label for="">Date Checked:</label>
+                    <input type="date" name="" id="">
+                </div>
+                
+            </div>
+            <div class="form-group IV2">
+                
+            </div>
+
         
-
-        <div class="cards-above">
-            <div class="card-above-1">
-               
-            </div>
-            <div class="card-above-2">
-               
-            </div>
+        <!-- Buttons Section -->
+        <div class="form-buttons">
+            <a href="{% url 'bhw_add_resident6'%}">
+                <button type="button" class="cancel-btn">Back</button>
+            </a> 
+            <a href="{% url 'Bresident'%}">
+                <button type="submit" class="next-btn">Done</button>
+            </a>
         </div>
-
-        <div class="cards-below">        
-            <div class="card-below">
-                    
-            </div>
-        </div>
-    </div>
+        
+    </div>   
 
     
+
     <div id="logout-modal" class="logout-modal">
         <div class="logout-modal-content">
             <span class="close-logout-btn">&times;</span>
@@ -70,5 +94,9 @@
     </div>
 
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/AddResident.js' %}"></script>
+    
+
 </body>
 </html>
+            

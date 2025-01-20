@@ -31,8 +31,7 @@
             <div class="nav-menu">
                 <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
-                <a href="#">Household Records</a>
-                <a href="#">Health Records</a>
+                <a href="#">Household</a>
             </div>
             <div class="logout">
                 <a href="" class="logout-btn">
@@ -61,9 +60,9 @@
             </form>
             
             <div class="add_resident">
-                <button class="BTN_AddResident">
-                        <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </button>
+                <a href="{% url 'bhw_add_resident1'%}" class="BTN_AddResident">
+                    <i class="fa-solid fa-circle-plus"></i> Add Residents
+                </a>
             </div>
         </div>
 
@@ -87,7 +86,7 @@
             <table class="tre_resident-table">
                 <thead>
                     <tr>
-                        <th>ID MEM NO.</th>
+                        <th>ID</th>
                         <th>LAST NAME</th>
                         <th>FIRST NAME</th>
                         <th>MIDDLE NAME</th>
@@ -103,11 +102,12 @@
                             <td>{{ resident.last_name }}</td>
                             <td>{{ resident.first_name }}</td>
                             <td>{{ resident.middle_name }}</td>
-                            <td class="actions">
+                            <td class=".actions-btns">
                                 <a href="{% url 'Bresident_details'%}" class="action-btn view">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                                <a href="#"  class="action-btn delete"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -124,13 +124,29 @@
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
+                        <td class="">
                             <!-- use to fetch resident data using resident id 
                             resident.id -->
-                            <a href="{% url 'Bresident_details'%}" class="action-btn view">
+                            <a href="#" class="action-btn view">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            <a href="#"  class="action-btn delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="" id="no">5</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td class=".actions-btns">
+                            <a href="#" class="action-btn view">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete">
+                                <i class="fas fa-trash-alt"></i> 
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -138,31 +154,14 @@
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <a href="{% url 'Bresident_details'%}" class="action-btn view">
+                        <td class=".actions-btns">
+                            <a href="#" class="action-btn view">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="" id="no">5</td>
-                        <td class="" id="lname">PADILLA</td>
-                        <td class="" id="fname">YRON</td>
-                        <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete">
+                                <i class="fas fa-trash-alt"></i> 
+                            </button>
                         </td>
                     </tr>
                     <!-- for visual purpose only -->
@@ -201,6 +200,13 @@
                 ageFilterContainer.style.display = 'none'; 
             }
         });
+
+        //check btn
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.select-row');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
+
     </script>
 </body>
 </html>

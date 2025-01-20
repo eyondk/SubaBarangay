@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Health Worker</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+                <a href="#">Household</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <h1 class="section-title">QUARTER 1: ADD HOUSEHOLD & RESIDENT</h1>
+        <h3 class="section-second-title">Household No. 1658 Family No. 7362</h3>
+        
+        <h1 class="section-subtitle"> Add Household Members</h1>
+        <div class="household-header">
+            <button type="button" id="add-member-button" class="BTN_AddChildren" onclick="addHouseholdMember()">
+                <i class="fas fa-user-plus"></i> Add Household Members
+            </button>
+        </div>
+        
+        <div id="household-members-section">
+            <div class="resident-form">
+                <div class="form-group">
+                    <label for="relationship-role">Relationship With HH Head:</label>
+                    <select id="relationship-role">
+                        <option value=""></option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Son">Son</option>
+                        <option value="Daughter">Daughter</option>
+                        <option value="Sister">Sister</option>
+                        <option value="Brother">Brother</option>
+                        <option value="Grandfather">Grandfather</option>
+                        <option value="Grandmother">Grandmother</option>
+                        <option value="Grandson">Grandson</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Granddaughter">Granddaughter</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Uncle">Uncle</option>
+                        <option value="Aunt">Aunt</option>
+                        <option value="Nephew">Nephew</option>
+                        <option value="Niece">Niece</option>
+                        <option value="Husband">Husband</option>
+                        <option value="Wife">Wife</option>
+                        <option value="Cousin">Cousin</option>
+                        <option value="Stepfather">Stepfather</option>
+                        <option value="Stepmother">Stepmother</option>
+                        <option value="Stepson">Stepson</option>
+                        <option value="Stepdaughter">Stepdaughter</option>
+                        <option value="Father-in-law">Father-in-law</option>
+                        <option value="Mother-in-law">Mother-in-law</option>
+                        <option value="Brother-in-law">Brother-in-law</option>
+                        <option value="Sister-in-law">Sister-in-law</option>
+                        <option value="Son-in-law">Son-in-law</option>
+                        <option value="Daughter-in-law">Daughter-in-law</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>  
+                
+            </div>
+    
+            <form action="" class="resident-form">
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" id="birthdate">
+                </div>
+                <div class="form-group">
+                    <label for="sex" >Sex</label>
+                    <select id="sex"  name="gender"  onchange="toggleConditionalFields()">
+                        <option value=""></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select name="gender">
+                        <option value=""></option>
+                        <option value="Straight">Straight</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Transgender">Transgender</option>
+                        <option value="Queer">Queer</option>
+                        <option value="Pansexual">Pansexual</option>
+                        <option value="asexual">Asexual</option>
+                        <option value="chair">Chair</option>
+                        <option value="hotdog">Hotdog</option>
+                        <option value="secret">Prefer Not To Say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weight">weight</label>
+                    <div class="input-with-unit">
+                        <input type="number" step="0.01" min="1" id="weight">
+                        <span class="unit">kg</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bloodtype">blood type</label>
+                    <select name="blood_type">
+                        <option value=""></option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eyecolor">Eye color</label>
+                    <input type="text" id="eyecolor">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact No.</label>
+                    <input type="text" id="contact">
+                </div>
+                <div class="form-group">
+                    <label for="religion">Religion</label>
+                    <select name="religion" id="religion">
+                        <option value=""></option>
+                        <option value="Roman_Catholic">Roman Catholic</option>
+                        <option value="Baptist">Bible Baptist Church</option>
+                        <option value="Evangelical">Evangelical Christian</option>
+                        <option value="INC">Iglesia ni Cristo</option>
+                        <option value="Born_Again">Born Again Christian</option>
+                        <option value="Adventist">Seventh-day Adventist</option>
+                        <option value="Jehovah's_Witness">Jehovah's Witness</option>
+                        <option value="Aglipayan">Aglipayan</option>
+                        <option value="Mormons">Mormons</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Judaism">Judaism</option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="civil_status">Civil Status</label>
+                    <select name="civil_status" id="civil_status">
+                        <option value=""></option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Widowed">Widowed</option>
+                        <option value="Widower">Widower</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="educlvl">Education Level</label>
+                    <select name="educlvl" id="">
+                        <option value=""></option>
+                        <option value="nursery">Nursery</option>
+                        <option value="elem">Elementary</option>
+                        <option value="jhs">Junior High School</option>
+                        <option value="shs">Senior High School</option>
+                        <option value="undergrad">Undergraduate (Bachelor’s Degree)</option>
+                        <option value="postgrad">Postgraduate (Master’s Degree)</option>
+                        <option value="doctoral">Doctoral (PhD)</option>
+                        <option? value="ALS">Alternative Learning System (ALS)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="schlname">School Name</label>
+                    <input type="text" id="schlname">
+                </div>
+                <div class="form-group">
+                    <label for="schladdress">School Address</label>
+                    <input type="text" id="schladdress" >
+                </div>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" id="course">
+                </div>
+                <div class="form-group">
+                    <label for="schlyr">School Year</label>
+                    <input type="text" id="schlyr" >
+                </div> 
+                <!-- <div class="form-group">
+                    <label for="houseowner">Is House Owner</label>
+                    <select name="houseowner" id="">
+                        <option value=""></option>
+                        <option value="">Owner</option>
+                        <option value="">Not Owner</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="block">Block</label>
+                    <input type="text" id="block">
+                </div>
+                <div class="form-group">
+                    <label for="strt">Street</label>
+                    <input type="text" id="strt">
+                </div>
+                <div class="form-group">
+                    <label for="houseno">House No.</label>
+                    <input type="text" id="houseno" >
+                </div> -->
+                <div class="form-group">
+                    <label for="isvaccinated">Covid-19 Vax Status</label>
+                    <select name="isvaccinated" id="">
+                        <option value=""></option>
+                        <option value="">1st Dose</option>
+                        <option value="">2nd Dose</option>
+                        <option value="">Booster</option>
+                        <option value="">Not Vaccinated</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="philhealth">PhilHealth ID</label>
+                    <input type="text" id="philhealth">
+                </div>
+                <div class="form-group">
+                    <label for="isIP">NHTS Household</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">Non-NHTS</option>
+                        <option value="">NHTS (eg. 4Ps)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="isIP">Indigenous People</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">IP</option>
+                        <option value="">Non-IP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fam_plan">Family Planning Method</label>
+                    <select name="fam_plan" id="">
+                        <option value=""></option>
+                        <option value="">Pills</option>
+                        <option value="">DMPA</option>
+                        <option value="">Condom</option>
+                        <option value="">IUD-I</option>
+                        <option value="">IUD-PP</option>
+                        <option value="">Implant</option>
+                        <option value="">Cervical Mucus Method</option>
+                        <option value="">Basal Body Temp.</option>
+                        <option value="">Symptothermal Method</option>
+                        <option value="">Standard Days Method</option>
+                        <option value="">Lactating Amenorrhea</option>
+                        <option value="">Bilateral Tubal Ligation</option>
+                        <option value="">Vasectomy</option>
+                        <option value="">No Family Planning</option>
+                    </select>
+                </div>
+                <div class="form-group conditional">
+                    <label for="lmp">Last Menstrual Period</label>
+                    <input type="date" name="lmp" id="lmp">
+                </div>
+                <div class="form-group conditional">
+                    <label for="healthrisk">Health Risk Classification</label>
+                    <select name="healthrisk" id="healthrisk">
+                        <option value=""></option>
+                        <option value="">Pregnant</option>
+                        <option value="">Adoloscent-Pregnant</option>
+                        <option value="">Post Partum</option>
+                    </select>
+                </div> 
+                <div class="form-group conditional">
+                    <label for="immStat">Immunization Status</label>
+                    <select name="immStat" id="immStat">
+                        <option value=""></option>
+                        <option value="">TT1</option>
+                        <option value="">TT2</option>
+                        <option value="">TT3</option>
+                        <option value="">TT4</option>
+                        <option value="">TT5</option>
+                        <option value="">FIM - Fully Immunized Mother</option>
+    
+                    </select>
+                </div>      
+            </form>
+    
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="form-buttons">
+            <a href="{% url 'bhw_add_resident1'%}">
+                <button type="button" class="cancel-btn">Back</button>
+            </a> 
+            <a href="{% url 'bhw_add_resident3' %}">
+                <button type="button" class="next-btn">Next</button>
+            </a>
+        </div>
+        
+        
+    </div>   
+
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Added Successfully</h2>
+            <p>Household member <b>{resident.fullname}</b> has been successfully added!</p>
+            <button type="button" class="close-btn" onclick="closeSuccessModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/Addresident.js'%}"></script>
+</body>
+</html>
+            

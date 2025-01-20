@@ -1,5 +1,4 @@
-{% extends "shared/resident_details.html" %}
-
+{% extends "shared/add_resident_husband.html" %}
 
 {% block userinfo %}
 <div class="user-info">
@@ -17,16 +16,12 @@
     <a href="{% url 'Torganization'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Organization</a>
     <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
     <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
-
 </div>
 {% endblock %}
 
 
+
 {% block back-btns %}
-<a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
-{% if 'Married' == 'Married' or 'Married' == 'Divorced' or 'Married' == 'Widowed' %}
-<a href="{% url 'Tresident_husband' %}" class="next-btn">View Husband's</a>
-{% else %}
-<a href="{% url 'Tresident_parents' %}" class="next-btn">View Parents'</a>
-{% endif %}   
-{% endblock %}
+    <a  href="{% url 'TaddResident_details' %}" class="cancel-btn">Back</a>
+    <a href="{% url 'Tresidents'%}" class="next-btn">Done</a>
+{% endblock%}

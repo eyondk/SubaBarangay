@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Health Worker</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+                <a href="#">Household</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+            <h1 class="section-title">ADD HOUSEHOLD & RESIDENT</h1>
+            <h3 class="section-second-title">Household No. 1658 Family No. 7362</h3>
+
+
+        
+            <!-- MGA BATA TABLE -->
+            <div class="form-section-env">
+                <h2>I. Demographic Data</h2>
+                <h3 style="color: brown; margin-top: -30px;"><i>*Review Household Members' Children</i></h3>
+                
+                <!-- ma display diri tanan gi add the fam members/resident under five -->
+                <div class="">
+                    <div class="tre_table-container bata-table-container">
+                        <h3 class="table-tittle">MGA BATA'NG 0-59 KA BULAN (Under five)</h3>
+                        <table class="tre_resident-table" id="">
+                            <thead>
+                                <tr>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Birthdate<i>(mm/dd/yyy)</i></th>
+                                    <th>Relasyon sa HH HEAD</th>
+                                    <th>FIC</th>
+                                    <th>Nutrietional Status</th>
+                                    <th>Exclusive BF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="fullname">John D. Doe</td>
+                                    <td id="age">1</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">11/01/2024</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESFIC" id="YESFIC" onclick="toggleCheckbox(this)">
+                                            <label for="YESFIC">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOFIC" id="NOFIC" onclick="toggleCheckbox(this)">
+                                            <label for="NOFIC">No</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="bata-input" >
+                                    </td>  
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="ExcBF" id="YesExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="YesExcBF">Yes</label>
+                                            
+                                            <input type="checkbox" name="ExcBF" id="NoExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="NoExcBF">No</label>
+                                        </div>
+                                    </td>                                  
+                                </tr>
+                                <tr>
+                                    <td id="fullname">John D. Doe</td>
+                                    <td id="age">1</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">11/01/2024</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESFIC" id="YESFIC" onclick="toggleCheckbox(this)">
+                                            <label for="YESFIC">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOFIC" id="NOFIC" onclick="toggleCheckbox(this)">
+                                            <label for="NOFIC">No</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="bata-input" >
+                                    </td>  
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="ExcBF" id="YesExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="YesExcBF">Yes</label>
+                                            
+                                            <input type="checkbox" name="ExcBF" id="NoExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="NoExcBF">No</label>
+                                        </div>
+                                    </td>                                  
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>    
+                        
+                </div>
+
+                 <!-- ma display diri tanan gi add the fam members/resident 5 and above -->
+                <div class="">
+                    <div class="tre_table-container bata-table-container">
+                        <h3 class="table-tittle">MGA BATA/ ANAK NGA 5 KA TUIG PATAAS</h3>
+                        <table class="tre_resident-table" id="">
+                            <thead>
+                                <tr>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Birthdate<i>(mm/dd/yyy)</i></th>
+                                    <th>Relasyon sa HH HEAD</th>
+                                    <th>Blood Type</th>
+                                    <th>COVID-19 Vax Status</th>
+                                    <th>If HH Member is ≥ 19 y/o, <br>get PhilHealth ID No. if enrolled</th> 
+                                    <!-- automatically get the philhealth  -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="fullname">Johny D. Doe</td>
+                                    <td id="age">20</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">1/01/2005</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td id="bloodtype">O+</td>
+                                    <td id="vaxstat">1st Dose</td>
+                                    <td id="is19philhealth">186328731</td>     
+                                </tr><tr>
+                                    <td id="fullname">Artsy D. Doe</td>
+                                    <td id="age">9</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">1/01/2016</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td id="bloodtype">O+</td>
+                                    <td id="vaxstat">1st Dose</td>
+                                    <td id="is19philhealth"></td>     
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        <!-- Buttons Section -->
+        <div class="form-buttons">
+            <a href="{% url 'bhw_add_resident2'%}">
+                <button type="button" class="cancel-btn">Back</button>
+            </a> 
+            <a href="{% url 'bhw_add_resident4'%}">
+                <button type="button" class="next-btn">Next</button>
+            </a>
+        </div>
+        
+    </div>   
+
+    <!-- Modal Structure -->
+    <div id="modalOverlay" class="modal-overlay" style="display: none;"></div>
+    <div id="displayMemModal" class="display-mem-modal" style="display: none;">
+        <div class="modal-content-mem">
+            <h4>Member Information</h4>
+            <p><strong>Name:</strong> <span id="memName"></span></p>
+            <p><strong>Sex:</strong> <span id="memSex"></span></p>
+            <p><strong>Age:</strong> <span id="memAge"></span></p>
+            <p><strong>Risk Class:</strong> <span id="memRiskClass"></span></p>
+        </div>
+        <div class="modal-footer-mem">
+            <button class="btn cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn add" onclick="addToTable()">Add to Table</button>
+        </div>
+    </div>
+    
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/AddResident.js' %}"></script>
+</body>
+</html>
+            
