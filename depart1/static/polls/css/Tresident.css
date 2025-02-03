@@ -1,4 +1,56 @@
+/* Search container */
 .search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /* margin-left: 20px; */
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.search-left {
+    position: relative; 
+}
+
+.Txt_Search {
+    padding: 10px 10px 10px 35px; 
+    font-size: 14px;
+    font-family: 'Poppins', 'Sans-serif';
+    font-weight: 500;
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-shadow: none;
+    border:none;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.Txt_Search::placeholder {
+    color: rgba(80, 80, 144, 0.922);
+}
+
+.Txt_Search:hover{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.116);
+}
+
+.search-left i {
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    color: rgba(2, 2, 87, 0.922);
+    font-size: 16px;
+}
+
+/* search-container */
+
+
+
+/* .search-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,7 +80,7 @@
 }
 .Txt_Search::placeholder{
     color: rgba(2, 2, 87, 0.922);
-}
+} */
 
 .filter {
     padding: 8px;
@@ -38,6 +90,30 @@
     width: 200px;
     font-weight: 500;
 
+}
+
+.filter.btn{
+    margin-left: 8px;
+    border-radius: 8px;
+    background-color: whitesmoke !important;
+    box-shadow: none;
+    border:none;
+    width: 180px;
+    height: 40px;
+    font-family: 'Poppins', 'Sans-serif';
+    font-weight: 500;
+    color: rgba(80, 80, 144, 0.922);
+}
+
+.filter.btn:hover{
+    color: rgba(2, 2, 87, 0.922);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter.btn.clicked {
+    background-color: rgba(80, 80, 144, 0.922) !important;
+    color: whitesmoke;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .age-filter-container {
@@ -76,6 +152,7 @@
     cursor: pointer;
     font-weight: 600;
     font-size: xx-small;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .filter-btn{
@@ -89,9 +166,110 @@
 .filter-btn:hover, .reset-btn:hover{
     background-color: rgba(220, 220, 220, 0.505);
     color: rgba(2, 2, 87, 0.922);
+    transform: scale(1.02);
 
 }
 
+
+.delete-btns, .buttons_treasurer_table{
+    /* margin-top: 5px; */
+    margin-bottom: 20px;
+}
+
+.delete, .button-org{
+    margin-right: 10px;
+    display: none;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: smaller;
+    cursor: pointer;
+    color: gainsboro;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.button-org{
+    padding: 13px 18px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: small;
+    font-family: 'poppins', sans-serif;
+}
+
+.add{
+    background-color: midnightblue;
+}
+
+.update{
+    background-color: darkslateblue;
+}
+
+.deselect-res{
+    background-color: transparent;
+    border: 2px solid darkslateblue;
+    color: darkslateblue;
+}
+
+.all{
+    background-color: brown;
+}
+
+.deselect, .no{
+    background-color:darkslateblue;
+}
+
+.one, .yes{
+    background-color: rgb(2, 2, 87);
+}
+
+
+.deselect-res:hover, .update:hover, .add:hover{
+    transform: scale(1.05);
+    background-color: ghostwhite;
+    color: rgb(2, 2, 87);   
+}
+
+.deselect-res:hover{
+    border-color: rgb(2, 2, 87);
+}
+
+.all:hover, .deselect:hover, .no:hover, .one:hover, .yes:hover{
+    transform: scale(1.02);
+}
+
+.conf-delete{
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: medium;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.confirmDeleteModalContainer{
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5); 
+    justify-content: center; 
+    align-items: center;
+}        
+.confirmationModal{
+   background: white; 
+   padding: 25px; 
+   border-radius: 8px; 
+   text-align: center; 
+   width: 300px;
+}
+
+
+/* 
 .BTN_Search {
     padding: 10px 25px;
     background-color: rgba(2, 2, 87, 0.922);
@@ -110,11 +288,12 @@
 
 .BTN_Search i {
     margin-right: 5px;  
-}
+} */
 
 .add_resident, .add_users, .record_payment, .register_org{
     display: flex;
     justify-content: flex-end;
+    padding-right: 15px;
 }
 
 .BTN_AddResident, .BTN_AddUsers, .BTN_RecordPayment, .BTN_Org{
@@ -128,33 +307,69 @@
     align-items: center;
     text-transform: uppercase;
     font-weight: 600;
-    font-size: small;
+    font-size: medium;
+    margin-bottom: -45px;
+    transition: transform 0.3s ease, color 0.3s ease;
     
 }
 
 .BTN_AddResident:hover, .BTN_AddUsers:hover , .BTN_RecordPayment:hover, .BTN_Org:hover{
     color:gainsboro;
+    transform: scale(1.05);
 }
 
 .BTN_AddResident i, .BTN_AddUsers i, .BTN_RecordPayment i, .BTN_Org i {
     margin-right: 5px;
     font-size: 30px;
+
 }
 
 
 .Body .tre_table-container{
     margin-bottom: 10px;
     padding: 10px;
+    width: auto;
+    overflow: hidden;
 }
 
 .tre_resident-table{
     width: 100%;
-    background-color: whitesmoke;
     border-collapse: collapse;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
-    margin-top: -15px;    
+    margin-top: -15px; 
+    table-layout: fixed; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+   
+}
+
+.tre_resident-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.tre_resident-table tbody {
+    display: block;
+    max-height: 70vh; /* Adjust height as needed */
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.tre_resident-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    background-color: whitesmoke;
+
+}
+
+
+.tre_resident-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9d3;
 }
 
 .tre_resident-table th, 
@@ -162,6 +377,8 @@
     padding: 10px 15px;
     font-size: 14px;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -171,6 +388,8 @@
     text-transform: uppercase;
     font-weight: 500;
     border:none;
+    padding:20px;
+
 }
 
 .tre_resident-table td{
@@ -187,11 +406,28 @@
     width: 40px;
 }
 
+.tre_resident-table th:nth-child(2),
+.tre_resident-table td:nth-child(2) {
+    width: 100px;
+}
+
+.tre_resident-table th:nth-child(3),
+.tre_resident-table td:nth-child(3) {
+    width: 120px;
+}
+
+
+.tre_resident-table th:last-child,
+.tre_resident-table td:last-child {
+    width: 200px;
+}
+
 .tre_resident-table th input[type="checkbox"],
 .tre_resident-table td input[type="checkbox"] {
     cursor: pointer;
-    transform: scale(1.2);
     border: none;
+    transform: scale(1.3);
+
 }
 
 
@@ -209,27 +445,29 @@
 }
 
 .action-btn {
-    padding: 5px;
-    border: none;
+    padding: 4px;
+    /* border: none; */
     cursor: pointer;
     border-radius: 4px;
     font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .action-btn.view,
 .action-btn.edit,
 .action-btn.delete {
-    color:rgba(2, 2, 87, 0.922);;
+    color:rgba(2, 2, 87, 0.922);
     text-decoration: none;
 }
 
 
 .action-btn.view:hover, .action-btn.edit:hover, .action-btn.delete:hover{
     color: rgba(52, 152, 219, 0.831);
+    transform: scale(1.5);
 }
 
 .generate-reports {
-    padding: 8px 15px;
+    padding: 10px 25px;
     color: rgba(2, 2, 87, 0.922);
     background-color: whitesmoke;
     border: none;
@@ -238,9 +476,12 @@
     font-weight: bold;
     margin-top: 0;
     float: left;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
 }
 
 .generate-reports:hover {
+    transform: scale(1.05);
     background-color: rgba(2, 2, 87, 0.922);
     color: whitesmoke;
 }
@@ -250,12 +491,12 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 0;
-    color: rgba(2, 2, 87, 0.922);
+    color: whitesmoke;
 }
 
 .footer p, .footer-user p {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: large;
+    font-weight: 500;
     margin-top: -3px;
 }
 

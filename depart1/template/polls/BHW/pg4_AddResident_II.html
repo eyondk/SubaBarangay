@@ -31,7 +31,6 @@
             <div class="nav-menu">
                 <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
-                <a href="#">Household</a>
             </div>
             <div class="logout">
                 <a href="" class="logout-btn">
@@ -42,6 +41,62 @@
 
                 <h1 class="section-title">ADD HOUSEHOLD & RESIDENT</h1>
                 <h3 class="section-second-title">Household No. 1658 Family No. 7362</h3>
+                <div class="stepper">
+                    <!-- Step 1 -->
+                    <div class="step {% if step >= 1 %}checked{% endif %}">
+                        <input type="checkbox" id="step1" {% if step >= 1 %}checked{% endif %} disabled />
+                    <label for="step1">Step 1</label>
+                    </div>
+                    
+                    <div class="line"></div>
+                    
+                    <!-- Step 2 -->
+                    <div class="step {% if step >= 2 %}checked{% endif %}">
+                        <input type="checkbox" id="step2" {% if step >= 2 %}checked{% endif %} disabled />
+                    <label for="step2">Step 2</label>
+                    </div>
+                    
+                    <div class="line"></div>
+                    
+                    <!-- Step 3 -->
+                    <div class="step {% if step >= 3 %}checked{% endif %}">
+                        <input type="checkbox" id="step3" {% if step >= 3 %}checked{% endif %} disabled />
+                    <label for="step3">Step 3</label>
+                    </div>
+        
+                    <div class="line"></div>
+                    
+                    <!-- Step 4 -->
+                    <div class="step {% if step >= 4 %}checked{% endif %}">
+                        <input type="checkbox" id="step4" {% if step >= 4 %}checked{% endif %} disabled />
+                    <label for="step3">Step 4</label>
+                    </div>
+        
+                    <div class="line"></div>
+                    
+                    <!-- Step 5 -->
+                    <div class="step {% if step >= 5 %}checked{% endif %}">
+                        <input type="checkbox" id="step5" {% if step >= 5 %}checked{% endif %} disabled />
+                    <label for="step3">Step 5</label>
+                    </div>
+        
+                    <div class="line"></div>
+                    
+                    <!-- Step 6 -->
+                    <div class="step {% if step >= 6 %}checked{% endif %}">
+                        <input type="checkbox" id="step6" {% if step >= 6 %}checked{% endif %} disabled />
+                    <label for="step3">Step 6</label>
+                    </div>
+        
+                    <div class="line"></div>
+                    
+                    <!-- Step 7 -->
+                    <div class="step {% if step >= 7 %}checked{% endif %}">
+                        <input type="checkbox" id="step7" {% if step >= 7 %}checked{% endif %} disabled />
+                    <label for="step3">Step 7</label>
+                    </div>
+                </div>
+                    
 
                 <!-- Environmental Health and Sanitation Section -->
                 <div class="form-section-env">
@@ -190,30 +245,7 @@
     </div>
 
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
-    <script>
-
-        // Check btn for sanitary
-        document.getElementById('select-all-sanitary').addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('input[id^="select-row-sanitary"]');
-            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-        });
-
-        // Check btn for unsanitary
-        document.getElementById('select-all-unsanitary').addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('input[id^="select-row-unsanitary"]');
-            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-        });
-
-        // If the checkbox is checked, enable the text input; otherwise, disable it
-        function toggleTextInput() {
-            const checkbox = document.getElementById('others');
-            const textInput = document.getElementById('other-specify');
-            
-            textInput.disabled = !checkbox.checked;
-        }
-
-
-    </script>
+    <script src="{% static 'polls/js/AddResident.js'%}"></script>
 </body>
 </html>
             

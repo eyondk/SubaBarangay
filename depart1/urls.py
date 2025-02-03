@@ -81,6 +81,10 @@ urlpatterns = [
     path("BHW/add/resident/pg5", views.bhw_add_resident_5, name="bhw_add_resident5"),
     path("BHW/add/resident/pg6", views.bhw_add_resident_6, name="bhw_add_resident6"),
     path("BHW/add/resident/pg7", views.bhw_add_resident_7, name="bhw_add_resident7"),
+    path("View/resident/details", views.bhw_resident_view_details, name="Resident_details"),
+    path("View/resident/household_details", views.bhw_resident_view_household_details, name="Resident_household_details"),
+    path("BHW/edit/resident_household", views.bhw_resident_HH_edit_details, name="edit_details"),
+    
     
 
     path("staff/dashboard", views.staff_dashboard_view, name="STdashboard"),

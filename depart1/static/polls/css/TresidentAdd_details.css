@@ -1,3 +1,71 @@
+/* radio button horizontal layout style */
+.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .step input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .step input[type="checkbox"]:checked {
+    border-color: rgba(2, 2, 87, 0.922);
+    background-color:rgba(5, 5, 139, 0.922);
+  }
+  
+  .step label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 450;
+    text-transform: uppercase;
+    color:whitesmoke;
+    cursor: pointer;
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #ccc;
+    margin: 0 10px;
+    position: relative;
+    top: -10px; 
+    border-radius: 20%;
+  }
+  
+  .step.checked + .line {
+    background-color: rgba(2, 2, 87, 0.922);
+  }
+  
+
+  .step.checked label {
+    color: rgba(2, 2, 87, 0.922); 
+    font-weight: 500;
+}
+
+.line {
+    transition: background-color 0.3s ease-in-out;
+}
+
+  
+/* radio button horizontal layout style */
+
+
 .form-group.survey input{
     width: 90%;
     margin-bottom: 30px;
@@ -5,8 +73,12 @@
 
  
 .form-group.survey label{
-    color: whitesmoke !important;
+    color: whitesmoke;
 } 
+
+.form-group.survey.edit-part label{
+    color: rgba(2, 2, 87, 0.922);
+}
 
 .IV{
     display: grid;
@@ -15,6 +87,7 @@
     padding: 0px 20px 0px 20px;
     width: 60%;
 }
+
 
 
 /* conirmation delete modal */
@@ -28,6 +101,7 @@
     background: rgba(0, 0, 0, 0.5); 
     justify-content: center; 
     align-items: center;
+    z-index: 9999; /* Ensure it's above other elements */
 }        
 .confirmationModal{
    background: white; 
@@ -35,6 +109,7 @@
    border-radius: 8px; 
    text-align: center; 
    width: 300px;
+   z-index: 8659999; /* Ensure it's above other elements */
 }
 
 /* conirmation delete modal */
@@ -68,6 +143,11 @@
 
 }
 
+.display-mem-modal.update-details{
+    width:550px;
+}
+
+
 .modal-content-mem {
     padding: 20px;
     flex: 1; 
@@ -98,6 +178,10 @@
     cursor: pointer;
     flex: 1; 
     text-align: center; 
+    text-transform: capitalize;
+    font-size: small;
+    font-weight: 500;
+    font-family: 'poppins', sans-serif;
 }
 
 
@@ -106,13 +190,30 @@
     background-color: rgba(2, 2, 87, 0.922);
 }
 
+.modal-footer-mem .btn.add.tb{
+    background-color:darkslateblue;
+}
+
 .modal-footer-mem .btn.cancel {
-    background-color: #6a6790ef;
+    border:rgba(122, 122, 175, 0.719) 2px solid;
+    background-color: white;
+    color: rgba(122, 122, 175, 0.719);
+    
 }
 
 .modal-footer-mem .btn:hover {
     background-color: rgba(220, 220, 220, 0.806);
     color: rgba(2, 2, 87, 0.922);
+}
+
+.modal-footer-mem .btn.cancel:hover{
+    border:rgba(2, 2, 87, 0.922) 2px solid;
+}
+
+.modal-footer-mem .btn.add.tb:hover{
+    color: rgba(2, 2, 87, 0.922);
+    background-color: rgba(220, 220, 220, 0.806);
+
 }
 
 .modal-footer-mem .btn:first-child {
@@ -138,30 +239,43 @@
 
 /* Search left (input + icon) */
 .search-left {
-    position: relative; /* To position the icon inside the input box */
+    position: relative; 
 }
 
-/* Textbox styling */
 .Txt_Search {
-    padding: 10px 10px 10px 35px; /* Add padding to make space for the icon */
+    padding: 10px 10px 10px 35px; 
     font-size: 14px;
     width: 300px;
     height: 20px;
     border-radius: 5px;
     background-color: whitesmoke;
     box-shadow: none;
-    border: 1px solid #0056b3;
+    border: none;
     color: rgba(2, 2, 87, 0.922);
+}
+
+.Txt_Search.edit-part{
+    border: 2px solid rgba(2, 2, 87, 0.922);
+    background-color:whitesmoke;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.Txt_Search.edit-part::placeholder{
+    font-weight: 500;
+}
+
+.Txt_Search.edit-part:hover{
+    transform: scale(1.02);
 }
 
 .Txt_Search::placeholder {
     color: rgba(2, 2, 87, 0.922);
 }
 
-/* Style for the icon */
 .search-left i {
     position: absolute;
-    left: 10px;  /* Position the icon on the left side */
+    left: 10px; 
     top: 50%;
     transform: translateY(-50%); 
     color: rgba(2, 2, 87, 0.922);
@@ -189,7 +303,12 @@ h3 {
 
 h2.demo{
     padding-left:30px;
+    margin-top: 45px;
   
+}
+
+h2.demo.edit-part{
+    color: rgba(2, 2, 87, 0.922);
 }
 
 h2.demo.one{
@@ -280,10 +399,15 @@ h2.demo.one{
     font-weight: 500;
     font-size: 14px;
     font-family: 'Poppins', sans-serif; 
-    width: auto;
-    min-width: 200px;
-    max-width: 300px;
+    width: 100%;
+    /* min-width: 200px;
+    max-width: 300px; */
 
+}
+
+.tre_resident-table td input[type="number"]{
+    width: 80%;
+    text-align: center;
 }
 
 .tre_resident-table td input[type="text"] {
@@ -346,9 +470,6 @@ h2.demo.one{
     color: whitesmoke;
 }
 
-
-
-
 .tre_resident-table td ::placeholder{
     font-weight: 500;
     font-size: 14px; 
@@ -372,6 +493,9 @@ h2.demo.one{
     margin-top: 15px;
 }
 
+.household-header.edit-details{
+    margin-top:50px;
+}
 
 .input-with-unit {
     display: flex;
@@ -446,7 +570,7 @@ h2.demo.one{
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     font-family: 'Poppins', sans-serif; 
 }
 
@@ -455,7 +579,7 @@ h2.demo.one{
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
     margin-top: -25px;
     font-family: 'Poppins', sans-serif; 
 }
@@ -497,6 +621,13 @@ h2.demo.one{
     gap: 10px;
     padding: 10px 30px 0px 30px;
 }
+
+
+.form-section-env.edit-part{
+    color: rgba(2, 2, 87, 0.922);
+}
+
+
 .resident-form-parents{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -622,12 +753,13 @@ h2.demo.one{
 
 /* Add a consistent width and prevent shrinking */
 .form-group select {
-    width: 100%; /* Full width of the container */
-    box-sizing: border-box; /* Includes padding and border */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .cancel-btn,
-.next-btn {
+.next-btn,
+.save-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -642,20 +774,21 @@ h2.demo.one{
     color: whitesmoke;
 }
 
-.next-btn {
+.next-btn, .save-btn {
     background-color: rgba(2, 2, 87, 0.922);
     color: whitesmoke;
 }
 
 .cancel-btn:hover,
-.next-btn:hover {
+.next-btn:hover,
+.save-btn:hover {
     background-color: rgba(220, 220, 220, 0.806);
     color: rgba(2, 2, 87, 0.922);
 }
 
 
 
-  .add_resident, .add_users {
+.add_resident, .add_users {
     display: flex;
     justify-content: flex-end;
 }

@@ -31,7 +31,6 @@
             <div class="nav-menu">
                 <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
-                <a href="#">Household</a>
             </div>
             <div class="logout">
                 <a href="" class="logout-btn">
@@ -41,8 +40,67 @@
         </div>
 
         <h1 class="section-title">QUARTER 1: ADD HOUSEHOLD & RESIDENT</h1>
+        <div class="stepper">
+            <!-- Step 1 -->
+            <div class="step {% if step >= 1 %}checked{% endif %}">
+                <input type="checkbox" id="step1" {% if step >= 1 %}checked{% endif %} disabled />
+              <label for="step1">Step 1</label>
+            </div>
+            
+            <div class="line"></div>
+            
+            <!-- Step 2 -->
+            <div class="step {% if step >= 2 %}checked{% endif %}">
+                <input type="checkbox" id="step2" {% if step >= 2 %}checked{% endif %} disabled />
+              <label for="step2">Step 2</label>
+            </div>
+            
+            <div class="line"></div>
+            
+            <!-- Step 3 -->
+            <div class="step {% if step >= 3 %}checked{% endif %}">
+                <input type="checkbox" id="step3" {% if step >= 3 %}checked{% endif %} disabled />
+              <label for="step3">Step 3</label>
+            </div>
+
+            <div class="line"></div>
+            
+            <!-- Step 4 -->
+            <div class="step {% if step >= 4 %}checked{% endif %}">
+                <input type="checkbox" id="step4" {% if step >= 4 %}checked{% endif %} disabled />
+              <label for="step3">Step 4</label>
+            </div>
+
+            <div class="line"></div>
+            
+            <!-- Step 5 -->
+            <div class="step {% if step >= 5 %}checked{% endif %}">
+                <input type="checkbox" id="step5" {% if step >= 5 %}checked{% endif %} disabled />
+              <label for="step3">Step 5</label>
+            </div>
+
+            <div class="line"></div>
+            
+            <!-- Step 6 -->
+            <div class="step {% if step >= 6 %}checked{% endif %}">
+                <input type="checkbox" id="step6" {% if step >= 6 %}checked{% endif %} disabled />
+              <label for="step3">Step 6</label>
+            </div>
+
+            <div class="line"></div>
+            
+            <!-- Step 7 -->
+            <div class="step {% if step >= 7 %}checked{% endif %}">
+                <input type="checkbox" id="step7" {% if step >= 7 %}checked{% endif %} disabled />
+              <label for="step3">Step 7</label>
+            </div>
+        </div>
+            
+
+
+
          <!-- Demographic Data Section -->
-         <h2 class="demo">I. Demographic Data</h2>
+        <h2 class="demo">I. Demographic Data</h2>
         <div class="form-section">
             <div class="form-group">
                 <label for="household-no">Household No.:</label>
@@ -174,7 +232,7 @@
                     <option value="undergrad">Undergraduate (Bachelor’s Degree)</option>
                     <option value="postgrad">Postgraduate (Master’s Degree)</option>
                     <option value="doctoral">Doctoral (PhD)</option>
-                    <option? value="ALS">Alternative Learning System (ALS)</option>
+                    <option value="ALS">Alternative Learning System (ALS)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -193,7 +251,22 @@
                 <label for="schlyr">School Year</label>
                 <input type="text" id="schlyr" >
             </div> 
-            <!-- <div class="form-group">
+            
+            <div class="form-group">
+                <label for="isvaccinated">Covid-19 Vax Status</label>
+                <select name="isvaccinated" id="">
+                    <option value=""></option>
+                    <option value="">1st Dose</option>
+                    <option value="">2nd Dose</option>
+                    <option value="">Booster</option>
+                    <option value="">Not Vaccinated</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="philhealth">PhilHealth ID</label>
+                <input type="text" id="philhealth">
+            </div>
+            <div class="form-group">
                 <label for="houseowner">Is House Owner</label>
                 <select name="houseowner" id="">
                     <option value=""></option>
@@ -212,20 +285,6 @@
             <div class="form-group">
                 <label for="houseno">House No.</label>
                 <input type="text" id="houseno" >
-            </div> -->
-            <div class="form-group">
-                <label for="isvaccinated">Covid-19 Vax Status</label>
-                <select name="isvaccinated" id="">
-                    <option value=""></option>
-                    <option value="">1st Dose</option>
-                    <option value="">2nd Dose</option>
-                    <option value="">Booster</option>
-                    <option value="">Not Vaccinated</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="philhealth">PhilHealth ID</label>
-                <input type="text" id="philhealth">
             </div>
             <div class="form-group">
                 <label for="isIP">NHTS Household</label>
@@ -319,6 +378,7 @@
     </div>
 
     <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/Addresident.js'%}"></script>
     <script>
         // age filter visibility function
         const organizationFilter = document.querySelector('select[name="org"]');

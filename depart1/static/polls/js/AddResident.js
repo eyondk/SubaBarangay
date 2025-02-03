@@ -1,27 +1,49 @@
+//===================== start pg.4 II. Environment ==============================
 
-//====================== end delete confiramtion modal =========================
-let deleteAction = null; // To store the action to perform (deleteAll or deleteSelected)
+// Check btn for sanitary
+document.getElementById('select-all-sanitary').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('input[id^="select-row-sanitary"]');
+    checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+});
 
-// Set the action and message
-function openModal(action, message) {
-    deleteAction = action;
-    document.getElementById("modalMessage").textContent = message;
-    document.getElementById("confirmationModal").style.display = "flex";
+// Check btn for unsanitary
+document.getElementById('select-all-unsanitary').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('input[id^="select-row-unsanitary"]');
+    checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+});
+
+// If the checkbox is checked, enable the text input; otherwise, disable it
+function toggleTextInput() {
+    const checkbox = document.getElementById('others');
+    const textInput = document.getElementById('other-specify');
+    
+    textInput.disabled = !checkbox.checked;
+}
+//===================== end pg.4 II. Environment ==============================
+
+
+//====================== start delete confiramtion modal =========================
+
+
+//open modal using the delete btns of the Sakit Table
+function openModalSakit(action, message) {
+    document.getElementById("conf-modalMessage").textContent = message;
+    document.getElementById("conf-Modal").style.display = "flex";
 }
 
+// open modal using the delete btns of the TB Table
+function openConfirmationModal(action, message) {
+    document.getElementById("conf-modalMessage").textContent = message;
+    document.getElementById("conf-Modal").style.display = "flex";
+}
+
+//close modal 
 function closeConfirmationModal() {
-    document.getElementById("confirmationModal").style.display = "none";
-    deleteAction = null;
+    document.getElementById("conf-Modal").style.display = "none";
 }
 
-function confirmDelete() {
-    if (deleteAction) {
-        deleteAction();
-    }
-    closeConfirmationModal();
-    deselectAll();
-}
 
+//START: DELETE JS FOR TB TABLE
 function toggleAllCheckboxesTB(source) {
     const checkboxes = document.querySelectorAll(".rowCheckbox");
 
@@ -34,13 +56,13 @@ function toggleAllCheckboxesTB(source) {
 
 function toggleDeleteButtonTB() {
     const checkboxes = document.querySelectorAll(".rowCheckbox");
-    const deleteAllButton = document.getElementById("deleteAll");
-    const deleteOneButton = document.getElementById("deleteOne");
-    const deselectAllButton = document.getElementById("deselectAll");
+    const deleteAllButton = document.getElementById("deleteAll-TB");
+    const deleteOneButton = document.getElementById("deleteOne-TB");
+    const deselectAllButton = document.getElementById("deselectAll-TB");
 
     const checkedBoxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
 
-    deleteAllButton.style.display = checkedBoxes.length === checkboxes.length && checkedBoxes.length > 1 ? "inline-block" : "none";
+    deleteAllButton.style.display = checkedBoxes.length === checkboxes.length || checkedBoxes.length > 1 ? "inline-block" : "none";
     deselectAllButton.style.display = checkedBoxes.length > 0 ? "inline-block" : "none";
     deleteOneButton.style.display = checkedBoxes.length === 1 ? "inline-block" : "none";
 }
@@ -72,6 +94,52 @@ function deselectAll() {
     document.getElementById("selectAll").checked = false;
     toggleDeleteButtonTB();
 }
+
+//START: DELETE JS FOR SAKIT TABLE
+function toggleAllCheckboxesSakit(source) {
+    const checkboxes = document.querySelectorAll(".select-row-iii"); 
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = source.checked;
+    });
+
+    toggleDeleteButtonSakit();
+}
+
+function toggleDeleteButtonSakit() {
+    const checkboxes = document.querySelectorAll(".select-row-iii");
+    const deleteAllButton = document.getElementById("deleteAll");
+    const deleteOneButton = document.getElementById("deleteOne");
+    const deselectAllButton = document.getElementById("deselectAll");
+
+    const checkedBoxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+
+    deleteAllButton.style.display = checkedBoxes.length > 1 ? "inline-block" : "none";
+    deselectAllButton.style.display = checkedBoxes.length > 0 ? "inline-block" : "none";
+    deleteOneButton.style.display = checkedBoxes.length === 1 ? "inline-block" : "none";
+}
+
+function deleteAllSakit() {
+    const checkboxes = document.querySelectorAll(".select-row-iii:checked");
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.closest("tr").remove();
+    });
+
+    toggleDeleteButtonSakit();
+}
+
+function deselectAllSakit() {
+    const checkboxes = document.querySelectorAll(".select-row-iii");
+    checkboxes.forEach((checkbox) => (checkbox.checked = false));
+
+    const selectAll = document.getElementById("select-all-iii");
+    if (selectAll) selectAll.checked = false;
+
+    toggleDeleteButtonSakit();
+}
+
+
 //====================== end delete confiramtion modal =========================
 
 
@@ -114,11 +182,21 @@ window.onclick = function (event) {
         modal.style.display = 'none';
     }
 };
+
+
+// add household member modal sa EditResident_HH.html file
+function openAddResHHModal() {
+    document.getElementById('addMemberModal').style.display = 'flex';
+}
+
+function closeAddHHMemModal() {
+    document.getElementById('addMemberModal').style.display = 'none';
+}
 //===================== add household members page ===================== 
 
 
 
-//check box for non-com diease table
+//check box for non-com diseases table
 document.getElementById('select-all-iii').addEventListener('change', function() {
     const checkboxes = document.querySelectorAll('input[id^="select-row-iii"]');
     checkboxes.forEach(checkbox => checkbox.checked = this.checked);
@@ -268,3 +346,17 @@ function simulateSearch() {
         openMemModal(memberData.name, memberData.sex, memberData.age, memberData.riskClass);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const steps = document.querySelectorAll(".step input[type='checkbox']");
+    const lines = document.querySelectorAll(".line");
+
+    steps.forEach((step, index) => {
+        if (step.checked) {
+            step.closest(".step").classList.add("checked");
+            if (index > 0) {
+                lines[index - 1].style.backgroundColor = "rgba(2, 2, 87, 0.922)";
+            }
+        } 
+    });
+});

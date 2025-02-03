@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/EditDetails.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Health Worker</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <h1 class="section-title">Q1: EDIT HOUSEHOLD MEMBER DETAILS</h1>
+
+        <div class="save-all-changes">
+            <button type="submit" class="BTN_SaveAllChanges"> Save All Changes </button>
+        </div>
+
+
+
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab-edit active" data-tab="I">I. Demographic Data</div>
+            <div class="tab-edit" data-tab="II">II. Environmental Health and Sanitation</div>
+            <div class="tab-edit" data-tab="III">III. Non-Communicable Disease</div>
+            <div class="tab-edit" data-tab="IV">IV. Survey Identification</div>
+        </div>
+
+        <!-- Tab content -->
+        <div id="tab-content-I" class="tab-edit-content active">
+            <h2 class="form-section-env edit-part">I. Demographic Data</h2>
+
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="household-no">Household No.:</label>
+                    <input type="text" id="household-no" name="household_no" >
+                </div>
+                <div class="form-group">
+                    <label for="family-no">Family No.:</label>
+                    <input type="text" id="family-no" name="family_no" >
+                </div>
+            </div>
+                     
+            <form action="" class="resident-form">
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" id="birthdate">
+                </div>
+                <div class="form-group">
+                    <label for="sex" >Sex</label>
+                    <select id="sex"  name="gender"  onchange="toggleConditionalFields()">
+                        <option value=""></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select name="gender">
+                        <option value=""></option>
+                        <option value="Straight">Straight</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Transgender">Transgender</option>
+                        <option value="Queer">Queer</option>
+                        <option value="Pansexual">Pansexual</option>
+                        <option value="asexual">Asexual</option>
+                        <option value="chair">Chair</option>
+                        <option value="hotdog">Hotdog</option>
+                        <option value="secret">Prefer Not To Say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weight">weight</label>
+                    <div class="input-with-unit">
+                        <input type="number" step="0.01" min="1" id="weight">
+                        <span class="unit">kg</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bloodtype">blood type</label>
+                    <select name="blood_type">
+                        <option value=""></option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eyecolor">Eye color</label>
+                    <input type="text" id="eyecolor">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact No.</label>
+                    <input type="text" id="contact">
+                </div>
+                
+                <div class="form-group">
+                    <label for="religion">Religion</label>
+                    <select name="religion" id="religion">
+                        <option value=""></option>
+                        <option value="Roman_Catholic">Roman Catholic</option>
+                        <option value="Baptist">Bible Baptist Church</option>
+                        <option value="Evangelical">Evangelical Christian</option>
+                        <option value="INC">Iglesia ni Cristo</option>
+                        <option value="Born_Again">Born Again Christian</option>
+                        <option value="Adventist">Seventh-day Adventist</option>
+                        <option value="Jehovah's_Witness">Jehovah's Witness</option>
+                        <option value="Aglipayan">Aglipayan</option>
+                        <option value="Mormon">Mormons</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Judaism">Judaism</option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="civilstat">Civil Status</label>
+                    <select name="civil_status" id="civil_status">
+                        <option value=""></option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Widowed">Widowed</option>
+                        <option value="Widower">Widower</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="educlvl">Education Level</label>
+                    <select name="educlvl" id="">
+                        <option value=""></option>
+                        <option value="nursery">Nursery</option>
+                        <option value="elem">Elementary</option>
+                        <option value="jhs">Junior High School</option>
+                        <option value="shs">Senior High School</option>
+                        <option value="undergrad">Undergraduate (Bachelor’s Degree)</option>
+                        <option value="postgrad">Postgraduate (Master’s Degree)</option>
+                        <option value="doctoral">Doctoral (PhD)</option>
+                        <option value="ALS">Alternative Learning System (ALS)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="schlname">School Name</label>
+                    <input type="text" id="schlname">
+                </div>
+                <div class="form-group">
+                    <label for="schladdress">School Address</label>
+                    <input type="text" id="schladdress" >
+                </div>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" id="course">
+                </div>
+                <div class="form-group">
+                    <label for="schlyr">School Year</label>
+                    <input type="text" id="schlyr" >
+                </div> 
+                
+                <div class="form-group">
+                    <label for="isvaccinated">Covid-19 Vax Status</label>
+                    <select name="isvaccinated" id="">
+                        <option value=""></option>
+                        <option value="">1st Dose</option>
+                        <option value="">2nd Dose</option>
+                        <option value="">Booster</option>
+                        <option value="">Not Vaccinated</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="philhealth">PhilHealth ID</label>
+                    <input type="text" id="philhealth">
+                </div>
+                <div class="form-group">
+                    <label for="houseowner">Is House Owner</label>
+                    <select name="houseowner" id="">
+                        <option value=""></option>
+                        <option value="">Owner</option>
+                        <option value="">Not Owner</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="block">Block</label>
+                    <input type="text" id="block">
+                </div>
+                <div class="form-group">
+                    <label for="strt">Street</label>
+                    <input type="text" id="strt">
+                </div>
+                <div class="form-group">
+                    <label for="houseno">House No.</label>
+                    <input type="text" id="houseno" >
+                </div>
+                <!-- start: delete if the resident is the household head -->
+                <div class="form-group">
+                    <label for="HHHead">Household Head</label>
+                    <input type="text" id="HHHead" >
+                </div>
+                <div class="form-group">
+                    <label for="relationship-role">Relationship w/ HH Head</label>
+                    <select id="relationship-role">
+                        <option value=""></option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Son">Son</option>
+                        <option value="Daughter">Daughter</option>
+                        <option value="Sister">Sister</option>
+                        <option value="Brother">Brother</option>
+                        <option value="Grandfather">Grandfather</option>
+                        <option value="Grandmother">Grandmother</option>
+                        <option value="Grandson">Grandson</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Granddaughter">Granddaughter</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Uncle">Uncle</option>
+                        <option value="Aunt">Aunt</option>
+                        <option value="Nephew">Nephew</option>
+                        <option value="Niece">Niece</option>
+                        <option value="Husband">Husband</option>
+                        <option value="Wife">Wife</option>
+                        <option value="Cousin">Cousin</option>
+                        <option value="Stepfather">Stepfather</option>
+                        <option value="Stepmother">Stepmother</option>
+                        <option value="Stepson">Stepson</option>
+                        <option value="Stepdaughter">Stepdaughter</option>
+                        <option value="Father-in-law">Father-in-law</option>
+                        <option value="Mother-in-law">Mother-in-law</option>
+                        <option value="Brother-in-law">Brother-in-law</option>
+                        <option value="Sister-in-law">Sister-in-law</option>
+                        <option value="Son-in-law">Son-in-law</option>
+                        <option value="Daughter-in-law">Daughter-in-law</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <!-- start: delete if the resident is the household head -->
+                <div class="form-group">
+                    <label for="isIP">NHTS Household</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">Non-NHTS</option>
+                        <option value="">NHTS (eg. 4Ps)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="isIP">Indigenous People</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">IP</option>
+                        <option value="">Non-IP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fam_plan">Family Planning Method</label>
+                    <select name="fam_plan" id="">
+                        <option value=""></option>
+                        <option value="">Pills</option>
+                        <option value="">DMPA</option>
+                        <option value="">Condom</option>
+                        <option value="">IUD-I</option>
+                        <option value="">IUD-PP</option>
+                        <option value="">Implant</option>
+                        <option value="">Cervical Mucus Method</option>
+                        <option value="">Basal Body Temp.</option>
+                        <option value="">Symptothermal Method</option>
+                        <option value="">Standard Days Method</option>
+                        <option value="">Lactating Amenorrhea</option>
+                        <option value="">Bilateral Tubal Ligation</option>
+                        <option value="">Vasectomy</option>
+                        <option value="">No Family Planning</option>
+                    </select>
+                </div>
+                <div class="form-group conditional">
+                    <label for="lmp">Last Menstrual Period</label>
+                    <input type="date" name="lmp" id="lmp">
+                </div>
+                <div class="form-group conditional">
+                    <label for="healthrisk">Health Risk Classification</label>
+                    <select name="healthrisk" id="healthrisk">
+                        <option value=""></option>
+                        <option value="">Pregnant</option>
+                        <option value="">Adoloscent-Pregnant</option>
+                        <option value="">Post Partum</option>
+                    </select>
+                </div> 
+                <div class="form-group conditional">
+                    <label for="immStat">Immunization Status</label>
+                    <select name="immStat" id="immStat">
+                        <option value=""></option>
+                        <option value="">TT1</option>
+                        <option value="">TT2</option>
+                        <option value="">TT3</option>
+                        <option value="">TT4</option>
+                        <option value="">TT5</option>
+                        <option value="">FIM - Fully Immunized Mother</option>
+
+                    </select>
+                </div>      
+            </form>
+
+            <!-- delete this part when the resident is the household member -->
+            <div class="household-header edit-details">
+                <button type="button" id="add-member-button" class="BTN_AddChildren" onclick="openAddResHHModal()">
+                    <i class="fas fa-user-plus"></i> Add Household Members
+                </button>
+            </div>
+            
+            <!-- HH members can edit this part BUT CANNOT ADD HH MEMBERS -->
+            <div class="form-section-env edit-part">
+                <h4 style="color: rgba(40, 56, 137, 0.909); margin-top: -10px;"><i>*Household Head can only add HH members. To edit their details, navigate directly to their information.</i></h4>
+                <!-- ma display diri tanan gi add the fam members/resident under five -->
+                <div class="">
+                    <div class="tre_table-container bata-table-container">
+                        <h3 class="table-tittle">MGA BATA'NG 0-59 KA BULAN (Under five)</h3>
+                        <table class="tre_resident-table" id="">
+                            <thead>
+                                <tr>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Birthdate<i>(mm/dd/yyy)</i></th>
+                                    <th>Relasyon sa HH HEAD</th>
+                                    <th>FIC</th>
+                                    <th>Nutrietional Status</th>
+                                    <th>Exclusive BF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="fullname">John D. Doe</td>
+                                    <td id="age">1</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">11/01/2024</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESFIC" id="YESFIC" onclick="toggleCheckbox(this)">
+                                            <label for="YESFIC">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOFIC" id="NOFIC" onclick="toggleCheckbox(this)">
+                                            <label for="NOFIC">No</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="bata-input" >
+                                    </td>  
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="ExcBF" id="YesExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="YesExcBF">Yes</label>
+                                            
+                                            <input type="checkbox" name="ExcBF" id="NoExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="NoExcBF">No</label>
+                                        </div>
+                                    </td>                                  
+                                </tr>
+                                <tr>
+                                    <td id="fullname">John D. Doe</td>
+                                    <td id="age">1</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">11/01/2024</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESFIC" id="YESFIC" onclick="toggleCheckbox(this)">
+                                            <label for="YESFIC">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOFIC" id="NOFIC" onclick="toggleCheckbox(this)">
+                                            <label for="NOFIC">No</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="bata-input" >
+                                    </td>  
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="ExcBF" id="YesExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="YesExcBF">Yes</label>
+                                            
+                                            <input type="checkbox" name="ExcBF" id="NoExcBF" onclick="toggleCheckbox(this)">
+                                            <label for="NoExcBF">No</label>
+                                        </div>
+                                    </td>                                  
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>    
+                        
+                </div>
+
+                 <!-- ma display diri tanan gi add the fam members/resident 5 and above -->
+                <div class="">
+                    <div class="tre_table-container bata-table-container">
+                        <h3 class="table-tittle">MGA BATA/ ANAK NGA 5 KA TUIG PATAAS</h3>
+                        <table class="tre_resident-table" id="">
+                            <thead>
+                                <tr>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Birthdate<i>(mm/dd/yyy)</i></th>
+                                    <th>Relasyon sa HH HEAD</th>
+                                    <th>Blood Type</th>
+                                    <th>COVID-19 Vax Status</th>
+                                    <th>If HH Member is ≥ 19 y/o, <br>get PhilHealth ID No. if enrolled</th> 
+                                    <!-- automatically get the philhealth  -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="fullname">Johny D. Doe</td>
+                                    <td id="age">20</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">1/01/2005</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td id="bloodtype">O+</td>
+                                    <td id="vaxstat">1st Dose</td>
+                                    <td id="is19philhealth">186328731</td>     
+                                </tr><tr>
+                                    <td id="fullname">Artsy D. Doe</td>
+                                    <td id="age">9</td>
+                                    <td id="sex">Male</td>
+                                    <td id="dob">1/01/2016</td>
+                                    <td id="relasyonHHHD">Son</td>
+                                    <td id="bloodtype">O+</td>
+                                    <td id="vaxstat">1st Dose</td>
+                                    <td id="is19philhealth"></td>     
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <a href="{% url 'Bresident'%}">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </a> 
+                <a href="{% url 'bhw_add_resident2' %}">
+                    <button type="submit" class="next-btn">Save Changes</button>
+                </a>
+            </div>
+
+
+            
+        </div>
+
+        <div id="tab-content-II" class="tab-edit-content">
+             <!-- Environmental Health and Sanitation Section -->
+             <div class="form-section-env edit-part">
+                <h2>II. Environmental Health and Sanitation</h2>
+                <div class="form-group ">
+                    <h3>A. Type of Water Supply:</h3>
+                    <div>
+                        <input type="radio" id="level1" name="water_supply" value="level1">
+                        <label for="level1"><b>Level I (Point Source):</b> Developed/protected/improved spring dug well
+                            without distribution/ pipping system, supplying within 250 meter radius
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level2" name="water_supply" value="level2">
+                        <label for="level2"><b> Level II (Communal Faucet or Stand Post):</b> HH using point source 
+                            with distribution system to a communal (common) faucet or standpost supplying within 25 meter radius
+                        </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="level3" name="water_supply" value="level3">
+                        <label for="level3"><b>Level III (Individual Connection):</b> HH with faucet/tap</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h3 class="sanitary">B. Type of Sanitary Facility:</h3>
+                    <div class="tre_table-container">
+                        <table class="tre_resident-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="select-all-sanitary">SANITARY</th>
+                                    <th><input type="checkbox" id="select-all-unsanitary">UNSANITARY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                   <td>
+                                    <input type="checkbox" id="select-row-sanitary">Pout/ Flush type with septic tank 
+                                   </td> 
+                                   <td>
+                                    <input type="checkbox" id="select-row-unsanitary">Water-scaled toilet without septic tank
+                                   </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="select-row-sanitary">Pout/ Flush toilet connected to 
+                                        septic tank AND to sewerage system
+                                   </td> 
+                                   <td>
+                                        <input type="checkbox" id="select-row-unsanitary">Overhung latrine
+                                    </td>
+                                </tr>
+                                <tr>
+                                   <td>
+                                    <input type="checkbox" id="select-row-sanitary">Ventilated Pit (VIP) Latrine 
+                                   </td> 
+                                   <td>
+                                    <input type="checkbox" id="select-row-unsanitary">Open Pit latrine
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>  
+                                    <td>
+                                        <input type="checkbox" id="select-row-unsanitary">Without Toilet
+                                    </td>
+                                    
+                                </tr>
+            
+                            </tbody>  
+                        </table> 
+                        
+                        <h3 class="h3inside-form-group" for="istoiletshared">Is toilet shared with other hosehold:</h3>
+                        <div class="inside-form-group">
+                            <div>
+                                <input type="radio" id="shared" name="istoiletshared" value="shared">
+                                <label for="shared">Shared</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="notshared" name="istoiletshared" value="notshared">
+                                <label for="notshared">Not Shared</label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <h3>C. Solid Waste Management <i>(Check all that apply)</i>:</h3>
+                    <div class="checkbox-grid">
+                        <div>
+                            <input type="checkbox" id="waste-segregation">
+                            <label for="waste-segregation">Waste Segregation</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="composting">
+                            <label for="composting">Backyard Composting</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="recycling">
+                            <label for="recycling">Recycling/ Reuse</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="city-collection">
+                            <label for="city-collection">Collected by City Collection <br> and Disposal System</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="burning">
+                            <label for="burning">Burning/ Burying</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="others" onchange="toggleTextInput()">
+                            <label for="others">Others: <i>pls. specify:</i></label>
+                            <input type="text" name="other-specify" id="other-specify" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+
+
+
+            <!-- Buttons Section -->
+            <div class="form-buttons">
+                <a href="{% url 'bhw_add_resident3'%}">
+                    <button type="button" class="cancel-btn">Back</button>
+                </a> 
+                <a href="{% url 'bhw_add_resident5'%}">
+                    <button type="button" class="next-btn">Save Changes</button>
+                </a>
+            </div>
+        </div>
+
+        <div id="tab-content-III" class="tab-edit-content">
+           
+            <!-- search result will be displayed in a modal "displayMemModal"  -->
+            <div class="search-container edit-part">
+                <div class="search-left">
+                    <input type="text" id="searchInput" name="search" class="Txt_Search edit-part" placeholder="Search Household Members"  oninput="simulateSearch()">
+                    <i class="fas fa-search"></i> 
+                </div>
+            </div>
+
+
+            <!-- Non-Communcable Disease -->
+            <div class="form-section-env edit-part">
+                <h2>III. Non-Communcable Disease </h2>
+                <h3>Co-morbidities/Sakit/Balation:</h3>
+                <div class="form-section-iii">
+                    <div>                        
+                        <label for="HPN"><b>HPN -</b> Hypertension <i>(Highblood)</i></label>
+                    </div>
+                    <div>
+                        <label for="DM"><b>DM -</b> Diabetes <i>(Dyabetis)</i></label></div>
+                    <div>
+                        <label for="BA"><b>BA -</b> Bronchial Asthma <i>(Hubak)</i></label>
+                    </div>
+                    <div>
+                        <label for="CA"><b>CA -</b> Cancer </label>
+                    </div>
+                    <div>
+                        <label for="DL"><b>DL -</b> Dyslipidemia <i>(Problema sa Kolesterol)</i></label>
+                    </div>
+                    <div>
+                        <label for="CKD"><b>CKD -</b> Chronic Kidney Disease <i>(Naka Dialysis)</i></label>
+                    </div>
+                    <div>
+                        <label for="MHI"><b>MHI -</b> Depresyon ug uban pa kabahin sa Mental Health Illness</label>
+                    </div>
+                    <div>  
+                        <label for="others"><b>Others:</b><i> (pls. specify)</i></label>
+                    </div>
+                </div>
+                
+                <!-- if the name search is in the household member, it will directly display:
+                fullname, age, sex,  health-risk (optional, but best if it's automatically displayed) -->
+                <div class="">
+                    <div class="tre_table-container">
+                        <div class="delete-btns"> 
+                            <button id="deselectAll" class="delete deselect" onclick="deselectAllSakit()">Deselect All</button>
+                            <button id="deleteOne" class="delete one" onclick="openModalSakit(deleteSelected, 'Are you sure you want to delete this row?')">Delete</button>
+                            <button id="deleteAll" class="delete all"  onclick="openModalSakit(deleteAll, 'Are you sure you want to delete all selected rows?')">Delete All</button>
+                        </div>
+                        <table class="tre_resident-table" id="membersTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="select-all-iii" onclick="toggleAllCheckboxesSakit(this)"> </th>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Risk Class by <i>Age/Group</i></th>
+                                    <th>Co-morbidities/Sakit/ <br>Balati-on</th>
+                                    <th>Lifestyle Risk</th>
+                                    <th>Naka maintenance?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-row-iii" onclick="toggleDeleteButtonSakit()">
+                                    </td>
+                                    <td id="fullname">Francis Clarisse C. Abucejo</td>
+                                    <td id="age">21</td>
+                                    <td id="sex">Female</td>
+                                    <td>
+                                        <select id="health-risk" name="health_risk">
+                                            <option value=""></option>
+                                            <option value="newborn">Newborn (0-28 days)</option>
+                                            <option value="infant">Infant (29 days - 11 months)</option>
+                                            <option value="underfive">Under Five (1-4 y/o)</option>
+                                            <option value="school-age">School-aged Children (5-9 y/o)</option>
+                                            <option value="adolescent">Adolescent (10-19 y/o)</option>
+                                            <option value="adult">Adult (20-59 y/o)</option>
+                                            <option value="senior">Senior Citizen (60+ y/o)</option>
+                                            <option value="PWD">Person With Disability</option>
+                                            <option value="AP">Adoloscent-Pregnant</option>
+                                            <option value="P">Pregnant</option>
+                                            <option value="PP">Post Partum</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="sakit-dropdown" onchange="handleDropdownChange(this)">
+                                            <option value=""></option>
+                                            <option value="HPN">HPN</option>
+                                            <option value="DM">DM</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CA">CA</option>
+                                            <option value="DL">DL</option>
+                                            <option value="CKD">CKD</option>
+                                            <option value="MHI">MHI</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        <input type="text" class="sakit-input" placeholder="Specify Others" id="otherSakit" style="display: none;" oninput="checkSakitInput(this)">
+                                    </td>
+                                    <td>
+                                        <select name="lifestylerisk" id="">
+                                            <option value=""></option>
+                                            <option value="smoker">Smoker</option>
+                                            <option value="alcoholic">Alcoholic</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESmaintenance" id="YESmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="YESmaintenance">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOmaintenance" id="NOmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="NOmaintenance">No</label>
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-row-iii" onclick="toggleDeleteButtonSakit()">
+                                    </td>
+                                    <td id="fullname">Francis Clarisse C. Abucejo</td>
+                                    <td id="age">21</td>
+                                    <td id="sex">Female</td>
+                                    <td>
+                                        <select id="health-risk" name="health_risk">
+                                            <option value=""></option>
+                                            <option value="newborn">Newborn (0-28 days)</option>
+                                            <option value="infant">Infant (29 days - 11 months)</option>
+                                            <option value="underfive">Under Five (1-4 y/o)</option>
+                                            <option value="school-age">School-aged Children (5-9 y/o)</option>
+                                            <option value="adolescent">Adolescent (10-19 y/o)</option>
+                                            <option value="adult">Adult (20-59 y/o)</option>
+                                            <option value="senior">Senior Citizen (60+ y/o)</option>
+                                            <option value="PWD">Person With Disability</option>
+                                            <option value="AP">Adoloscent-Pregnant</option>
+                                            <option value="P">Pregnant</option>
+                                            <option value="PP">Post Partum</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="sakit-dropdown" onchange="handleDropdownChange(this)">
+                                            <option value=""></option>
+                                            <option value="HPN">HPN</option>
+                                            <option value="DM">DM</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CA">CA</option>
+                                            <option value="DL">DL</option>
+                                            <option value="CKD">CKD</option>
+                                            <option value="MHI">MHI</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        <input type="text" class="sakit-input" placeholder="Specify Others" id="otherSakit" style="display: none;" oninput="checkSakitInput(this)">
+                                    </td>
+                                    <td>
+                                        <select name="lifestylerisk" id="">
+                                            <option value=""></option>
+                                            <option value="smoker">Smoker</option>
+                                            <option value="alcoholic">Alcoholic</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESmaintenance" id="YESmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="YESmaintenance">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOmaintenance" id="NOmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="NOmaintenance">No</label>
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-row-iii" onclick="toggleDeleteButtonSakit()">
+                                    </td>
+                                    <td id="fullname">Francis Clarisse C. Abucejo</td>
+                                    <td id="age">21</td>
+                                    <td id="sex">Female</td>
+                                    <td>
+                                        <select id="health-risk" name="health_risk">
+                                            <option value=""></option>
+                                            <option value="newborn">Newborn (0-28 days)</option>
+                                            <option value="infant">Infant (29 days - 11 months)</option>
+                                            <option value="underfive">Under Five (1-4 y/o)</option>
+                                            <option value="school-age">School-aged Children (5-9 y/o)</option>
+                                            <option value="adolescent">Adolescent (10-19 y/o)</option>
+                                            <option value="adult">Adult (20-59 y/o)</option>
+                                            <option value="senior">Senior Citizen (60+ y/o)</option>
+                                            <option value="PWD">Person With Disability</option>
+                                            <option value="AP">Adoloscent-Pregnant</option>
+                                            <option value="P">Pregnant</option>
+                                            <option value="PP">Post Partum</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="sakit-dropdown" onchange="handleDropdownChange(this)">
+                                            <option value=""></option>
+                                            <option value="HPN">HPN</option>
+                                            <option value="DM">DM</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CA">CA</option>
+                                            <option value="DL">DL</option>
+                                            <option value="CKD">CKD</option>
+                                            <option value="MHI">MHI</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        <input type="text" class="sakit-input" placeholder="Specify Others" id="otherSakit" style="display: none;" oninput="checkSakitInput(this)">
+                                    </td>
+                                    <td>
+                                        <select name="lifestylerisk" id="">
+                                            <option value=""></option>
+                                            <option value="smoker">Smoker</option>
+                                            <option value="alcoholic">Alcoholic</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESmaintenance" id="YESmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="YESmaintenance">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOmaintenance" id="NOmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="NOmaintenance">No</label>
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-row-iii" onclick="toggleDeleteButtonSakit()">
+                                    </td>
+                                    <td id="fullname">Francis Clarisse C. Abucejo</td>
+                                    <td id="age">21</td>
+                                    <td id="sex">Female</td>
+                                    <td>
+                                        <select id="health-risk" name="health_risk">
+                                            <option value=""></option>
+                                            <option value="newborn">Newborn (0-28 days)</option>
+                                            <option value="infant">Infant (29 days - 11 months)</option>
+                                            <option value="underfive">Under Five (1-4 y/o)</option>
+                                            <option value="school-age">School-aged Children (5-9 y/o)</option>
+                                            <option value="adolescent">Adolescent (10-19 y/o)</option>
+                                            <option value="adult">Adult (20-59 y/o)</option>
+                                            <option value="senior">Senior Citizen (60+ y/o)</option>
+                                            <option value="PWD">Person With Disability</option>
+                                            <option value="AP">Adoloscent-Pregnant</option>
+                                            <option value="P">Pregnant</option>
+                                            <option value="PP">Post Partum</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="sakit-dropdown" onchange="handleDropdownChange(this)">
+                                            <option value=""></option>
+                                            <option value="HPN">HPN</option>
+                                            <option value="DM">DM</option>
+                                            <option value="BA">BA</option>
+                                            <option value="CA">CA</option>
+                                            <option value="DL">DL</option>
+                                            <option value="CKD">CKD</option>
+                                            <option value="MHI">MHI</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        <input type="text" class="sakit-input" placeholder="Specify Others" id="otherSakit" style="display: none;" oninput="checkSakitInput(this)">
+                                    </td>
+                                    <td>
+                                        <select name="lifestylerisk" id="">
+                                            <option value=""></option>
+                                            <option value="smoker">Smoker</option>
+                                            <option value="alcoholic">Alcoholic</option>
+                                            <option value="others">Others</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" name="YESmaintenance" id="YESmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="YESmaintenance">Yes</label>
+                                            
+                                            <input type="checkbox" name="NOmaintenance" id="NOmaintenance" onclick="toggleCheckbox(this)">
+                                            <label for="NOmaintenance">No</label>
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>
+                        
+                </div>
+
+
+                <h3>Tuberculosis Surveillance: <i>(Skip if no family members have the disease.)</i></h3>
+                
+                <!-- if the name search is in the household member, it will directly display:
+                fullname, age, sex,  health-risk (optional, but best if it's automatically displayed) -->
+                <div class="" style="margin-top: -20px;">
+                    <div class="tre_table-container">
+                        <div class="delete-btns"> 
+                            <button id="deselectAll-TB" class="delete deselect" onclick="deselectAll()">Deselect All</button>
+                            <button id="deleteOne-TB" class="delete one" onclick="openConfirmationModal(deleteSelected, 'Are you sure you want to delete this row?')">Delete</button>
+                            <button id="deleteAll-TB" class="delete all" onclick="openConfirmationModal(deleteAll, 'Are you sure you want to delete all selected rows?')">Delete All</button>
+                        </div>
+                        <table class="tre_resident-table tb" id="">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectAll" onclick="toggleAllCheckboxesTB(this)">
+                                    </th>
+                                    <th>Pangalan</th>
+                                    <th>Edad</th>
+                                    <th>Kasarian <br><i>(Male/Female)</i></th>
+                                    <th>Source of Anti-TB Meds</th>
+                                    <th>No. of Days on <br>Anti-TB Meds</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" class="rowCheckbox" onclick="toggleDeleteButtonTB()"></td>
+                                    <td id="fullname">Johnydeepsipsons dabagards D. Doe</td>
+                                    <td id="age">20</td>
+                                    <td id="sex">Male</td>
+                                    <td id="soruceMeds">
+                                        <select name="sources" id="">
+                                            <option value=""></option>
+                                            <option value="HC">Health Center</option>
+                                            <option value="hospital">Private/Public Hospital</option>
+                                            <option value="clinic">Private/Public Clinic</option>
+                                            <option value="per-exps">Personal Expenses</option>
+                                        </select>
+                                    </td>  
+                                    <td> <input type="number" name="" id="" min="1"></td>  
+                                    <td>
+                                        <select name="TBstats" id="">
+                                            <option value=""></option>
+                                            <option value="Ongoing">Treatment Ongoing</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="NotCompleted">Not Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="rowCheckbox" onclick="toggleDeleteButtonTB()"></td>
+                                    <td id="fullname">Johny D. Doe</td>
+                                    <td id="age">20</td>
+                                    <td id="sex">Male</td>
+                                    <td id="soruceMeds">
+                                        <select name="sources" id="">
+                                            <option value=""></option>
+                                            <option value="HC">Health Center</option>
+                                            <option value="hospital">Private/Public Hospital</option>
+                                            <option value="clinic">Private/Public Clinic</option>
+                                            <option value="per-exps">Personal Expenses</option>
+                                        </select>
+                                    </td>  
+                                    <td> <input type="number" name="" id="" min="1"></td>  
+                                    <td>
+                                        <select name="TBstats" id="">
+                                            <option value=""></option>
+                                            <option value="Ongoing">Treatment Ongoing</option>
+                                            <option value="Completed">Completed</option>
+                                            <option value="NotCompleted">Not Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>  
+                        </table> 
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <!-- Buttons Section -->
+            <div class="form-buttons">
+                <a href="{% url 'bhw_add_resident4'%}">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </a> 
+                <a href="{% url 'bhw_add_resident6'%}">
+                    <button type="submit" class="next-btn">Save Changes</button>
+                </a>
+            </div>
+        
+                
+        </div>
+
+
+        <div id="tab-content-IV" class="tab-edit-content">
+            
+            <h2 class="demo edit-part">IV. Survey Identification </h2>
+            <div class="IV edit-part">
+                <div class="form-group survey edit-part">
+                    <label for="profiled-by">Profiled by <strong>(B/CHW)</strong>:</label>
+                    <input type="text" id="" name="profiled-by" readonly> 
+                </div>
+                <div class="form-group survey edit-part">
+                    <label for="Conforme">Conforme <strong>(Informant)</strong>:</label>
+                    <input type="text" id="" name="Conforme">
+                </div>
+                <div class="form-group survey edit-part">
+                    <label for="">Checked by <strong>(RN/RM)</strong>:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group survey edit-part">
+                    <label for="">Date Checked:</label>
+                    <input type="date" name="" id="">
+                </div>
+                
+            </div>
+
+            
+            <!-- Buttons Section -->
+            <div class="form-buttons">
+                <a href="{% url 'bhw_add_resident6'%}">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </a> 
+                <a href="{% url 'Bresident'%}">
+                    <button type="submit" class="next-btn">Save Changes</button>
+                </a>
+            </div>
+            
+        </div>
+        
+    </div>   
+
+
+    <!-- Review-info-to-Add Modal -->
+    <div id="modalOverlay" class="modal-overlay" style="display: none;"></div>
+    <div id="displayMemModal" class="display-mem-modal update-details" style="display: none;">
+        <div class="modal-content-mem">
+            <h4>Member Information</h4>
+            <p><strong>Name:</strong> <span id="memName"></span></p>
+            <p><strong>Sex:</strong> <span id="memSex"></span></p>
+            <p><strong>Age:</strong> <span id="memAge"></span></p>
+            <p><strong>Risk Class:</strong> <span id="memRiskClass"></span></p>
+        </div>
+        <div class="modal-footer-mem">
+            <button class="btn cancel" onclick="closeModal()" >Cancel</button>
+            <button type="submit" class="btn add">Add to Sakit Table</button>
+            <button type="submit" class="btn add tb">Add to TB Table</button>
+        </div>
+    </div>
+    
+    <!-- Delete Confiramtion Modal -->
+    <div id="conf-Modal" class="confirmDeleteModalContainer"  >
+        <div class="confirmationModal">
+            <h3 id="conf-modalMessage" style="margin-top: 20px;">Are you sure you want to delete?</h3>
+            <div style="margin-top: 20px;">
+                <button class="conf-delete yes" id="confirmButton" onclick="confirmDelete()">Yes</button>
+                <button class="conf-delete no" onclick="closeConfirmationModal()">No</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ADD HH MEMBERS MODAL -->
+    <div id="addMemberModal" class="Add-RES-HH-modal">
+        <div class="Add-RES-HH-modal-content">
+            <div class="Add-RES-HH-modal-header">
+                <span>Add Household Member</span>
+            </div>
+            <form action="" class="add-hh-container">
+                <div class="form-group-container">
+                    <label for="relationship-role">Relationship w/ HH Head</label>
+                    <select id="relationship-role">
+                        <option value=""></option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Son">Son</option>
+                        <option value="Daughter">Daughter</option>
+                        <option value="Sister">Sister</option>
+                        <option value="Brother">Brother</option>
+                        <option value="Grandfather">Grandfather</option>
+                        <option value="Grandmother">Grandmother</option>
+                        <option value="Grandson">Grandson</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Granddaughter">Granddaughter</option> <!-- wa sa db naa sa form:added rs role -->
+                        <option value="Uncle">Uncle</option>
+                        <option value="Aunt">Aunt</option>
+                        <option value="Nephew">Nephew</option>
+                        <option value="Niece">Niece</option>
+                        <option value="Husband">Husband</option>
+                        <option value="Wife">Wife</option>
+                        <option value="Cousin">Cousin</option>
+                        <option value="Stepfather">Stepfather</option>
+                        <option value="Stepmother">Stepmother</option>
+                        <option value="Stepson">Stepson</option>
+                        <option value="Stepdaughter">Stepdaughter</option>
+                        <option value="Father-in-law">Father-in-law</option>
+                        <option value="Mother-in-law">Mother-in-law</option>
+                        <option value="Brother-in-law">Brother-in-law</option>
+                        <option value="Sister-in-law">Sister-in-law</option>
+                        <option value="Son-in-law">Son-in-law</option>
+                        <option value="Daughter-in-law">Daughter-in-law</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName">
+                </div>
+                <div class="form-group-container">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName">
+                </div>
+                <div class="form-group-container">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" id="middleName">
+                </div>
+                <div class="form-group-container">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname">
+                </div>
+                <div class="form-group-container">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" id="birthdate">
+                </div>
+                <div class="form-group-container">
+                    <label for="sex" >Sex</label>
+                    <select id="sex"  name="gender">
+                        <option value=""></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="gender">Gender</label>
+                    <select name="gender">
+                        <option value=""></option>
+                        <option value="Straight">Straight</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Bisexual">Bisexual</option>
+                        <option value="Transgender">Transgender</option>
+                        <option value="Queer">Queer</option>
+                        <option value="Pansexual">Pansexual</option>
+                        <option value="asexual">Asexual</option>
+                        <option value="chair">Chair</option>
+                        <option value="hotdog">Hotdog</option>
+                        <option value="secret">Prefer Not To Say</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="weight">weight</label>
+                    <div class="input-with-unit-add-res-hh">
+                        <input type="number" step="0.01" min="1" id="weight">
+                        <span class="unit">kg</span>
+                    </div>
+                </div>
+                <div class="form-group-container">
+                    <label for="bloodtype">blood type</label>
+                    <select name="blood_type">
+                        <option value=""></option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="eyecolor">Eye color</label>
+                    <input type="text" id="eyecolor">
+                </div>
+                <div class="form-group-container">
+                    <label for="contact">Contact No.</label>
+                    <input type="text" id="contact">
+                </div>
+                
+                <div class="form-group-container">
+                    <label for="religion">Religion</label>
+                    <select name="religion" id="religion">
+                        <option value=""></option>
+                        <option value="Roman_Catholic">Roman Catholic</option>
+                        <option value="Baptist">Bible Baptist Church</option>
+                        <option value="Evangelical">Evangelical Christian</option>
+                        <option value="INC">Iglesia ni Cristo</option>
+                        <option value="Born_Again">Born Again Christian</option>
+                        <option value="Adventist">Seventh-day Adventist</option>
+                        <option value="Jehovah's_Witness">Jehovah's Witness</option>
+                        <option value="Aglipayan">Aglipayan</option>
+                        <option value="Mormon">Mormons</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Judaism">Judaism</option>
+                        <option value="Buddhism">Buddhism</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="civilstat">Civil Status</label>
+                    <select name="civil_status" id="civil_status">
+                        <option value=""></option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Widowed">Widowed</option>
+                        <option value="Widower">Widower</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="educlvl">Education Level</label>
+                    <select name="educlvl" id="">
+                        <option value=""></option>
+                        <option value="nursery">Nursery</option>
+                        <option value="elem">Elementary</option>
+                        <option value="jhs">Junior High School</option>
+                        <option value="shs">Senior High School</option>
+                        <option value="undergrad">Undergraduate (Bachelor’s Degree)</option>
+                        <option value="postgrad">Postgraduate (Master’s Degree)</option>
+                        <option value="doctoral">Doctoral (PhD)</option>
+                        <option value="ALS">Alternative Learning System (ALS)</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="schlname">School Name</label>
+                    <input type="text" id="schlname">
+                </div>
+                <div class="form-group-container">
+                    <label for="schladdress">School Address</label>
+                    <input type="text" id="schladdress" >
+                </div>
+                <div class="form-group-container">
+                    <label for="course">Course</label>
+                    <input type="text" id="course">
+                </div>
+                <div class="form-group-container">
+                    <label for="schlyr">School Year</label>
+                    <input type="text" id="schlyr" >
+                </div> 
+                
+                <div class="form-group-container">
+                    <label for="isvaccinated">Covid-19 Vax Status</label>
+                    <select name="isvaccinated" id="">
+                        <option value=""></option>
+                        <option value="">1st Dose</option>
+                        <option value="">2nd Dose</option>
+                        <option value="">Booster</option>
+                        <option value="">Not Vaccinated</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="philhealth">PhilHealth ID</label>
+                    <input type="text" id="philhealth">
+                </div>
+                <div class="form-group-container">
+                    <label for="houseowner">Is House Owner</label>
+                    <select name="houseowner" id="">
+                        <option value=""></option>
+                        <option value="">Owner</option>
+                        <option value="">Not Owner</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="isIP">NHTS Household</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">Non-NHTS</option>
+                        <option value="">NHTS (eg. 4Ps)</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="isIP">Indigenous People</label>
+                    <select name="isIP" id="">
+                        <option value=""></option>
+                        <option value="">IP</option>
+                        <option value="">Non-IP</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="fam_plan">Family Planning Method</label>
+                    <select name="fam_plan" id="">
+                        <option value=""></option>
+                        <option value="">Pills</option>
+                        <option value="">DMPA</option>
+                        <option value="">Condom</option>
+                        <option value="">IUD-I</option>
+                        <option value="">IUD-PP</option>
+                        <option value="">Implant</option>
+                        <option value="">Cervical Mucus Method</option>
+                        <option value="">Basal Body Temp.</option>
+                        <option value="">Symptothermal Method</option>
+                        <option value="">Standard Days Method</option>
+                        <option value="">Lactating Amenorrhea</option>
+                        <option value="">Bilateral Tubal Ligation</option>
+                        <option value="">Vasectomy</option>
+                        <option value="">No Family Planning</option>
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="lmp">Last Menstrual Period <i>(Opt.)</i></label>
+                    <input type="date" name="lmp" id="lmp">
+                </div>
+                <div class="form-group-container">
+                    <label for="immStat">Immunization Status <i>(Opt.)</i></label>
+                    <select name="immStat" id="immStat">
+                        <option value=""></option>
+                        <option value="">TT1</option>
+                        <option value="">TT2</option>
+                        <option value="">TT3</option>
+                        <option value="">TT4</option>
+                        <option value="">TT5</option>
+                        <option value="">FIM - Fully Immunized Mother</option>
+
+                    </select>
+                </div>
+                <div class="form-group-container">
+                    <label for="healthrisk">Health Risk Classification</label>
+                    <select name="healthrisk" id="healthrisk">
+                        <option value=""></option>
+                        <option value="newborn">Newborn (0-28 days)</option>
+                        <option value="infant">Infant (29 days - 11 months)</option>
+                        <option value="underfive">Under Five (1-4 y/o)</option>
+                        <option value="school-age">School-aged Children (5-9 y/o)</option>
+                        <option value="adolescent">Adolescent (10-19 y/o)</option>
+                        <option value="adult">Adult (20-59 y/o)</option>
+                        <option value="senior">Senior Citizen (60+ y/o)</option>
+                        <option value="PWD">Person With Disability</option>
+                        <option value="AP">Adoloscent-Pregnant</option>
+                        <option value="P">Pregnant</option>
+                        <option value="PP">Post Partum</option>
+                    </select>
+                </div> 
+                
+            </form>
+            <div class="Add-RES-HH-modal-footer">
+                <button type="button" class="cancel-btn" onclick="closeAddHHMemModal()">Cancel</button>
+                <button type="submit" class="save-btn" onclick="openConfirmUnSuccModal()">Add as Member</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CONFIRMATION "UN/SUCCESS" MODAL -->
+     <!-- YOU CAM USE THIS TO OTHER CONFIRMATION -->
+    <div id="confirmationUn-SuccessModal" class="closeUnSuccessfulModal">
+        <div class="closeUnSuccessfulModal-content">
+            <p>Household Member {member.name} is successfully added!</p>
+            <button class="ok-btn" onclick="closeConfirmUnSuccModal()">OK</button>
+        </div>
+    </div>
+
+
+    
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/AddResident.js'%}"></script>
+    <script src="{% static 'polls/js/EditDetails.js' %}"></script>
+
+</body>
+</html>
+            
