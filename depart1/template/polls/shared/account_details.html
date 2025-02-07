@@ -7,19 +7,17 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Tresident_details.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-
-    
 </head>
 <body>
     <div class="Main_header">
         <div class="userdetails">
             <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
-            <div class="user-info">
+           <div class="user-info">
                 <h6 class="username">Username</h6>
                 <h6 class="role">Barangay Treasurer</h6>
             </div>
@@ -33,10 +31,10 @@
             <div class="nav-menu">
                 <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
-                <!-- <a href="{% url 'Tpayments' %}" class="{% if request.resolver_match.url_name == 'Tpayments' %}active{% endif %}">Payment</a>
-                <a href="{% url 'Torganization'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Organization</a>
+                <a href="#">Payment</a>
+                <a href="#">Organization</a>
                 <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
-                <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>     -->
+                <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
                 <a href="" class="logout-btn">
@@ -44,57 +42,36 @@
                 </a>
             </div>
         </div>
-        
 
-        <div class="cards">
-            <div class="card">
-                <div class="text">
-                    <h2>750</h2>
-                    <p>Women's</p>
-                </div>
-                <i class="fas fa-female"></i>
+        <h1 class="title">ACCOUNT DETAILS:</h1>
+        <h1 class="role">BARANGAY TREASURER</h1>
+        <form class="resident-form-parents">
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" readonly>
             </div>
-            <div class="card">
-                <div class="text">
-                    <h2>350</h2>
-                    <p>Erpat</p>
-                </div>
-                <i class="fas fa-male"></i>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" readonly>
             </div>
-            <div class="card">
-                <div class="text">
-                    <h2>450</h2>
-                    <p>Senior Citizen</p>
-                </div>
-                <i class="fa-solid fa-person-cane"></i>
+            <div class="form-group">
+                <label for="middleName">Middle Name</label>
+                <input type="text" id="middleName" readonly>
             </div>
-            <div class="card">
-                <div class="text">
-                    <h2>650</h2>
-                    <p>PWD</p>
-                </div>
-                <i class="fas fa-wheelchair	"></i>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" readonly>
             </div>
-            <div class="card">
-                <div class="text">
-                    <h2>750</h2>
-                    <p>LGBTQ</p>
-                </div>
-                <i class="fas fa-transgender-alt"></i>
-            </div>
-            <div class="card">
-                <div class="text">
-                    <h2>850</h2>
-                    <p>Children</p>
-                </div>
-                <i class="fa-solid fa-child-reaching"></i>
-            </div>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" readonly>
+            </div> 
+            <div class="form-actions-parents">
+                <a  href="{% url 'Tresidents' %}" class="cancel-btn">Cancel</a>
+                <a href="{% url 'Tresident_parents' %}" class="next-btn">View Parents'</a>    
+            </div> 
+        </form>
 
-        <div class="children-category">
-            <h3>Categorized <br>Children By Age:</h3>
-            <p>0-28 days: 9086 | 29 days - 11 months: 9086 | 1-4 y/o: 9086 | 5-9 y/o: 9086</p>
-        </div>
     </div>
 
     

@@ -49,6 +49,10 @@ def update_user(request, user_id):
 
     return render(request, 'treasurer/Tusers.html', {"user": user_data})
 
+def account_user_view(request):
+    return render(request, "shared/account_details.html") 
+
+
 
 #------------TREASURER--------
 def treasurer_dashboard_view(request):
@@ -159,10 +163,6 @@ def secretary_update_resident_details_view(request):
 def secretary_update_resident_educ_view(request):
     return render(request, "secretary/Sresident_update_educ.html")
 
-def secretary_organization_view(request):
-    return render(request, "secretary/Sorganization.html")
-    
-
 
 #----------------BHW----------------
 def bhw_dashboard_view(request):
@@ -171,17 +171,53 @@ def bhw_dashboard_view(request):
 def bhw_resident_view(request):
     return render(request, "BHW/Bresident.html")
 
-def bhw_resident_details_view(request):
-    return render(request, "BHW/Bresident_details.html")
+# def bhw_resident_details_view(request):
+#     return render(request, "BHW/Bresident_details.html")
 
-def bhw_resident_husband_view(request):
-    return render(request, "BHW/Bresident_husband.html")
+# def bhw_resident_husband_view(request):
+#     return render(request, "BHW/Bresident_husband.html")
 
-def bhw_resident_children_view(request):
-    return render(request, "BHW/Bresident_children.html")
+# def bhw_resident_children_view(request):
+#     return render(request, "BHW/Bresident_children.html")
 
-def bhw_resident_parents_view(request):
-    return render(request, "BHW/Bresident_parents.html")
+# def bhw_resident_parents_view(request):
+#     return render(request, "BHW/Bresident_parents.html")
+def bhw_add_resident_1(request):
+    step = request.GET.get("step", 1) 
+    return render(request, "BHW/pg1_AddResident_head.html", {"step": step})
+
+def bhw_add_resident_2(request):
+    step = request.GET.get("step", 2)  
+    return render(request, "BHW/pg2_AddRsdnt_Members.html", {"step": step})
+
+def bhw_add_resident_3(request):
+    step = request.GET.get("step", 3)  
+    return render(request, "BHW/pg3_AddRsdnt_Chldrn.html", {"step": step})
+
+def bhw_add_resident_4(request):
+    step = request.GET.get("step", 4)  
+    return render(request, "BHW/pg4_AddResident_II.html", {"step": step})
+
+def bhw_add_resident_5(request):
+    step = request.GET.get("step", 5)  
+    return render(request, "BHW/pg5_AddResident_III.html", {"step": step})
+
+def bhw_add_resident_6(request):
+    step = request.GET.get("step", 6)  
+    return render(request, "BHW/pg6_AddResident_III.2.html", {"step": step})
+
+def bhw_add_resident_7(request):
+    step = request.GET.get("step", 7)  
+    return render(request, "BHW/pg7_AddResident_IV.html", {"step": step})
+
+def bhw_resident_view_details(request):
+    return render(request, "BHW/ViewResident.html")
+
+def bhw_resident_view_household_details(request):
+    return render(request, "BHW/ViewHousehold.html")
+
+def bhw_resident_HH_edit_details(request):
+    return render(request, "BHW/EditResident_HH.html")
 
 
 #----------------STAFF----------------

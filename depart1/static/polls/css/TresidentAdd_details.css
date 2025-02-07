@@ -1,17 +1,632 @@
+/* radio button horizontal layout style */
+.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .step input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .step input[type="checkbox"]:checked {
+    border-color: rgba(2, 2, 87, 0.922);
+    background-color:rgba(5, 5, 139, 0.922);
+  }
+  
+  .step label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 450;
+    text-transform: uppercase;
+    color:whitesmoke;
+    cursor: pointer;
+  }
+  
+  .line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #ccc;
+    margin: 0 10px;
+    position: relative;
+    top: -10px; 
+    border-radius: 20%;
+  }
+  
+  .step.checked + .line {
+    background-color: rgba(2, 2, 87, 0.922);
+  }
+  
+
+  .step.checked label {
+    color: rgba(2, 2, 87, 0.922); 
+    font-weight: 500;
+}
+
+.line {
+    transition: background-color 0.3s ease-in-out;
+}
+
+  
+/* radio button horizontal layout style */
+
+
+.form-group.survey input{
+    width: 90%;
+    margin-bottom: 30px;
+}
+
+ 
+.form-group.survey label{
+    color: whitesmoke;
+} 
+
+.form-group.survey.edit-part label{
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.IV{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(130px,  1fr));
+    gap: 5px;
+    padding: 0px 20px 0px 20px;
+    width: 60%;
+}
+
+
+
+/* conirmation delete modal */
+.confirmDeleteModalContainer{
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5); 
+    justify-content: center; 
+    align-items: center;
+    z-index: 9999; /* Ensure it's above other elements */
+}        
+.confirmationModal{
+   background: white; 
+   padding: 25px; 
+   border-radius: 8px; 
+   text-align: center; 
+   width: 300px;
+   z-index: 8659999; /* Ensure it's above other elements */
+}
+
+/* conirmation delete modal */
+
+
+/* modal add display */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #e2e1f380;
+    z-index: 999;
+}
+
+.display-mem-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; 
+    overflow: hidden;
+    z-index: 1000; 
+
+}
+
+.display-mem-modal.update-details{
+    width:550px;
+}
+
+
+.modal-content-mem {
+    padding: 20px;
+    flex: 1; 
+    overflow-y: auto; 
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.modal-content-mem h4{
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+.modal-footer-mem {
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between; 
+    background: #fff;
+    
+}
+
+.modal-footer-mem .btn {
+    margin: 0 10px;
+    padding: 10px 15px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1; 
+    text-align: center; 
+    text-transform: capitalize;
+    font-size: small;
+    font-weight: 500;
+    font-family: 'poppins', sans-serif;
+}
+
+
+
+.modal-footer-mem .btn.add {
+    background-color: rgba(2, 2, 87, 0.922);
+}
+
+.modal-footer-mem .btn.add.tb{
+    background-color:darkslateblue;
+}
+
+.modal-footer-mem .btn.cancel {
+    border:rgba(122, 122, 175, 0.719) 2px solid;
+    background-color: white;
+    color: rgba(122, 122, 175, 0.719);
+    
+}
+
+.modal-footer-mem .btn:hover {
+    background-color: rgba(220, 220, 220, 0.806);
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.modal-footer-mem .btn.cancel:hover{
+    border:rgba(2, 2, 87, 0.922) 2px solid;
+}
+
+.modal-footer-mem .btn.add.tb:hover{
+    color: rgba(2, 2, 87, 0.922);
+    background-color: rgba(220, 220, 220, 0.806);
+
+}
+
+.modal-footer-mem .btn:first-child {
+    margin-right: 5px; 
+}
+.modal-footer-mem .btn:last-child {
+    margin-left: 5px;
+}
+/* modal add member */
+
+/* Search container */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+    margin-left: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+/* Search left (input + icon) */
+.search-left {
+    position: relative; 
+}
+
+.Txt_Search {
+    padding: 10px 10px 10px 35px; 
+    font-size: 14px;
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-shadow: none;
+    border: none;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.Txt_Search.edit-part{
+    border: 2px solid rgba(2, 2, 87, 0.922);
+    background-color:whitesmoke;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.Txt_Search.edit-part::placeholder{
+    font-weight: 500;
+}
+
+.Txt_Search.edit-part:hover{
+    transform: scale(1.02);
+}
+
+.Txt_Search::placeholder {
+    color: rgba(2, 2, 87, 0.922);
+}
+
+.search-left i {
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    color: rgba(2, 2, 87, 0.922);
+    font-size: 16px;
+}
+
+/* search-container */
+
+
+/*table*/
+.Body .tre_table-container{
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+h3 {
+    font-weight: 600;
+    margin-top: -10px;
+    
+}
+
+.sanitary{
+    margin-top: 10px;
+}
+
+h2.demo{
+    padding-left:30px;
+    margin-top: 45px;
+  
+}
+
+h2.demo.edit-part{
+    color: rgba(2, 2, 87, 0.922);
+}
+
+h2.demo.one{
+    color: rgba(2, 2, 87, 0.922);
+}
+
+
+.table-tittle{
+    margin-top: 10px;
+    margin-bottom: -2px;
+}
+
+.tre_resident-table{
+    width: 100%;
+    background-color: whitesmoke;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+    margin-top: -1px;    
+}
+
+.tre_resident-table th, 
+.tre_resident-table td {
+    padding: 10px 15px;
+    font-size: 14px;
+
+}
+
+
+.tre_resident-table th {
+    background-color: rgba(2, 2, 87, 0.922);
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    border:none;
+    text-align: center;
+}
+
+.tre_resident-table td{
+    background-color: transparent;
+    color: rgba(2, 2, 87, 0.922);
+    text-transform: capitalize;
+    font-weight: 500;
+    text-align: left;
+    border: 1.5px solid rgb(84, 79, 142);
+}
+
+.tre_resident-table #fullname, .tre_resident-table
+#sex, .tre_resident-table #age, #dob, #relasyonHHHD,
+#vaxstat, #is19philhealth, #bloodtype{
+    text-align: center;
+}
+
+.tre_resident-table.tb th, 
+.tre_resident-table.tb td
+{
+    text-align: center;
+}
+
+
+
+.tre_resident-table th input[type="checkbox"],
+.tre_resident-table td input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2);
+    border: none;
+    padding: 10px;
+    /* margin-right: 15px; */
+}
+
+.tre_resident-table td .checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#YESmaintenance, #NOmaintenance, #YesExcBF, #NoExcBF, #NOFIC, #YESFIC{
+    margin-right: 2px !important; 
+}
+
+.tre_resident-table td select{
+    border-style: none;
+    background-color: transparent;
+    color: rgba(2, 2, 87, 0.922);
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif; 
+    width: 100%;
+    /* min-width: 200px;
+    max-width: 300px; */
+
+}
+
+.tre_resident-table td input[type="number"]{
+    width: 80%;
+    text-align: center;
+}
+
+.tre_resident-table td input[type="text"] {
+    border: none; 
+    border-bottom: 3px solid  rgba(2, 2, 87, 0.922);
+    border-radius: 0;
+    outline: none; 
+    background: transparent; 
+    width: 100%; 
+    padding: 5px; 
+    font-weight: 500;
+    font-size: 14px; 
+    font-family: 'Poppins', sans-serif; 
+    color: rgba(2, 2, 87, 0.922);
+    text-transform: capitalize;
+}
+
+.bata-input{
+    border-bottom: 2px solid  rgba(2, 2, 87, 0.922) !important;
+}
+
+
+.delete-btns{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.delete{
+    margin-right: 10px;
+    display: none;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: smaller;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.all{
+    background-color: brown;
+}
+
+.deselect, .no{
+    background-color:darkslateblue;
+}
+
+.one, .yes{
+    background-color: rgb(2, 2, 87);
+}
+
+.conf-delete{
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: medium;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.tre_resident-table td ::placeholder{
+    font-weight: 500;
+    font-size: 14px; 
+    font-family: 'Poppins', sans-serif; 
+    color: rgba(2, 2, 87, 0.715);
+}
+
+
+.tre_resident-table tbody tr:hover {
+    background-color: rgba(183, 183, 252, 0.516);
+    cursor: pointer;
+}
+
+
+.household-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px 0px 30px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.household-header.edit-details{
+    margin-top:50px;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+}
+
+.input-with-unit input, input[type="number"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.input-with-unit .unit {
+    margin-left: 8px; 
+    font-size: large;
+    font-weight: 500;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+#other-specify, #otherSakit, .sakit-input{
+    border: none; 
+    border-radius: 0;
+    outline: none; 
+    background: transparent; 
+    padding: 5px; 
+    font-weight: 500;
+    font-size: 14px; 
+    font-family: 'Poppins', sans-serif; 
+    color:  rgba(2, 2, 87, 0.922);
+    text-transform: capitalize;
+
+}
+
+#other-specify{
+    width: 25%;
+    border-bottom: 2px solid  rgba(2, 2, 87, 0.578);
+}
+
+#otherSakit{
+    width: 100%;
+    border-bottom: 0px;
+}
+
+#add-member-button {
+    display: flex;
+    align-items: center;
+    background-color: rgba(2, 2, 87, 0.922);
+    color: whitesmoke;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: medium;
+    gap: 5px;
+    text-transform: uppercase;
+}
+
+#add-member-button:hover {
+    background-color: RGB(211, 211, 211);
+    color: rgba(2, 2, 87, 0.922);
+}
+
+#add-member-button i {
+    font-size: 16px;
+}
+
+
 .section-title {
     font-size:28px;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif; 
 }
 
-.resident-form {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(200px,  1fr));
-    gap: 20px;
-    padding: 0px 30px 0px 30px;
+.section-second-title {
+    font-size:23px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    margin-top: -25px;
+    font-family: 'Poppins', sans-serif; 
 }
+
+.section-subtitle{
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: -35px;
+    padding:10px 30px 10px 30px;
+}
+
+.resident-form, .form-section {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(230px,  1fr));
+    gap: 10px;
+    padding: 0px 20px 0px 20px;
+}
+.form-group.conditional {
+    display: none;
+}
+
+
+.form-section-iii{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px,  1fr));
+    gap: 2px;
+    margin-top: -20px;
+    padding: 0px 10px 0px 20px;
+    font-size: 12px;
+    /* color: rgba(2, 2, 87, 0.922); */
+}
+
+
+.resident-form{
+    margin-top: 50px;
+}
+.form-section-env{
+    display: grid;
+    gap: 10px;
+    padding: 10px 30px 0px 30px;
+}
+
+
+.form-section-env.edit-part{
+    color: rgba(2, 2, 87, 0.922);
+}
+
 
 .resident-form-parents{
     display: grid;
@@ -24,25 +639,76 @@
 .form-group {
     display: flex;
     flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+}
+
+.checkbox-grid div {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+.checkbox-grid input[type="text"] {
+    margin-left: 5px;
+}
+
+.checkbox-grid label{
+    font-size: 16px;
+
+}
+
+.inside-form-group{
+    margin-top: -20px;
+    padding-left:10px;
+    display: flex;
+    justify-content:start;
+    gap:5px;
+}
+
+.h3inside-form-group{
+    margin-top: 3px;
 }
 
 .form-group label {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 5px;
     text-transform: capitalize;
     color: rgb(10, 10, 117);
+
 }
 
 .form-group input {
     padding: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     border: none;
     border-radius: 5px;
     text-transform: capitalize;
     color: rgba(2, 2, 87, 0.922);
 }
+
+.form-buttons a {
+    text-decoration:none;
+    color: whitesmoke;
+    font-size: medium;
+    
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    gap: 10px;
+}
+
 
 .form-actions {
     grid-column: span 4;
@@ -69,15 +735,15 @@
 }
 
 .form-group select {
-    padding: 8px; /* Matches the input fields */
-    font-size: 14px; /* Consistent font size */
-    font-weight: 500; /* Consistent font weight */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Same rounded corners as input */
-    color: rgba(2, 2, 87, 0.922); /* Consistent text color */
-    background-color: #f9f9f9; /* Light background color for dropdown */
-    appearance: none; /* Removes default browser styling */
-    /*background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="rgba(2, 2, 87, 0.922)" d="M0 0l5 6 5-6z"/></svg>');*/
+    padding: 8px; 
+    font-size: 12px; 
+    font-weight: 500;
+    border: none;
+    border-radius: 5px; 
+    color: rgba(2, 2, 87, 0.922); 
+    background-color: #f9f9f9; 
+    appearance: none; 
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="rgba(2, 2, 87, 0.922)" d="M0 0l5 6 5-6z"/></svg>');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 10px 6px;
@@ -87,17 +753,18 @@
 
 /* Add a consistent width and prevent shrinking */
 .form-group select {
-    width: 100%; /* Full width of the container */
-    box-sizing: border-box; /* Includes padding and border */
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .cancel-btn,
-.next-btn {
+.next-btn,
+.save-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     font-weight: 600;
-    font-size: small;
+    font-size: medium;
     cursor: pointer;
     text-decoration: none;
 }
@@ -107,20 +774,21 @@
     color: whitesmoke;
 }
 
-.next-btn {
+.next-btn, .save-btn {
     background-color: rgba(2, 2, 87, 0.922);
     color: whitesmoke;
 }
 
 .cancel-btn:hover,
-.next-btn:hover {
+.next-btn:hover,
+.save-btn:hover {
     background-color: rgba(220, 220, 220, 0.806);
     color: rgba(2, 2, 87, 0.922);
 }
 
 
 
-  .add_resident, .add_users {
+.add_resident, .add_users {
     display: flex;
     justify-content: flex-end;
 }
@@ -257,3 +925,117 @@
     color: rgba(2, 2, 87, 0.922);
 }
 
+/* 
+sucessfull modal */
+
+#successModal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Modal content */
+#successModal .modal-content {
+    background-color: white;
+    padding: 35px;
+    border-radius: 8px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#successModal .modal-content h2 {
+    margin-bottom: 10px;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+#successModal .modal-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: rgba(2, 2, 87, 0.922);
+}
+
+/* Close button */
+#successModal .modal-content .close-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: rgba(2, 2, 87, 0.922);
+    color: whitesmoke;
+}
+
+#successModal .modal-content .close-btn:hover {
+    background-color: RGB(211, 211, 211);
+    color: rgba(2, 2, 87, 0.922);
+}
+
+/* Add this to your existing CSS */
+@media (max-width: 768px) {
+    .tre_resident-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto; /* Allows horizontal scroll if table overflows */
+        white-space: nowrap;
+    }
+
+    .tre_resident-table th,
+    .tre_resident-table td {
+        font-size: 12px; /* Make font smaller on smaller screens */
+        padding: 8px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .tre_resident-table td select,
+    .tre_resident-table td input[type="text"] {
+        width: 100%; /* Allow inputs and selects to stretch */
+    }
+
+    .tre_resident-table th {
+        font-size: 13px; /* Adjust header font size */
+    }
+
+    .tre_resident-table td {
+        font-size: 12px; /* Adjust font size for data cells */
+    }
+
+    .tre_resident-table td select,
+    .tre_resident-table td input[type="text"] {
+        font-size: 12px; /* Adjust font size for inputs and selects */
+    }
+
+    .tre_resident-table th, 
+    .tre_resident-table td {
+        padding: 8px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .tre_resident-table td {
+        word-wrap: break-word; /* Allow long words to break and wrap in small cells */
+    }
+}
+
+/* Further adjustments for very small screens (like smartphones) */
+@media (max-width: 480px) {
+    .tre_resident-table th,
+    .tre_resident-table td {
+        font-size: 10px; /* Smaller font size on very small screens */
+        padding: 6px 8px; /* Adjust padding further */
+    }
+
+    .tre_resident-table td select,
+    .tre_resident-table td input[type="text"] {
+        font-size: 10px; /* Adjust font size for inputs and selects */
+    }
+
+    .tre_resident-table {
+        font-size: 10px; /* Make all table text smaller */
+    }
+}

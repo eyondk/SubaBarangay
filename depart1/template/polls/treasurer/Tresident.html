@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
     <link rel="stylesheet" href="{%static 'polls/css/Tresident.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/treasurer_buttons.css'%}">
     <!-- <link rel="stylesheet" href="{%static 'polls/css/TresidentAdd_details.css'%}"> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -32,10 +33,6 @@
             <div class="nav-menu">
                 <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
-                <!-- <a href="{% url 'Tpayments' %}" class="{% if request.resolver_match.url_name == 'Tpayments' %}active{% endif %}">Payment</a> -->
-                <a href="{% url 'Torganization'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Organization</a>
-                <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
-                <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">
                 <a href="#" class="logout-btn">
@@ -44,13 +41,14 @@
             </div>
         </div>
         <div class="search-container">
-            <form method="GET" action="">
+            
+            <form action="" method="get">
                 <div class="search-left">
-
-                    <button type="submit" class="BTN_Search"> Search </button>
-                    <input name="search" id="" class="Txt_Search" placeholder="Search Resident" />
+                    <input type="text" id="searchInput" name="search" class="Txt_Search" placeholder="Search Resident">
+                    <i class="fas fa-search"></i>  
+                    <button type="button" class="filter btn" id="filterButton">Filter by Household</button>                                   
                     <select id="" class="filter" name="org">
-                        <option value="" disabled selected>Filter by Organization</option>
+                        <option value="" >Filter by Organization</option>
                         <option value="women">Women</option>
                         <option value="erpat">Erpat</option>
                         <option value="senior-citizen">Senior Citizen</option>
@@ -58,139 +56,370 @@
                         <option value="lgbtq">LGBTQ</option>
                         <option value="children">Children</option>
                     </select>
+                    <!-- enable this when it's only filtered by children  -->
+                    <select id="" class="filter" name="age">
+                        <option value="">Filter by Age</option>
+                        <option value="">0-28 dys</option>
+                        <option value="">29 dys-11 mo.</option>
+                        <option value="">1 - 4 y/o</option>
+                        <option value="">5 - 9 y/o</option>
+                    </select>
                 </div>
                 
             </form>
-            <div class="tabs-container">
-                <ul class="tabs">
-                    <li class="tab" data-type="resident">Households</li>
-                </ul>
-            </div>
-            
-            
-            <div class="add_resident">
-                <!-- <a href="{% url 'TaddResident_details'%}" class="action-btn BTN_AddResident">
-                    <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </a> -->
-
-                <!-- <button class="BTN_AddResident">
-                        <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </button> -->
-            </div>
             
         </div>
 
-        <div class="age-filter-container" style="display:none;">
-            <h4>Age:</h4>
-            <form action="" method="GET">
-                <select id="" class="filter-age" name="age">
-                    <option value="" disabled selected></option>
-                    <option value="">0-28 dys</option>
-                    <option value="">29 dys-11 mo.</option>
-                    <option value="">1 - 4 y/o</option>
-                    <option value="">5 - 9 y/o</option>
-                </select>
-
-                <button type="submit" id="" class="filter-btn">Filter</button>
-                <button type="submit" id="" class="reset-btn">Delete</button>
-            </form>
-        </div>
         
-   
         <div class="tre_table-container">
+            <div class="buttons_treasurer_table"> 
+                <button id="deselect-all" class="button-org deselect-res" onclick="deselectAllRes()">Deselect All</button>
+                <button id="update-org-all" class="button-org updatee" onclick="openUpdateOrgModal()">Update Organization</button>
+                <button id="add-org-all" class="button-org add"  onclick="openAddOrgModal()">Add Organization</button>
+                <!-- <button id="delete-org-all" class="button-org delete">Delete Organization</button>  -->
+                <button id="delete-One-org" class="button-org deleteone" onclick="openModal(deleteSelected, 'Are you sure you want to delete this residents organization?')">Delete</button>
+                <button id="delete-All-org" class="button-org deleteall"  onclick="openModal(deleteAll, 'Are you sure you want to delete all the respective organizations for these residents?')">Delete All</button>          
+            </div>
+
+            
             <table class="tre_resident-table">
                 <thead>
                     <tr>
-                        <th>ID MEM NO.</th>
+                        <th><input type="checkbox" name="" class="all-resident" id="select-all-res" onclick="toggleAllCheckboxesResident_treasurer(this)"></th>
+                        <th>RESIDENT ID</th>
+                        <th>HOUSEHOLD ID</th>
                         <th>LAST NAME</th>
                         <th>FIRST NAME</th>
                         <th>MIDDLE NAME</th>
+                        <th>ORGANIZATION</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- to display data dynamically in table -->
-                    {% if residents %}
-                        {% for resident in residents %}
-                        <tr>
-                            <td>{{ resident.id }}</td>
-                            <td>{{ resident.last_name }}</td>
-                            <td>{{ resident.first_name }}</td>
-                            <td>{{ resident.middle_name }}</td>
-                            <td class="actions">
-                                <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
 
-                                <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                
-                                <!-- <button class="action-btn edit">
-                                    <i class="fas fa-edit"></i>
-                                </button> -->
-                            </td>
-                        </tr>
-                        {% endfor %}
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
 
-                    {% else %}
-                        <tr>
-                            <td colspan="5">No residents found.</td>
-                        </tr>
-                    {% endif %}
-                    <!-- to display data dynamically in table -->
-                    <!-- for visual purpose only -->
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
                     <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
                         <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <!-- use to fetch resident data using resident id 
-                            resident.id -->
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                <i class="fas fa-edit"></i>
-                            </a>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
                         </td>
+
                     </tr>
                     <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
                         <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <a href="{% url 'Tresident_details'%}" class="action-btn view">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a href="{% url 'Tresident_update' %}" class="action-btn view">
-                                <i class="fas fa-edit"></i>
-                            </a>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
                         </td>
+
                     </tr>
                     <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
                         <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
                         </td>
+
                     </tr>
                     <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
                         <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
                         <td class="" id="lname">PADILLA</td>
                         <td class="" id="fname">YRON</td>
                         <td class="" id="mname">IGOT</td>
-                        <td class="actions">
-                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
                         </td>
+
                     </tr>
-                    <!-- for visual purpose only -->
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" class="select-row-checkbox" id="select-row-checkbox" onclick="toggleButtons_Treasurer()"></td>
+                        <td class="" id="no">5</td>
+                        <td id="householdid">67</td>
+                        <td class="" id="lname">PADILLA</td>
+                        <td class="" id="fname">YRON</td>
+                        <td class="" id="mname">IGOT</td>
+                        <td id="orgname">Erpats</td>
+                        <td class="">
+                            <!-- Resident Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_details' %}" class="action-btn view"><i class="fas fa-user"></i></a> 
+                            </button>
+
+                            <!-- Household Details Button -->
+                            <button class="action-btn">
+                                <a href="{% url 'Resident_household_details'%}" class="action-btn view"><i class="fas fa-home"></i></a>
+                            </button>
+
+                            <!-- Edit Button -->
+                            <button class="action-btn">
+                                <a href="#" class="action-btn edit"><i class="fas fa-edit"></i></a>
+                            </button>
+                            
+                        </td>
+
+                    </tr>
                 </tbody>
             </table>
             <div class="footer">
@@ -213,19 +442,107 @@
         </div>
     </div>
 
-    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
-    <script>
-        // age filter visibility function
-        const organizationFilter = document.querySelector('select[name="org"]');
-        const ageFilterContainer = document.querySelector('.age-filter-container');
+
+    <!-- UPDATE ORG MODAL -->
+    <div id="updateOrgModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeUpdateOrgModal()">&times;</span>
+            <h2>UPDATE ORGANIZATION</h2>
+            <form id="updateOrgForm">
+                <div class="form-group">
+                    <div class="form-label" id="orgNameLabel">Organization Name</div>
+                    <select id="orgName" class="selectt" name="orgName">
+                        <option value="" disabled selected>Select an organization</option>
+                        <option value="Women">Women</option>
+                        <option value="Erpat">Erpat</option>
+                        <option value="Senior Citizen">Senior Citizen</option>
+                        <option value="LGBTQ">LGBTQ</option>
+                        <option value="PWD">PWD</option>
+                        <option value="Children">Children</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="cancel" onclick="closeUpdateOrgModal()">Cancel</button>
+                    <button type="submit" class="update">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
     
-        organizationFilter.addEventListener('change', function () {
-            if (this.value === 'children') {
-                ageFilterContainer.style.display = 'flex'; 
-            } else {
-                ageFilterContainer.style.display = 'none'; 
-            }
-        });
-    </script>
+    <!-- SUCCESS MESSAGE MODAL -->    
+        <!-- <div id="successModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeSuccessModal()">&times;</span>
+                <i class="fa-regular fa-circle-check green-icon"></i>
+                <p>Organization has been successfully updated.</p>
+            </div>
+        </div> -->
+
+
+    <!-- Add Organization Modal -->
+<div id="addOrgModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeAddOrgModal()">&times;</span>
+        <h2>ADD ORGANIZATION</h2>
+        <form id="addOrgForm">
+            <div class="form-group">
+                <div class="form-label" id="orgNameLabel">Organization Name</div>
+                <select id="orgName" class="selectt" name="orgName">
+                    <option value="" disabled selected>Select an organization</option>
+                    <option value="Women">Women</option>
+                    <option value="Erpat">Erpat</option>
+                    <option value="Senior Citizen">Senior Citizen</option>
+                    <option value="LGBTQ">LGBTQ</option>
+                    <option value="PWD">PWD</option>
+                    <option value="Children">Children</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="cancel" onclick="closeAddOrgModal()">Cancel</button>
+                <button type="submit" class="add">Add</button>
+            </div> 
+        </form>
+    </div>
+</div>
+
+        <!-- Success Message Modal (Shared for both Add & Update) -->
+            <div id="successModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="closeSuccessModal()">&times;</span>
+                    <i class="fa-regular fa-circle-check green-icon"></i>
+                    <p id="successMessage">Success message here.</p>
+                </div>
+            </div>
+
+
+    <!-- DELETE ORG MODAL -->
+<div id="confirmationModal" class="confirmDeleteModalContainer" style="display: none; position: fixed; z-index: 33; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div class="confirmationModal">
+        <h3 id="modalMessage" style="margin-top: 20px;">Are you sure you want to delete?</h3>
+        <div style="margin-top: 20px;">
+            <button class="conf-delete yes" id="confirmButton" onclick="confirmDelete()">Yes</button>
+            <button class="conf-delete no" onclick="closeConfModal()">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- Success Message Modal (Shared for Add, Update, and Delete) -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeSuccessModal()">&times;</span>
+        <i class="fa-regular fa-circle-check green-icon"></i>
+        <p id="successMessage">Success message here.</p>
+        <button class="update" onclick="closeSuccessModal()">OK</button>
+    </div>
+</div>
+
+
+
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+    <script src="{% static 'polls/js/Buttons.js' %}"></script>
+    <script src="{% static 'polls/js/treasurer_buttons.js' %}"></script>
+
+
 </body>
-</html>
+</html> 

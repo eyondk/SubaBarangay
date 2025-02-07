@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Suba Mangement System</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'polls/image/LOGO.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'polls/css/MainHeader.css'%}">
+    <link rel="stylesheet" href="{%static 'polls/css/Resident_details.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
+
+
+</head>
+<body>
+    <div class="Main_header">
+        <div class="userdetails">
+            <img src="{% static 'polls/image/LOGO.ico' %}" alt="User Profile Picture" class="user-image">
+            <div class="user-info">
+                <h6 class="username">Username</h6>
+                <h6 class="role">Barangay Health Worker</h6>
+            </div>
+        </div>
+        <h1 class="tittle">Barangay Suba Management System</h1>
+        <p>Wed, 10/10/10 12:00 PM</p>
+    </div>
+
+    <div class="Body">
+        <div class="menu">
+            <div class="nav-menu">
+                <a href="{% url 'Bdashboard' %}" class="{% if request.resolver_match.url_name == 'Bdashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'Bresident' %}" class="{% if request.resolver_match.url_name == 'Bresident' %}active{% endif %}">Residents</a>
+            </div>
+            <div class="logout">
+                <a href="" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <h1 class="hh_and_fam_no">Household No. 1658 Family No. 7362</h1> <!-- or ID -->
+        <h3 class="res_no">RESIDENT NO. 76243</h3>
+
+        <div class="resident-info-container">
+            <div class="respondent-info-container">
+                <div>
+                    <h3 class="res_name">Christine Jade L. Duran <i>(Jadii)</i></h3>
+                    <h3>Household Member - Wife</h3> <!-- iyang relationship sa household head, Change it to "Hosehold Head" if HH head -->
+                    <h3>Not Owner</h3>
+                </div>
+                <div>
+                    <h3 class="quarter">QUARTER: FIRST</h3>
+                    <h3>Date Visited: 00/00/0000</h3>
+                </div>
+
+            </div>
+
+            <div class="all-resident-info-container">
+                <div><strong>Birthdate:</strong> 10/10/10</div>
+                <div><strong>Sex:</strong> Female</div>
+                <div><strong>Weight:</strong> 500 kg</div>
+                <div><strong>Blood Type:</strong> O+</div>
+                <div><strong>Eye Color:</strong> Pink</div>
+                <div><strong>Block:</strong> Sunflower</div>
+                <div><strong>Street:</strong> Flower</div>
+                <div><strong>House No.:</strong> 0867</div>
+                <div><Strong>Contact No.:</Strong> 09000000000</div>
+                <div><strong>Civil Status:</strong> Single</div>
+                <div><strong>PhilHealth ID:</strong> 0878730273</div>            
+                <div><strong>Covid-19 Vax Status:</strong> Second Dose</div> 
+                <div><strong>NHTS Household:</strong> Non-NHTS</div>
+                <div><strong>Family Planning Method:</strong> Vasectomy</div>  
+                <div><strong>House Owner:</strong> Avocadi Why Not</div> <!-- Hide if its the owner -->
+                
+               
+            </div>
+
+            <div class="demographic">
+                <h3 class="section-title">I. Demographic Data</h3>
+                <table class="family_details">
+                    <thead>
+                        <tr>        
+                            <th>Relationship of Household Head</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Birthdate</th>
+                            <th>Blood Type</th>
+                            <th>Covid-19 Vax Status</th>
+                            <th>PhilHealth No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- optional: delete when the the resident is the HH head  -->
+                            <td colspan="8">Household Head</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Addy Marie</td>
+                            <td>79</td>
+                            <td>Female</td>
+                            <td>10/10/10</td>
+                            <td>O+</td>
+                            <td>First Dose</td>
+                            <td>09297613</td>
+                        </tr>
+
+                        <tr>
+                            <!-- optional: delete when the the resident is the HH head  -->
+                            <td colspan="8">hosehold Member(s)</td>
+                        </tr>
+                        <tr>
+                            <td>Son</td>
+                            <td>Addy Marie</td>
+                            <td>19</td>
+                            <td>Female</td>
+                            <td>10/10/10</td>
+                            <td>O+</td>
+                            <td>First Dose</td>
+                            <td>09297613</td>
+                        </tr>
+                        <tr>
+                            <td>Daughter</td>
+                            <td>Addy Marie</td>
+                            <td>29</td>
+                            <td>Female</td>
+                            <td>10/10/10</td>
+                            <td>O+</td>
+                            <td>First Dose</td>
+                            <td>09297613</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="tab-tittle">MGA BATA'NG 0-59 KA BULAN (Under five)</h4>
+                <table class="family_details" id="">
+                    <thead>
+                        <tr>
+                            <th>Relationship of Household Head</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Birthdate</th>
+                            <th>FIC</th>
+                            <th>Nutritional Status</th>
+                            <th>Exclusive BF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="relasyonHHHD">Son</td>
+                            <td id="fullname">John D. Doe</td>
+                            <td id="age">1</td>
+                            <td id="sex">Male</td>
+                            <td id="dob">11/01/2024</td>
+                            <td>Yes</td>
+                            <td>Healthy</td>
+                            <td>Yes</td>                            
+                        </tr>
+                    </tbody>  
+                </table> 
+            
+            </div>
+
+            <div class="envi">
+                <h3 class="section-title">II. Environmental Health and Sanitation</h3>
+                <div class="section-cards">
+                    <div class="sec-card one">
+                        <h4 class="section-sub-title">A. Type of Water Supply</h4>
+                        <h5 class="A">Level I (Point Source): Developed/protected/improved spring dug well without distribution/ pipping system, supplying within 250 meter radius</h5>
+                    </div>
+                    
+                    <div class="sec-card">
+                        <h4 class="section-sub-title">B. Type of Sanitary Facility</h4>
+                        <h5> The toilet is shared with other hosehold</h5>
+                        
+                        <div class="containers">
+                            <div class="container">
+                                <h5 class="title">Sanitary</h5>
+                                <ul>
+                                    <li>Pour/Flush type with septic tank</li> 
+                                    <li>Ventilated Pit (VIP) Latrine</li>
+                                </ul>
+                            </div>
+                            <div class="container">
+                                <h5 class="title">Unsanitary</h5>
+                                <ul>
+                                    <li>Overhung latrine</li> 
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                    <div class="sec-card">
+                        <h4 class="section-sub-title">C. Solid Waste Management</h4>
+                        <ul>
+                            <li>Waste Segregation</li>
+                            <li>Burning/ Burying</li>
+                            <li>Collected by City Collection and Disposal System</li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+            </div>
+
+
+            <div class="non-comm">
+                <h3 class="section-title">III. Non-Communcable Disease</h3>
+                <h6>Co-morbidities/Sakit/Balation:</h6>
+                <div class="sakit-iii">
+                    <div>                        
+                        <label for="HPN"><b>HPN -</b> Hypertension <i>(Highblood)</i></label>
+                    </div>
+                    <div>
+                        <label for="DM"><b>DM -</b> Diabetes <i>(Dyabetis)</i></label></div>
+                    <div>
+                        <label for="BA"><b>BA -</b> Bronchial Asthma <i>(Hubak)</i></label>
+                    </div>
+                    <div>
+                        <label for="CA"><b>CA -</b> Cancer </label>
+                    </div>
+                    <div>
+                        <label for="DL"><b>DL -</b> Dyslipidemia <i>(Problema sa Kolesterol)</i></label>
+                    </div>
+                    <div>
+                        <label for="CKD"><b>CKD -</b> Chronic Kidney Disease <i>(Naka Dialysis)</i></label>
+                    </div>
+                    <div>
+                        <label for="MHI"><b>MHI -</b> Depresyon ug uban pa kabahin sa Mental Health Illness</label>
+                    </div>
+                    <div>  
+                        <label for="others"><b>Others:</b><i> (specify)</i></label>
+                    </div>
+                </div>
+                <table class="family_details" id="">
+                    <thead>
+                        <tr>
+                            <th>Relationship of Household Head</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Risk Class by Age/Group</th>
+                            <th>Co-morbidities/Sakit</th>
+                            <th>Lifestyle Risk</th>
+                            <th>Naka maintenance?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="relasyonHHHD">Son</td>
+                            <td id="fullname">John D. Doe</td>
+                            <td id="age">100</td>
+                            <td id="sex">Male</td>
+                            <td>Pregnant</td>
+                            <td>CKD</td>
+                            <td>Alcoholic</td>
+                            <td>Yes</td>                            
+                        </tr>
+                        
+                        <tr>
+                            <td id="relasyonHHHD">Son</td>
+                            <td id="fullname">John D. Doe</td>
+                            <td id="age">100</td>
+                            <td id="sex">Male</td>
+                            <td>Pregnant</td>
+                            <td>CKD</td>
+                            <td>Alcoholic</td>
+                            <td>Yes</td>                            
+                        </tr>
+                    </tbody>  
+                </table> 
+
+                <!-- optional: hide if no family members have the disease. -->
+                <h5 class="tab-tittle">Tuberculosis Surveillance</h5>
+                <table class="family_details" id="">
+                    <thead>
+                        <tr>
+                            <th>Relationship of Household Head</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Source of Anti-TB Meds	</th>
+                            <th>No. of Days on Anti-TB Meds</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="relasyonHHHD">Son</td>
+                            <td id="fullname">John D. Doe</td>
+                            <td id="age">100</td>
+                            <td>Health Center</td>
+                            <td>50</td>
+                            <td>Completed</td>
+                        </tr>
+                        
+                    </tbody>  
+                </table>    
+            </div>
+
+
+            <div class="iv">
+                <div class="survey-id">
+                    <div>
+                        <h4>Profiled by (B/CHW):</h4>
+                        <h4>Bobo Ong Buhay</h4>
+                    </div>
+                    <div>
+                        <h4>Conforme (Informant):</h4>
+                        <h4>Christine Jade Lareno Duran</h4>
+                    </div>
+                </div>
+                <div class="survey-id second">
+                    <div>
+                        <h4>Checked by (RN/RM):</h4>
+                        <h4>Ms. Addy Mae</h4>
+                    </div>
+                    <div>
+                        <h4>Date Checked:</h4>
+                        <h4>10/10/10</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Buttons Section -->
+         <!-- i am also using this in treasurer as view sa resident/HH details, 
+                pwede ra addan og function nga i check una ang user like ani:
+                 
+        -->
+        <div class="buttons">
+            <a href="{% url 'Bresident'%}">
+                <button type="button" class="cancel-btn">Back</button>
+            </a>
+        </div>
+
+
+
+    <div id="logout-modal" class="logout-modal">
+        <div class="logout-modal-content">
+            <span class="close-logout-btn">&times;</span>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to log out?</p>
+            <div class="logout-modal-actions">
+                <a href="#" id="logout-confirm" class="confirm-logout-btn">Yes, Logout</a>
+                <button id="logout-cancel" class="cancel-logout-btn">No, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'polls/js/logoutModal.js' %}"></script>
+
+</body>
+</html>
+            
