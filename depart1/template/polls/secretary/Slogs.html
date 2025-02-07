@@ -31,8 +31,8 @@
             <div class="nav-menu">
                 <a href="{% url 'Sdashboard' %}" class="{% if request.resolver_match.url_name == 'Sdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Sresident' %}" class="{% if request.resolver_match.url_name == 'Sresident' %}active{% endif %}">Residents</a>
-                <a href="#">Organization</a>
-                <a href="#" class="">Certificates</a>
+                <a href="{% url 'Sorganization'%}" class="{% if request.resolver_match.url_name == 'Sorganization' %}active{% endif %}">Organization</a>
+                <!-- <a href="#" class="">Certificates</a> -->
                 <a href="{% url 'Slogs' %}" class="{% if request.resolver_match.url_name == 'Slogs' %}active{% endif %}">Logs</a>    
             </div>
             <div class="logout">

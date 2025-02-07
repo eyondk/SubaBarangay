@@ -77,7 +77,7 @@
     color: rgba(2, 2, 87, 0.922); /* Consistent text color */
     background-color: #f9f9f9; /* Light background color for dropdown */
     appearance: none; /* Removes default browser styling */
-    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="rgba(2, 2, 87, 0.922)" d="M0 0l5 6 5-6z"/></svg>');
+    /*background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="rgba(2, 2, 87, 0.922)" d="M0 0l5 6 5-6z"/></svg>');*/
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 10px 6px;

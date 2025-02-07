@@ -62,6 +62,8 @@ urlpatterns = [
     path("secretary/resident/add/educ", views.secretary_resident_add_educ_view, name="SaddEduc_details"),
     path("secretary/resident/update/details", views.secretary_update_resident_details_view, name="Sresident_update"),
     path("secretary/resident/update/educ", views.secretary_update_resident_educ_view, name="Sresident_update_educ"),
+    path("secretary/organizations/", views.secretary_organization_view, name="Sorganization"),
+
 
 
 

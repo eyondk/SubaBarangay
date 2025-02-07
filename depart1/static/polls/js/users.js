@@ -1,6 +1,10 @@
 //close and open add user modals only.
 const displayUserModal = document.getElementById("addUserModal");
+const displayRegisterModal = document.getElementById("RegisterOrgModal");
+
 const addUserBtn = document.getElementById("addUserBtn");
+const RegOrgBtn= document.getElementById("RegOrgBtn");
+
 const closeModalBtn = document.getElementById("cancel-add-user-btn");
 
 addUserBtn.addEventListener("click", function(event) {

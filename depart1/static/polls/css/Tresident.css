@@ -149,20 +149,21 @@
 
 .tre_resident-table{
     width: 100%;
+    background-color: whitesmoke;
     border-collapse: collapse;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
-    margin-top: -15px;
-    
+    margin-top: -15px;    
 }
 
 .tre_resident-table th, 
 .tre_resident-table td {
     padding: 10px 15px;
-    border: 1.5px solid rgb(84, 79, 142);
     font-size: 14px;
+    text-align: center;
 }
+
 
 .tre_resident-table th {
     background-color: rgba(2, 2, 87, 0.922);
@@ -172,8 +173,31 @@
     border:none;
 }
 
+.tre_resident-table td{
+    background-color: transparent;
+    color: rgba(2, 2, 87, 0.922);
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: medium;
+    border: 1.5px solid rgb(84, 79, 142);
+}
+
+.tre_resident-table th:first-child, 
+.tre_resident-table td:first-child {
+    width: 40px;
+}
+
+.tre_resident-table th input[type="checkbox"],
+.tre_resident-table td input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2);
+    border: none;
+}
+
+
 .tre_resident-table tbody tr:hover {
-    background-color: rgba(200, 200, 250, 0.4);
+    background-color: rgba(183, 183, 252, 0.516);
+    cursor: pointer;
 }
 
 .actions {
@@ -255,9 +279,10 @@
 
 .tabs-container {
     width: 100%;
-    margin-top: -5px;
+    margin-top: 20px;
     margin-bottom: 15px;
     padding: 1px 2px 3px 10px;
+    
 }
 
 .tabs {
@@ -275,7 +300,7 @@
     color: rgba(2, 2, 87, 0.922);
     border-radius: 20px;
     background-color: transparent;
-    margin-right: 5px;
+    margin-right: 50px;
     transition: background-color 0.3s, color 0.3s;
     font-size: small;
     font-weight: 600;

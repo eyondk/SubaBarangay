@@ -32,7 +32,7 @@
             <div class="nav-menu">
                 <a href="{% url 'Tdashboard' %}" class="{% if request.resolver_match.url_name == 'Tdashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'Tresidents' %}" class="{% if request.resolver_match.url_name == 'Tresidents' %}active{% endif %}">Residents</a>
-                <a href="{% url 'Tpayments' %}" class="{% if request.resolver_match.url_name == 'Tpayments' %}active{% endif %}">Payment</a>
+                <!-- <a href="{% url 'Tpayments' %}" class="{% if request.resolver_match.url_name == 'Tpayments' %}active{% endif %}">Payment</a> -->
                 <a href="{% url 'Torganization'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Organization</a>
                 <a href="{% url 'Tusers'%}" class="{% if request.resolver_match.url_name == 'Tusers' %}active{% endif %}">Users</a>
                 <a href="{% url 'Tlogs' %}" class="{% if request.resolver_match.url_name == 'Tlogs' %}active{% endif %}">Logs</a>    
@@ -59,17 +59,25 @@
                         <option value="children">Children</option>
                     </select>
                 </div>
+                
             </form>
+            <div class="tabs-container">
+                <ul class="tabs">
+                    <li class="tab" data-type="resident">Households</li>
+                </ul>
+            </div>
+            
             
             <div class="add_resident">
-                <a href="{% url 'TaddResident_details'%}" class="action-btn BTN_AddResident">
+                <!-- <a href="{% url 'TaddResident_details'%}" class="action-btn BTN_AddResident">
                     <i class="fa-solid fa-circle-plus"></i> Add Residents
-                </a>
+                </a> -->
 
                 <!-- <button class="BTN_AddResident">
                         <i class="fa-solid fa-circle-plus"></i> Add Residents
                 </button> -->
             </div>
+            
         </div>
 
         <div class="age-filter-container" style="display:none;">
@@ -88,6 +96,7 @@
             </form>
         </div>
         
+   
         <div class="tre_table-container">
             <table class="tre_resident-table">
                 <thead>

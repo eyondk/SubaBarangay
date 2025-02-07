@@ -159,6 +159,10 @@ def secretary_update_resident_details_view(request):
 def secretary_update_resident_educ_view(request):
     return render(request, "secretary/Sresident_update_educ.html")
 
+def secretary_organization_view(request):
+    return render(request, "secretary/Sorganization.html")
+    
+
 
 #----------------BHW----------------
 def bhw_dashboard_view(request):
