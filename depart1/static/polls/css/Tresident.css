@@ -211,7 +211,7 @@
     color: darkslateblue;
 }
 
-.all{
+.all, .button-org.delete{
     background-color: brown;
 }
 
@@ -224,7 +224,7 @@
 }
 
 
-.deselect-res:hover, .update:hover, .add:hover{
+.deselect-res:hover, .update:hover, .add:hover, .button-org.delete:hover{
     transform: scale(1.05);
     background-color: ghostwhite;
     color: rgb(2, 2, 87);   

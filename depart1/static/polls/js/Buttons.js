@@ -74,20 +74,21 @@ function deselectAll() {
 // ================= end delete function & confirmation modal  ===============
 
 
-// ======================== TREASURER'S =================================
+// ======================== TREASURER'S TABLE =================================
 
 function toggleButtons_Treasurer() {
     const checkboxes = document.querySelectorAll(".select-row-checkbox");
     const addButton = document.getElementById("add-org-all");
     const updateButton = document.getElementById("update-org-all");
     const deselectAllButton = document.getElementById("deselect-all");
+    const deleteButton = document.getElementById("delete-org-all");
 
 
     const checkedBoxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
     deselectAllButton.style.display = checkedBoxes.length > 0 ? "inline-block" : "none";
-    updateButton.style.display = checkedBoxes.length === checkboxes.length || checkedBoxes.length > 0 ? "inline-block" : "none";
-    addButton.style.display = checkedBoxes.length === checkboxes.length || checkedBoxes.length > 0 ? "inline-block" : "none";
-
+    updateButton.style.display = checkedBoxes.length > 0 ? "inline-block" : "none";
+    addButton.style.display = checkedBoxes.length > 0 ? "inline-block" : "none";
+    deleteButton.style.display = checkboxes.length > 0 ?  "inline-block" : "none";
 }
 
 function toggleAllCheckboxesResident_treasurer(source) {
