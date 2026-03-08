@@ -15,6 +15,9 @@ import logging
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+
 
 logger = logging.getLogger('depart1')
 
@@ -23,12 +26,9 @@ logger = logging.getLogger('depart1')
 def index(request):
     return render(request,"shared/login_page.html")
 
-
-
-
-
-
-
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # Redirect to the login page after logout
 
 def login_view(request):
     if request.method == 'POST':
@@ -273,7 +273,8 @@ def treasurer_payments_view(request):
     
 def treasurer_organization_view(request):
     return render(request, "treasurer/Torganization.html")
-    
+
+
 
 def treasurer_resident_details_view(request):
     return render(request, "treasurer/Tresident_details.html")
